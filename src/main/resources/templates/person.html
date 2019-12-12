@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form action="#" th:action="@{/person}" th:object="${person}" method="post">
+    <fieldset>
+        <legend><span th:text="#{person.form.title}"></span></legend>
+        <ul th:if="${#fields.hasErrors('*')}">
+            <li th:each="err : ${#fields.errors('*')}" th:text="${err}">
+                Input is incorrect
+            </li>
+        </ul>
+        <p>
+            <label for="id"><span data-th-text="#{person.form.id}">ID</span></label>
+            <input type="text" id="id" th:field="*{id}"/>
+        <p th:if="${#fields.hasErrors('id')}" th:errors="*{id}" th:errorclass="fieldError">Incorrect</p>
+        </p>
+        <p>
+            <label for="name"><span th:text="#{person.form.name}"></span></label>
+            <input type="text" th:field="*{name}"/>
+        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" th:errorclass="fieldError">Incorrect name</p>
+        </p>
+        <p>
+            <label for="age"><span th:text="#{person.form.age}"></span></label>
+            <input type="number" th:field="*{age}"/>
+        <p th:if="${#fields.hasErrors('age')}" th:errors="*{age}" th:errorclass="fieldError">Incorrect age</p>
+        </p>
+        <p id="buttons">
+            <input id="reset" type="reset" th:value="#{person.form.resetbtn}" value="Reset" tabindex="4">
+            <input id="submit" type="submit" tabindex="5" th:value="#{person.form.addbtn}" value="Add Person">
+        </p>
+    </fieldset>
+</form>
+
+</body>
+</html>
