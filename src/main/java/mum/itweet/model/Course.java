@@ -13,7 +13,7 @@ public class Course {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	@Column(nullable = false, unique = true, length = 128)
-	private String name;
+	private   String name;
 	@Column(nullable = false, unique = true, length = 128)
 	private String code;
 	private int credits;
