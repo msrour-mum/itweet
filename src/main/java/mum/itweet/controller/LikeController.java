@@ -26,7 +26,7 @@ public class LikeController {
         return null;
     }
 
-    @DeleteMapping(value = "/getPostLiks/{postId}")
+   /* @DeleteMapping(value = "/getPostLiks/{postId}")
     public List<PostLikes> getPostLiks(@PathVariable("postId") long postId) {
         try {
             return likeService.getPostLikes(postId);
@@ -35,7 +35,7 @@ public class LikeController {
         }
         return null;
     }
-
+*/
     @DeleteMapping(value = "/delete/{id}")
     public String delete(@PathVariable("id") int id) {
         try {

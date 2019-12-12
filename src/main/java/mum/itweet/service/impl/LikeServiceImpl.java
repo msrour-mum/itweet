@@ -17,6 +17,7 @@ public class LikeServiceImpl implements LikeService {
     @Autowired
     private LikeDao likeDao;
 
+
     @Override
     public PostLikes create(PostLikes postLikes) {
         return likeDao.save(postLikes);
@@ -32,8 +33,8 @@ public class LikeServiceImpl implements LikeService {
         likeDao.deleteById(id);
     }
 
-    @Override
+  /*  @Override
     public List<PostLikes> getPostLikes(long postId) {
         return likeDao.getPostLikes(postId);
-    }
+    }*/
 }

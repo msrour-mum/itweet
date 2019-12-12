@@ -1,6 +1,7 @@
 package mum.itweet.controller;
 
 import mum.itweet.model.Post;
+import mum.itweet.model.User;
 import mum.itweet.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -66,10 +67,12 @@ public class PostController {
         }
     }
 
-    @GetMapping(value = "/search/{userId}")
+    @GetMapping(value = "/user/{userId}/post")
     public List<Post> getUserPosts(@PathVariable("userId") int userId) {
         try {
-            return postService.getUserPosts(userId);
+            User user=new User();
+            user.setId(userId);
+            return postService.findByUserContains(user);
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -77,7 +80,7 @@ public class PostController {
         return null;
     }
 
-    @GetMapping(value = "/getCount/{id}")
+   /* @GetMapping(value = "/getCount/{id}")
     public int getLikesCount(@PathVariable("id") int id) {
         try {
             return postService.getLikesCount(id);
@@ -86,7 +89,7 @@ public class PostController {
             System.out.println(e.getMessage());
         }
         return 0;
-    }
+    }*/
 
 }
 

@@ -9,5 +9,5 @@ import java.util.List;
 
 public interface LikeDao extends JpaRepository<PostLikes, Long> {
 
-    public List<PostLikes> getPostLikes(long postId);
+    //public List<PostLikes> getPostLikes(long postId);
 }

@@ -14,6 +14,6 @@ public interface LikeService {
 
     public void delete(long id);
 
-    public List<PostLikes> getPostLikes(long postId);
+    //public List<PostLikes> getPostLikes(long postId);
 
 }

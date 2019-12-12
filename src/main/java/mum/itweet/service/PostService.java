@@ -1,6 +1,7 @@
 package mum.itweet.service;
 
 import mum.itweet.model.Post;
+import mum.itweet.model.User;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ public interface PostService {
 
     public List<Post> getAll();
 
-    public List<Post> getUserPosts(int userId);
+    public List<Post> findByUserContains(User user);
 
-    public int getLikesCount(long id);
+   // public int getLikesCount(long id);
 }

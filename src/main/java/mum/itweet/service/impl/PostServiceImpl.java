@@ -1,6 +1,7 @@
 package mum.itweet.service.impl;
 
 import mum.itweet.model.Post;
+import mum.itweet.model.User;
 import mum.itweet.repository.PostDao;
 import mum.itweet.repository.UserDao;
 import mum.itweet.service.PostService;
@@ -12,7 +13,6 @@ import java.util.List;
 
 @Service
 @Transactional
-
 public class PostServiceImpl implements PostService {
 
     @Autowired
@@ -44,12 +44,12 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<Post> getUserPosts(int userId) {
-        return postDao.getUserPosts(userId);
+    public List<Post> findByUserContains(User user) {
+        return postDao.findByUserContains(user);
     }
 
-    @Override
-    public int getLikesCount(long id) {
-        return postDao.getLikesCount(id);
-    }
+//    @Override
+//    public int getLikesCount(long id) {
+//        return postDao.getLikesCount(id);
+//    }
 }

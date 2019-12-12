@@ -9,8 +9,10 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 public interface PostDao extends JpaRepository<Post, Long> {
-    public List<Post> getUserPosts(int userId);
-    public int getLikesCount(long id);
+
+    public List<Post> findByUserContains(User user);
+    //public int getLikesCount(long id);
+   // public  int countPostsByPostLikes(long );
 
 
 }
