@@ -15,7 +15,7 @@ public class CommentController {
     @Autowired
     private CommentService commentService;
 
-    @PostMapping("/")
+    @PostMapping()
     public Comment addComment(@RequestBody CommentDto commentDto){
         return commentService.create(commentDto);
     }
@@ -25,9 +25,9 @@ public class CommentController {
         return commentService.get(commentId);
     }
 
-    @GetMapping("/post/{id}")
+    @GetMapping("/post/{id}/comment")
     //@ToDo post id dateType
-    public List<Comment> getAllComments(@PathVariable int postId){
-        return commentService.getAllComments(postId);
+    public List<Comment> getCommentsByPostId(@PathVariable int postId){
+        return commentService.getCommentsByPostId(postId);
     }
 }

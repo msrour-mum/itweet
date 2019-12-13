@@ -4,8 +4,9 @@ import mum.itweet.model.Comment;
 import mum.itweet.model.dto.CommentDto;
 import mum.itweet.model.Post;
 import mum.itweet.model.User;
-import mum.itweet.repository.PostDao;
-import mum.itweet.repository.UserDao;
+import mum.itweet.repository.CommentRepository;
+import mum.itweet.repository.PostRepository;
+import mum.itweet.repository.UserRepository;
 import mum.itweet.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,40 +19,47 @@ import java.util.List;
 public class CommentServiceImpl implements CommentService {
 
     @Autowired
-    private mum.itweet.repository.CommentDao commentDao;
+    private CommentRepository commentRepository;
     @Autowired
-    private UserDao userDao;
+    private UserRepository userRepository;
     @Autowired
-    private PostDao postDao ;
+    private PostRepository postRepository;
 
     @Override
     public Comment create(CommentDto commentDto) {
-        User user = userDao.getOne(commentDto.getUserId());
+        User user = userRepository.getOne(commentDto.getUserId());
         //@ToDo why post id is long in jpaRepository
-        Post post = postDao.getOne((long)commentDto.getPostId());
+        Post post = postRepository.getOne((long)commentDto.getPostId());
         Comment comment = new Comment(user,post,commentDto.getCommentText());
-        return commentDao.save(comment);
+        return commentRepository.save(comment);
     }
 
     @Override
     public Comment get(long id) {
-        return commentDao.findById(id).get();
+        return commentRepository.findById(id).get();
     }
 
     @Override
-    public List<Comment> getAllComments(int postid) {
+    public List<Comment> getCommentsByPostId(int postid) {
         //@ToDo get commets by using postDao
-        return null;
+        return commentRepository.findByPostId(postid);
     }
 
+
     @Override
-    public Comment update(Comment comment) {
-        return commentDao.save(comment);
+    public Comment update(CommentDto commentDto) {
+
+        User user = userRepository.getOne(commentDto.getUserId());
+        //@ToDo why post id is long in jpaRepository
+        Post post = postRepository.getOne((long)commentDto.getPostId());
+        Comment comment = new Comment(user,post,commentDto.getCommentText());
+        return commentRepository.save(comment);
     }
 
     @Override
     public void delete(long id) {
-         commentDao.deleteById(id);
+
+        commentRepository.deleteById(id);
     }
 
 

@@ -22,4 +22,10 @@ public class Following {
 
     @Column(nullable = false, columnDefinition = "DATETIME default now()")
     private Date creationDate;
+
+    public Following(User follower, User following, Date creationDate) {
+        this.follower = follower;
+        this.following = following;
+        this.creationDate = creationDate;
+    }
 }

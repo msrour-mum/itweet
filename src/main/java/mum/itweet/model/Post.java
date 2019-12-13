@@ -17,8 +17,18 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @ManyToOne(optional = false)
+    private User user;
+
     @Column(nullable = false , length = 200)
     private String postText;
+
+    @Enumerated(EnumType.ORDINAL)
+    @Column(name = "statusId", nullable = false)
+    private PostStatus status;
+
+    private String imageUrl;
+    private String videoUrl;
 
     @Column(nullable = false, columnDefinition = "DATETIME default now()")
     private Date creationDate;
@@ -26,19 +36,21 @@ public class Post {
     @Column(nullable = true)
     private Date publishDate;
 
-    @Enumerated(EnumType.ORDINAL)
-    @Column(name = "statusId", nullable = false)
-    private PostStatus status;
-
-    @ManyToOne(optional = false)
-    private User user;
-
     @OneToMany(mappedBy = "post")
     List<Comment> comments;
 
     @OneToMany(mappedBy = "post")
     List<PostLikes> postLikes;
 
-    private String imageUrl;
-    private String videoUrl;
+    public Post(User user, String postText, PostStatus status, String imageUrl, String videoUrl, Date creationDate, Date publishDate)
+    {
+        this.user = user;
+        this.postText = postText;
+        this.status = status;
+        this.imageUrl = imageUrl;
+        this.videoUrl = videoUrl;
+        this.creationDate = creationDate;
+        this.publishDate = publishDate;
+
+    }
 }

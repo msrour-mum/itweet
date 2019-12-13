@@ -3,18 +3,18 @@ package mum.itweet.model.dto;
 import lombok.Data;
 
 @Data
-public class CommentDto {
+public class PostLikesDto {
 
-   private long id;
-   private int userId ;
-   private long postId ;
-   private String commentText ;
+    private long id;
+    private int userId;
+    private long postId;
+    private boolean isLike;
 
-    public CommentDto(long id, int userId, long postId, String commentText) {
+    public PostLikesDto(long id, int userId, long postId, boolean isLike) {
         this.id = id;
         this.userId = userId;
         this.postId = postId;
-        this.commentText = commentText;
+        this.isLike = isLike;
     }
 
     public long getId() {
@@ -41,11 +41,11 @@ public class CommentDto {
         this.postId = postId;
     }
 
-    public String getCommentText() {
-        return commentText;
+    public boolean isLike() {
+        return isLike;
     }
 
-    public void setCommentText(String commentText) {
-        this.commentText = commentText;
+    public void setLike(boolean like) {
+        isLike = like;
     }
 }

@@ -1,6 +1,7 @@
 package mum.itweet.controller;
 
 import mum.itweet.model.PostLikes;
+import mum.itweet.model.dto.PostLikesDto;
 import mum.itweet.service.LikeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -9,13 +10,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "PostLikes")
-public class LikeController {
+@RequestMapping(value = "api/PostLikes")
+public class PostLikesController {
     @Autowired
     LikeService likeService;
 
     @PostMapping(value = "/add")
-    public PostLikes add(@RequestBody PostLikes postLikes) {
+    public PostLikes add(@RequestBody PostLikesDto postLikes) {
         try {
             return likeService.create(postLikes);
         } catch (DataIntegrityViolationException e) {

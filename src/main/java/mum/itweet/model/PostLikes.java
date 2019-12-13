@@ -26,4 +26,10 @@ public class PostLikes {
     @Column(nullable = false, columnDefinition = "DATETIME default now()")
     private Date creationDate;
 
+    public PostLikes(User user, Post post, boolean isLike, Date creationDate) {
+        this.user = user;
+        this.post = post;
+        this.isLike = isLike;
+        this.creationDate = creationDate;
+    }
 }
