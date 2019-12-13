@@ -26,4 +26,10 @@ public class Comment {
 
     @Column(nullable = false, columnDefinition = "DATETIME default now()")
     private Date creationDate;
+
+    public Comment(User user, Post post, String commentText) {
+        this.user = user;
+        this.post = post;
+        this.commentText = commentText;
+    }
 }
