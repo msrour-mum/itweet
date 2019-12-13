@@ -16,4 +16,9 @@ public class PersonServiceImpl implements IPersonService {
         return personRepository.save(person);
     }
 
+    @Override
+    public Person update(Person person) {
+        return personRepository.save(person);
+    }
+
 }
