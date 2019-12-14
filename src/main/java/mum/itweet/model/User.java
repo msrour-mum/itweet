@@ -18,6 +18,10 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+
+    @Column(nullable = false)
+    private String name;
+
     @Column(unique = true, nullable = false)
     private String email;
 
@@ -50,7 +54,8 @@ public class User {
     @OneToMany(mappedBy = "user")
     List<PostLikes> postLikes;
 
-    public User(String email, boolean isAdmin, Role role, String pass, boolean isActive, Date birthDate, Gender gender, String mobile, String bio) {
+    public User(String name,String email, boolean isAdmin, Role role, String pass, boolean isActive, Date birthDate, Gender gender, String mobile, String bio) {
+        this.name = name;
         this.email = email;
         this.isAdmin = isAdmin;
         this.role = role;
@@ -78,13 +83,13 @@ public class User {
         this.email = email;
     }
 
-    public boolean isAdmin() {
+    /*public boolean isAdmin() {
         return isAdmin;
     }
 
     public void setAdmin(boolean admin) {
         isAdmin = admin;
-    }
+    }*/
 
     public Role getRole() {
         return role;
