@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" class=" " xmlns:th="http://www.thymeleaf.org/">
+<html lang="en" class=" " xmlns:th="http://www.thymeleaf.org/"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
@@ -325,7 +326,7 @@
                             <li><a href="https://wpkixx.com/html/winku/index-company.html" th:text="#{main.menu.homeCompany}">Home Company</a>
                             </li>
                             <li><a href="https://wpkixx.com/html/winku/landing.html" th:text="#{main.menu.loginPage}">Login page</a></li>
-                            <li><a href="https://wpkixx.com/html/winku/logout.html" th:text="#{main.menu.logoutPage}">Logout Page</a></li>
+                            <li><a href="/logout" th:text="#{main.menu.logoutPage}">Logout Page</a></li>
                             <li><a href="https://wpkixx.com/html/winku/newsfeed.html" th:text="#{main.menu.newsFeed}">news feed</a></li>
                         </ul>
                     </li>
@@ -564,8 +565,12 @@
                     <img src="images/admin.jpg" alt="">
                     <span class="status f-online"></span>
                     <div class="user-setting">
-                        <a href="https://wpkixx.com/html/winku/time-line.html#" title=""><span
-                                class="status f-online"></span>online</a>
+                        <a href="https://wpkixx.com/html/winku/time-line.html#" title="">
+                            <span class="status f-online"></span>online
+                            <span sec:authentication="name"></span>, Role: (<span sec:authentication="principal.authorities"></span>)
+                        </a>
+                        <span>fragment</span>
+
                         <a href="https://wpkixx.com/html/winku/time-line.html#" title=""><span
                                 class="status f-away"></span>away</a>
                         <a href="https://wpkixx.com/html/winku/time-line.html#" title=""><span
@@ -578,8 +583,7 @@
                             log</a>
                         <a href="https://wpkixx.com/html/winku/time-line.html#" title=""><i class="ti-settings"></i>account
                             setting</a>
-                        <a href="https://wpkixx.com/html/winku/time-line.html#" title=""><i class="ti-power-off"></i>log
-                            out</a>
+                        <a href="/logout" title=""><i class="ti-power-off"></i>logout</a>
                     </div>
                 </div>
                 <span class="ti-menu main-menu" data-ripple=""></span>
