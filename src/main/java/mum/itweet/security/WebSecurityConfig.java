@@ -65,6 +65,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/register").permitAll()
                 .antMatchers(HttpMethod.POST,"/api/user").permitAll()
                 .antMatchers("/error").permitAll()
+                .antMatchers("/forwardLogin", "/facebook").permitAll()
 
                 // all other requests need to be authenticated
                 .anyRequest().authenticated()
