@@ -70,6 +70,7 @@ public class DataGenerate {
             for (User userS : users) {
                 if (doRandom(4,1)) {
                     Following following = new Following(userS, userM, new Date());
+                    em.persist(following);
                 }
             }
         }

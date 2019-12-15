@@ -69,6 +69,14 @@
 			<artifactId>guava</artifactId>
 			<version>24.1.1-jre</version>
 		</dependency>
+
+		<!-- JSTL for JSP -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+		</dependency>
+
+
 	</dependencies>
 
 	<build>

@@ -15,6 +15,6 @@ public class UnhealthyKey {
     private int id;
 
     @Column(nullable = false)
-    private String wordkey;
+    private String wordKey;
 }
 

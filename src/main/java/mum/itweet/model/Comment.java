@@ -24,7 +24,7 @@ public class Comment {
     @Column(nullable = false,length = 200)
     private String commentText;
 
-    @Column(nullable = false, columnDefinition = "DATETIME default now()")
+    @Column(name ="creationDate",nullable = false, columnDefinition = "DATETIME default now()")
     private Date creationDate;
 
     public Comment(User user, Post post, String commentText) {

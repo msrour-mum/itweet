@@ -25,7 +25,7 @@ public class User {
     @Column(unique = true, nullable = false)
     private String email;
 
-    @Column(nullable = false, columnDefinition = "BIT(1) default 0")
+    @Column(name = "isAdmin",nullable = false, columnDefinition = "BIT(1) default 0")
     private boolean isAdmin;
 
     @ManyToOne(optional = false)
@@ -34,7 +34,7 @@ public class User {
     @Column(nullable = false)
     private String pass;
 
-    @Column(nullable = false, columnDefinition = "BIT(1) default 1")
+    @Column(name = "isActive",nullable = false, columnDefinition = "BIT(1) default 1")
     private boolean isActive;
 
     private Date birthDate;

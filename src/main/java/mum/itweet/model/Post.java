@@ -30,10 +30,10 @@ public class Post {
     private String imageUrl;
     private String videoUrl;
 
-    @Column(nullable = false, columnDefinition = "DATETIME default now()")
+    @Column(name ="creationDate", nullable = false, columnDefinition = "DATETIME default now()")
     private Date creationDate;
 
-    @Column(nullable = true)
+    @Column(name ="publishDate" , nullable = true)
     private Date publishDate;
 
     @OneToMany(mappedBy = "post")
@@ -52,5 +52,70 @@ public class Post {
         this.creationDate = creationDate;
         this.publishDate = publishDate;
 
+    }
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getPostText() {
+        return postText;
+    }
+
+    public void setPostText(String postText) {
+        this.postText = postText;
+    }
+
+    public PostStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(PostStatus status) {
+        this.status = status;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public String getVideoUrl() {
+        return videoUrl;
+    }
+
+    public void setVideoUrl(String videoUrl) {
+        this.videoUrl = videoUrl;
+    }
+
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public Date getPublishDate() {
+        return publishDate;
+    }
+
+    public void setPublishDate(Date publishDate) {
+        this.publishDate = publishDate;
     }
 }

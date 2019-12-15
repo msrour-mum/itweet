@@ -20,10 +20,10 @@ public class PostLikes {
     @ManyToOne(optional = false)
     private Post post;
 
-    @Column(nullable = false, columnDefinition = "BIT(1) default 1")
+    @Column(name = "isLike",nullable = false, columnDefinition = "BIT(1) default 1")
     private boolean isLike;
 
-    @Column(nullable = false, columnDefinition = "DATETIME default now()")
+    @Column(name ="creationDate",nullable = false, columnDefinition = "DATETIME default now()")
     private Date creationDate;
 
     public PostLikes(User user, Post post, boolean isLike, Date creationDate) {
