@@ -31,5 +31,6 @@ public class Comment {
         this.user = user;
         this.post = post;
         this.commentText = commentText;
+        this.creationDate=new Date();
     }
 }
