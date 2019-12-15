@@ -79,7 +79,7 @@
                         </p>
                         <form action="#" th:action="@{/register}" th:object="${userDto}" method="post">
                             <div class="form-group">
-                                <input type="text" th:field="*{name}" required="required"/>
+                                <input type="text" th:field="*{name}"/>
                                 <label class="control-label" for="input">Name</label>
                                 <i class="mtrl-select"></i>
                                 <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" th:errorclass="fieldError">Incorrect Name</p>

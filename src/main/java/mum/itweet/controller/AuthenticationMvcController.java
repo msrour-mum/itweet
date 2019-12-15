@@ -70,6 +70,7 @@ public class AuthenticationMvcController {
             return "login";
         }
         User userToAdd = new User();
+        userToAdd.setName(user.getName());
         userToAdd.setPass(user.getPass());
         userToAdd.setEmail(user.getEmail());
         userToAdd.setActive(true);

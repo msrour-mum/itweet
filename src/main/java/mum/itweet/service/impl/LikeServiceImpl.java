@@ -31,10 +31,14 @@ public class LikeServiceImpl implements LikeService {
     @Override
     public PostLikes create(PostLikesDto postLikesDto) {
 
-        User user=userRepository.getOne(postLikesDto.getUserId());
-        Post post =postRepository.getOne(postLikesDto.getPostId());
-        PostLikes postLikes=new PostLikes(user,post,postLikesDto.isLike(),new Date());
-        return postLiksRepository.save(postLikes);
+       /* User user=userRepository.getOne(userId);
+        Post post =postRepository.getOne(postId);
+        PostLikes postLikes=new PostLikes(user,true,new Date());
+        //return postLiksRepository.save(postLikes);
+        post.addLike(postLikes);
+        postRepository.save(post);
+        return postLikes;*/
+       return null;
     }
 
     @Override
@@ -42,8 +46,11 @@ public class LikeServiceImpl implements LikeService {
 
         User user=userRepository.getOne(userId);
         Post post =postRepository.getOne(postId);
-        PostLikes postLikes=new PostLikes(user,post,true,new Date());
-        return postLiksRepository.save(postLikes);
+        PostLikes postLikes=new PostLikes(user,true,new Date());
+        //return postLiksRepository.save(postLikes);
+        post.addLike(postLikes);
+        postRepository.save(post);
+        return postLikes;
     }
 
     @Override
@@ -62,6 +69,7 @@ public class LikeServiceImpl implements LikeService {
     public List<PostLikes> findByPostId(long postId) {
 
         return postLiksRepository.findByPostId(postId);
+
     }
 
 

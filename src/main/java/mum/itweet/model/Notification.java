@@ -31,7 +31,7 @@ public class Notification {
     @ManyToOne(optional = true)
     private Comment comment;
 
-    @Column(nullable = false, columnDefinition = "BIT(1) default 0")
+    @Column(name = "isSeen",nullable = false, columnDefinition = "BIT(1) default 0")
     private boolean isSeen;
 
     @Column(nullable = false)

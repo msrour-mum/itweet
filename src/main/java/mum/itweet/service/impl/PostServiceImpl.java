@@ -35,7 +35,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public Post get(long id) {
-
+        //return postRepository.getOne(id);
         return postRepository.findById(id).get();
     }
 
@@ -60,7 +60,8 @@ public class PostServiceImpl implements PostService {
     @Override
     public  List<Post> findByUserId(int userId) {
 
-        return postRepository.findByUserId(userId);
+        //return postRepository.findByUserId(userId);
+        return postRepository.findAll();
     }
 
     @Override
@@ -76,5 +77,22 @@ public class PostServiceImpl implements PostService {
     }
 
 
+
+    @Override
+    public  List<Post> listPendingPosts() {
+        return  postRepository.findByStatusOrderByIdDesc(PostStatus.Pending);
+    }
+
+    @Override
+    public  List<Post> listPostForUser(int userId) {
+        return postRepository.listPostForUser(userId);
+    }
+
+    @Override
+    public Post updateStatus(long postId, PostStatus postStatus){
+        Post post =get(postId);
+        post.setStatus(postStatus);
+        return postRepository.save(post);
+    }
 
 }

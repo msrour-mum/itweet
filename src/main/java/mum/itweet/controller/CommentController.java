@@ -21,11 +21,11 @@ public class CommentController {
     }
 
     @GetMapping("/{id}")
-    public Comment getOne(@PathVariable long commentId){
-        return commentService.get(commentId);
+    public Comment getOne(@PathVariable long id){
+        return commentService.get(id);
     }
 
-    @GetMapping("/post/{id}/comment")
+    @GetMapping("/post/{postId}/comment")
     //@ToDo post id dateType
     public List<Comment> getCommentsByPostId(@PathVariable int postId){
         return commentService.getCommentsByPostId(postId);

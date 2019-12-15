@@ -4,24 +4,26 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import mum.itweet.model.lookups.Gender;
 
-
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Data
 @NoArgsConstructor
-public class User {
+public class User  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
+    private String name;
+
     @Column(unique = true, nullable = false)
     private String email;
 
-    @Column(nullable = false, columnDefinition = "BIT(1) default 0")
+    @Column(name = "isAdmin",nullable = false, columnDefinition = "BIT(1) default 0")
     private boolean isAdmin;
 
     @ManyToOne(optional = false)
@@ -30,7 +32,7 @@ public class User {
     @Column(nullable = false)
     private String pass;
 
-    @Column(nullable = false, columnDefinition = "BIT(1) default 1")
+    @Column(name = "isActive",nullable = false, columnDefinition = "BIT(1) default 1")
     private boolean isActive;
 
     private Date birthDate;
@@ -41,16 +43,8 @@ public class User {
     private String mobile;
     private String bio;
 
-    @OneToMany(mappedBy = "user")
-    List<Post> posts;
-
-    @OneToMany(mappedBy = "user")
-    List<Comment> comments;
-
-    @OneToMany(mappedBy = "user")
-    List<PostLikes> postLikes;
-
-    public User(String email, boolean isAdmin, Role role, String pass, boolean isActive, Date birthDate, Gender gender, String mobile, String bio) {
+    public User(String name,String email, boolean isAdmin, Role role, String pass, boolean isActive, Date birthDate, Gender gender, String mobile, String bio) {
+        this.name = name;
         this.email = email;
         this.isAdmin = isAdmin;
         this.role = role;
@@ -59,86 +53,6 @@ public class User {
         this.birthDate = birthDate;
         this.gender = gender;
         this.mobile = mobile;
-        this.bio = bio;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public boolean isAdmin() {
-        return isAdmin;
-    }
-
-    public void setAdmin(boolean admin) {
-        isAdmin = admin;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
-
-    public String getPass() {
-        return pass;
-    }
-
-    public void setPass(String pass) {
-        this.pass = pass;
-    }
-
-    public boolean isActive() {
-        return isActive;
-    }
-
-    public void setActive(boolean active) {
-        isActive = active;
-    }
-
-    public Date getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
-    }
-
-    public Gender getGender() {
-        return gender;
-    }
-
-    public void setGender(Gender gender) {
-        this.gender = gender;
-    }
-
-    public String getMobile() {
-        return mobile;
-    }
-
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
-    }
-
-    public String getBio() {
-        return bio;
-    }
-
-    public void setBio(String bio) {
         this.bio = bio;
     }
 }

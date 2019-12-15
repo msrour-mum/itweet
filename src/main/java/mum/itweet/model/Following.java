@@ -20,7 +20,7 @@ public class Following {
     @ManyToOne(optional = false)
     private User following;
 
-    @Column(nullable = false, columnDefinition = "DATETIME default now()")
+    @Column(name ="creationDate",nullable = false, columnDefinition = "DATETIME default now()")
     private Date creationDate;
 
     public Following(User follower, User following, Date creationDate) {

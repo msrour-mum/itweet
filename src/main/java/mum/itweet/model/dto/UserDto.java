@@ -22,6 +22,7 @@ public class UserDto {
     private String email;
     @NotEmpty
     private String pass;
+    @NotEmpty
     private String name;
     private Date birthDate;
     private Gender gender;

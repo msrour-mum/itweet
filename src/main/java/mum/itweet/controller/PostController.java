@@ -8,6 +8,7 @@ import mum.itweet.service.LikeService;
 import mum.itweet.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -74,6 +75,11 @@ public class PostController {
     }
 
 
+    @GetMapping("/pendingPosts")
+    public List<Post> getPendingPosts(Model model)
+    {
+        return postService.listPendingPosts();
+    }
 
     @GetMapping("/{postId}/likeCount")
     public int getLikesCount(long postId) {
