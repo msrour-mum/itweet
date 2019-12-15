@@ -1,18 +1,21 @@
 package mum.itweet.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import mum.itweet.model.lookups.Gender;
 
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @Data
 @NoArgsConstructor
-public class User {
+public class User  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,15 +48,18 @@ public class User {
     private String mobile;
     private String bio;
 
-    @OneToMany(mappedBy = "user")
-    List<Post> posts;
+//    @OneToMany(mappedBy = "user")
+//    @JsonManagedReference
+//    List<Post> posts;
 
-    @OneToMany(mappedBy = "user")
-    List<Comment> comments;
+//    @OneToMany(mappedBy = "user")
+//    @JsonManagedReference
+//    List<Comment> comments;
 
-    @OneToMany(mappedBy = "user")
+    /*@OneToMany(mappedBy = "user")
+    @JsonManagedReference
     List<PostLikes> postLikes;
-
+*/
     public User(String name,String email, boolean isAdmin, Role role, String pass, boolean isActive, Date birthDate, Gender gender, String mobile, String bio) {
         this.name = name;
         this.email = email;

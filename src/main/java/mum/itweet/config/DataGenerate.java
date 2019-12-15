@@ -77,21 +77,28 @@ public class DataGenerate {
 
         for (User user : users) {
             for (int i = 0; i < 7; i++) {
-                Post post = new Post(user, "This is post " + postCount + "from user :" + user.getEmail(), PostStatus.Active, null, null, new Date(), new Date());
 
+                PostStatus p = PostStatus.Active;
+                boolean isNotActivePost =doRandom(10,i);
+                if(isNotActivePost)
+                    p=PostStatus.Pending;
+
+                Post post = new Post(user, "This is post " + postCount + "from user :" + user.getEmail(), p, null, null, new Date(), new Date());
                 em.persist(post);
-                for (User userAction : users) {
-                    if (doRandom(3,i)) {
-                        Comment comment = new Comment(userAction, post, "This comments from user " + userAction.getEmail());
-                        em.persist(comment);
-                    }
 
-                    if (doRandom(4,i)) {
-                        PostLikes postLikes = new PostLikes(userAction, post, true, new Date());
-                        em.persist(postLikes);
+                if(!isNotActivePost) {
+                    for (User userAction : users) {
+                        if (doRandom(3, i)) {
+                            Comment comment = new Comment(userAction, post, "This comments from user " + userAction.getEmail());
+                            em.persist(comment);
+                        }
+
+                        if (doRandom(4, i)) {
+                            //PostLikes postLikes = new PostLikes(userAction, post, true, new Date());
+                            //em.persist(postLikes);
+                        }
                     }
                 }
-
                 postCount++;
             }
         }

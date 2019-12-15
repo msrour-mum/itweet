@@ -1,23 +1,28 @@
 package mum.itweet.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import mum.itweet.model.lookups.PostStatus;
 
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @Data
 @NoArgsConstructor
-public class Post {
+public class Post  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     @ManyToOne(optional = false)
+    //@JsonBackReference
     private User user;
 
     @Column(nullable = false , length = 200)
@@ -36,11 +41,24 @@ public class Post {
     @Column(name ="publishDate" , nullable = true)
     private Date publishDate;
 
-    @OneToMany(mappedBy = "post")
+    @OneToMany
+    @JoinColumn(name ="post_id")
     List<Comment> comments;
 
-    @OneToMany(mappedBy = "post")
-    List<PostLikes> postLikes;
+    @OneToMany
+    @JoinColumn(name ="post_id")
+    //@JsonManagedReference
+    List<PostLikes> PostLikes;
+
+
+    public void addLike(PostLikes likes)
+    {
+        PostLikes.add(likes);
+    }
+    public void removeLike(PostLikes likes)
+    {
+        PostLikes.remove(likes);
+    }
 
     public Post(User user, String postText, PostStatus status, String imageUrl, String videoUrl, Date creationDate, Date publishDate)
     {
@@ -55,7 +73,7 @@ public class Post {
     }
 
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

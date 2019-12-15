@@ -35,7 +35,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public Post get(long id) {
-
+        //return postRepository.getOne(id);
         return postRepository.findById(id).get();
     }
 
@@ -60,7 +60,8 @@ public class PostServiceImpl implements PostService {
     @Override
     public  List<Post> findByUserId(int userId) {
 
-        return postRepository.findByUserId(userId);
+        //return postRepository.findByUserId(userId);
+        return postRepository.findAll();
     }
 
     @Override

@@ -26,7 +26,7 @@ public class HomeController {
     public String getHomeData(Model model)
     {
         int userId=1;
-        model.addAttribute("posts",postService.findByUserId(userId));
+        model.addAttribute("posts",postService.getAll());
         model.addAttribute("follower",followingService.listFollower(userId));
         model.addAttribute("following",followingService.listFollowing(userId));
         return "home";
