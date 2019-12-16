@@ -58,6 +58,6 @@ public class PersonController {
         savedPerson = personService.update(savedPerson);
 
         model.addAttribute("person", savedPerson);
-        return "index";
+        return "login";
     }
 }

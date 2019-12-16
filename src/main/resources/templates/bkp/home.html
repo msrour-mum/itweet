@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<th:block>
+    <div th:each="task : ${posts}">
+                <form  th:action="@{'/admin/pendingPosts/approve/'+ ${task.id}}" method="post">
+
+        <div>
+            <div style="display: inline-block" th:text="${task.postText}"></div>
+            <input type="hidden" th:value="${task.id}">
+            <div style="display: inline-block"><input type="submit" value="Approve"  name="action" ></div>
+            <div style="display: inline-block"><input type="submit" value="Reject"  name="action" ></div>
+        </div>
+        </form>
+    </div>
+</th:block>
+
+
+</body>
+</html>

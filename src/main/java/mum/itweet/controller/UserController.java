@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "api/user")
+@RequestMapping(value = "/api/user")
 public class UserController {
     @Autowired
     UserService userService;
@@ -25,7 +25,7 @@ public class UserController {
     @Autowired
     PostService postService;
 
-    @PostMapping(value = "/add")
+    @PostMapping()
     public User add(@RequestBody User user) {
         try {
             return userService.create(user);
@@ -37,7 +37,7 @@ public class UserController {
         return null;
     }
 
-    @PutMapping(value = "/update")
+    @PutMapping()
     public User update(@RequestBody User user) {
         try {
             return userService.create(user);
@@ -47,7 +47,7 @@ public class UserController {
         return null;
     }
 
-    @GetMapping(value = "/get")
+    @GetMapping()
     public List<User> getAll() {
         try {
             return userService.getAll();
@@ -57,7 +57,7 @@ public class UserController {
         return null;
     }
 
-    @GetMapping(value = "/get/{id}")
+    @GetMapping(value = "/{id}")
     public User get(@PathVariable("id") int id) {
         try {
             return userService.get(id);
@@ -67,7 +67,7 @@ public class UserController {
         return null;
     }
 
-    @DeleteMapping(value = "/delete/{id}")
+    @DeleteMapping(value = "/{id}")
     public String delete(@PathVariable("id") int id) {
         try {
             userService.delete(id);

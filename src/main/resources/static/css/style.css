@@ -3,8 +3,8 @@
 [Master Stylesheet]
 
 Project Name: winku (HMTL Template)
-Version:    1.2
-Last change:  26/August/19
+Version:    1.1
+Last change:  4/september/18
 
 ====INDEX=====
 
@@ -44,8 +44,7 @@ Last change:  26/August/19
 
 /*=============== Fonts source Muli, Hobostd ===================*/
 
-/*@import url('https://fonts.googleapis.com/css?family=Muli:300,400,400i,500,500,800');*/
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,500&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Muli:300,400,400i,500,700,800');
 @import url('https://fonts.googleapis.com/css?family=Satisfy');
 @font-face {
     font-family: HoboStd;
@@ -57,7 +56,7 @@ Last change:  26/August/19
 ***General Styling 
 ===============*/
 html,body{
-	font-family: "Roboto", "Segoe Ui";
+	font-family: "Muli", "Segoe Ui";
 }
 body {
     float: left;
@@ -66,9 +65,6 @@ body {
     padding: 0;
     overflow-x: hidden;
     color: #545454;
-    font-weight: 400;
-    letter-spacing: 0.1px;
-
 }
 
 p {
@@ -131,7 +127,7 @@ section {
 
 .gap {
     float: left;
-    padding: 30px 0;
+    padding: 60px 0;
     position: relative;
     width: 100%;
 }
@@ -238,7 +234,7 @@ section {
 .whitish:before,
 .bluesh:before,
 .pattern:before {
-    background: #424242;
+    background: #000;
     content: "";
     height: 100%;
     left: 0;
@@ -458,20 +454,7 @@ iframe {
 	z-index: 9999;
 	background: url(../images/loader.gif) center no-repeat #fff;
 }*/
-.postoverlay {
-  background-color: rgba(0,0,0,.8);
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  z-index: 99;
-  display: none;
-}
-.central-meta.new-pst {
-    position: relative;
-    z-index: 99;
-}
+
 #topcontrol {
     border-radius: 5px;
     color: #fff;
@@ -507,7 +490,7 @@ header.sticky {
 /*--- landing page ---*/
 
 .log-reg-area > h2 {
-    font-weight: 500;
+    font-weight: bold;
     text-transform: capitalize;
 }
 
@@ -554,8 +537,8 @@ header.sticky {
     position: relative;
 }
 
-.friend-logo > span::before,
-.friend-logo > span::after {
+/* .friend-logo>span::before,
+.friend-logo>span::after {
     background: #0a98dc none repeat scroll 0 0;
     border: 16px solid rgba(255, 255, 255, 0.1);
     border-radius: 100%;
@@ -566,7 +549,7 @@ header.sticky {
     top: 20px;
     width: 180px;
     z-index: -1;
-}
+} */
 
 .land-meta > a.folow-me:hover {
     text-shadow: 0 1px 1px #454545;
@@ -659,9 +642,9 @@ header.sticky {
     background: #fff;
     display: block;
     height: 60px;
-    padding: 0 20px;
+    padding: 0 48px;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
-    z-index: 999;
+    z-index: 99;
     position: relative;
 }
 
@@ -689,16 +672,15 @@ header.sticky {
 
 .top-area > ul {
     display: inline-block;
-    line-height: 56px;
     list-style: outside none none;
     margin-bottom: 0;
-    margin-right: 35px;
     padding-left: 0;
     vertical-align: middle;
 }
 
 .top-area > ul > li {
     display: inline-block;
+    margin-right: 25px;
     position: relative;
     vertical-align: top;
     z-index: 2;
@@ -706,10 +688,6 @@ header.sticky {
 
 .top-area > ul > li > a {
     color: #999;
-    display: inline-block;
-    font-size: 18px;
-    padding: 0 15px;
-    vertical-align: middle;
 }
 
 .top-area .user-img {
@@ -744,11 +722,10 @@ header.sticky {
 .form-search {
     position: absolute;
     right: -15px;
-    top: 100%;
+    top: 42px;
     width: 300px;
     opacity: 0;
     visibility: hidden;
-	line-height: initial;
 }
 
 .searched.active .form-search {
@@ -759,10 +736,9 @@ header.sticky {
 .form-search input {
     border-style: none none solid;
     border-width: medium medium 1px;
-    box-shadow: 0 5px 9px rgba(0, 0, 0, 0.1);
     color: #999999;
     font-size: 15px;
-    padding: 15px 18px;
+    padding: 9px 18px;
     width: 100%;
 }
 
@@ -772,15 +748,14 @@ header.sticky {
     color: #999;
     position: absolute;
     right: 5px;
-    top: 14px;
+    top: 9px;
 }
 
 .top-area > ul > li > a > span {
-    bottom: 10px;
+    bottom: -10px;
     font-size: 11px;
-    line-height: initial;
     position: absolute;
-    right: 8px;
+    right: -4px;
 }
 
 
@@ -806,26 +781,23 @@ header.sticky {
 }
 
 .user-avatar {
-    border: 5px solid rgba(255, 255, 255, 0.99);
-    border-radius: 100%;
+    border: 8px solid rgba(255, 255, 255, 0.8);
+    border-radius: 3px 25px 0;
     box-shadow: 0 1px 0 #e1e8ed;
     float: right;
-    margin-top: -138px;
+    margin-top: -168px;
     overflow: hidden;
     position: relative;
-    width: auto;
+    width: 100%;
 }
 
 .user-avatar > figure > img {
-    width: 100%;
-	border-radius: 100%;
+    width: 100%
 }
 
 .user-avatar > figure {
-    display: inline-block;
     margin-bottom: 0;
     position: relative;
-    width: 100%;
 }
 
 .timeline-info {
@@ -852,13 +824,13 @@ header.sticky {
 
 .timeline-info > ul li a {
     display: inline-block;
-    font-size: 13.5px;
-    margin-right: 40px;
+    font-size: 14px;
+    margin-right: 30px;
     position: relative;
     line-height: initial;
     text-transform: capitalize;
     padding-bottom: 3px;
-    font-weight: 500;
+    font-weight: 400;
 }
 
 .timeline-info > ul li a:last-child {
@@ -877,7 +849,7 @@ header.sticky {
 .timeline-info .admin-name > h5 {
     color: #088dcd;
     display: inline-block;
-    font-size: 20px;
+    font-size: 24px;
     font-weight: 500;
     margin-bottom: 0;
     vertical-align: super;
@@ -963,19 +935,19 @@ header.sticky {
 }
 
 .user-avatar .edit-phto {
-    border-radius: 80px;
+    border-radius: 0;
     bottom: -40px;
-    left: 20px;
+    left: 0;
     opacity: 0;
+    visibility: hidden;
+    width: 100%;
+    transition: all 0.3s linear 0s;
     padding: 5px;
     text-align: center;
-    transition: all 0.3s linear 0s;
-    visibility: hidden;
-    width: 78%;
 }
 
 .user-avatar:hover .edit-phto {
-    bottom: 30px;
+    bottom: 0;
     opacity: 1;
     visibility: visible;
 }
@@ -993,12 +965,11 @@ header.sticky {
     position: absolute;
     right: -50px;
     text-align: left;
-    top: 100%;
+    top: 42px;
     width: 260px;
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s linear 0s;
-	line-height: initial;
 }
 
 .dropdowns.active {
@@ -1055,7 +1026,7 @@ header.sticky {
 
 .mesg-meta > h6 {
     font-size: 13.5px;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: 0.3px;
     margin-bottom: 0;
     text-transform: capitalize;
@@ -1084,11 +1055,10 @@ header.sticky {
 
 .dropdowns > span {
     border-bottom: 1px solid #ccc;
-    color: #898989;
     display: inline-block;
-    font-size: 13px;
-    font-weight: 500;
+    font-size: 14px;
     padding: 5px 10px;
+    text-align: center;
     width: 100%;
 }
 
@@ -1140,7 +1110,7 @@ header.sticky {
 .add-btn {
     bottom: 100px;
     position: absolute;
-    right: 118px;
+    right: 43px;
 }
 
 .add-btn > span {
@@ -1171,17 +1141,17 @@ header.sticky {
     float: none;
     margin: 0 auto;
     padding-bottom: 20px;
-    width: 100%;
+    width: 80%;
 }
 
 .sidebar .widget {
     display: inline-block;
     position: relative;
     width: 100%;
-    margin-bottom: 18px;
+    margin-bottom: 30px;
     background: #fdfdfd;
     border: 1px solid #ede9e9;
-    border-radius: 5px;
+    border-radius: 3px;
 }
 
 .sidebar .widget:last-child {
@@ -1201,11 +1171,11 @@ header.sticky {
     color: #424242;
     display: inline-block;
     font-size: 15px;
-    font-weight: 500;
+    font-weight: bold;
     margin-bottom: 30px;
     padding: 20px 20px 10px;
     position: relative;
-    text-transform: capitalize;
+    text-transform: uppercase;
     width: 100%;
 }
 
@@ -1241,13 +1211,11 @@ header.sticky {
 }
 
 .sidebar .widget li > a {
-    font-size: 14px;
+    font-size: 15px;
     text-transform: capitalize;
     display: inline-block;
     position: relative;
-    font-weight: 400;
-    color: #797979;
-    vertical-align: top;
+    font-weight: 500;
 }
 
 .sidebar .widget li > a i {
@@ -1281,7 +1249,7 @@ header.sticky {
     display: inline-block;
     width: 100%;
     font-size: 13px;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .activity-meta > h6 {
@@ -1310,10 +1278,10 @@ header.sticky {
 .central-meta {
     background: #fdfdfd none repeat scroll 0 0;
     border: 1px solid #ede9e9;
-    border-radius: 5px;
+    border-radius: 3px;
     display: inline-block;
     width: 100%;
-    margin-bottom: 17px;
+    margin-bottom: 20px;
     padding: 25px;
 }
 
@@ -1376,9 +1344,8 @@ form button {
     border: medium none;
     color: #fff;
     font-size: 13px;
-    font-weight: 500;
-    padding: 4px 20px;
-    border-radius: 4px;
+    font-weight: 600;
+    padding: 3px 10px;
 }
 
 .attachments .fileContainer [type="file"] {
@@ -1409,9 +1376,9 @@ form button {
 
 .friend-name > ins {
     float: left;
-    font-weight: 500;
+    font-weight: 700;
     width: 100%;
-    font-size: 14.5px;
+    font-size: 18px;
     text-decoration: none;
 }
 
@@ -1445,13 +1412,18 @@ form button {
 }
 
 .description > span {
-    color: #424242;
+    color: #2a2a2a;
     font-size: 18px;
-    font-weight: 500;
+    font-weight: 600;
     line-height: 28px;
     display: inline-block;
     margin-bottom: 5px;
 }
+
+.description > p a {
+    font-weight: 600;
+}
+
 
 /*-- sharing post area ----*/
 
@@ -1491,7 +1463,7 @@ form button {
 .we-video-info > ul li.upload-date {
     float: right;
     font-size: 12px;
-    font-weight: 500;
+    font-weight: 600;
     text-transform: uppercase;
 }
 
@@ -1605,7 +1577,7 @@ form button {
 .menu .btn.trigger .line {
     width: 60%;
     height: 6px;
-    background: #424242;
+    background: #000;
     border-radius: 6px;
     -webkit-transition: background-color 0.3s, height 0.3s, top 0.3s;
     transition: background-color 0.3s, height 0.3s, top 0.3s;
@@ -1619,7 +1591,7 @@ form button {
     left: 0;
     width: 100%;
     height: 6px;
-    background: #424242;
+    background: #000;
     border-radius: 6px;
     -webkit-transition: background-color 0.3s, -webkit-transform 0.3s;
     transition: background-color 0.3s, transform 0.3s;
@@ -1821,11 +1793,7 @@ for some reason nth-child(1) is always busy and elements starting from 2 */
     vertical-align: top;
     width: 7.6%;
 }
-.comet-avatar > img{
-	max-width: 35px;
-	width: 35px;
-	min-width: 35px;
-}
+
 .we-comment {
     border: 1px solid #ede9e9;
     display: table-cell;
@@ -1874,7 +1842,6 @@ for some reason nth-child(1) is always busy and elements starting from 2 */
     font-size: 12px;
     margin: 0 auto;
     text-transform: capitalize;
-    font-weight: 500;
 }
 
 .we-comet > li ul li:last-child {
@@ -1887,8 +1854,8 @@ for some reason nth-child(1) is always busy and elements starting from 2 */
 }
 
 .coment-head > h5 {
-    font-size: 13.5px;
-    font-weight: 500;
+    font-size: 15px;
+    font-weight: 600;
     padding-bottom: 5px;
     text-transform: capitalize;
     display: inline-block;
@@ -1897,8 +1864,8 @@ for some reason nth-child(1) is always busy and elements starting from 2 */
 }
 
 .we-comment > p {
-    font-size: 13px;
-    line-height: 20px;
+    font-size: 14px;
+    line-height: 26px;
     margin-bottom: 0;
     max-width: 100%;
     margin-top: 5px;
@@ -1936,9 +1903,9 @@ li.post-comment .comet-avatar {
     background: #f3f3f3 none repeat scroll 0 0;
     border-color: transparent;
     border-radius: 3px;
-    color: #696969;
-    font-size: 13px;
-    font-weight: 400;
+    color: #000000;
+    font-size: 13.5px;
+    font-weight: 500;
     height: 40px;
     line-height: 16px;
 }
@@ -2085,8 +2052,7 @@ span.status.f-off {
 
 .friendz-meta > a {
     display: inline-block;
-    font-size: 13px;
-    font-weight: 500;
+    font-size: 14px;
     text-transform: capitalize;
     width: 100%;
 }
@@ -2171,8 +2137,8 @@ footer::before {
 footer .widget-title h4 {
     color: #424242;
     font-size: 15px;
-    font-weight: 500;
-    text-transform: capitalize;
+    font-weight: bold;
+    text-transform: uppercase;
     position: relative;
 }
 
@@ -2348,7 +2314,7 @@ footer .logo {
 
 .friend-meta > h4 {
     display: inline-block;
-    font-size: 13.5px;
+    font-size: 16px;
     margin-bottom: 0;
     width: 100%;
 }
@@ -2367,7 +2333,7 @@ footer .logo {
     background: #fff none repeat scroll 0 0;
     border-radius: 0 0 3px 3px;
     position: absolute;
-    right: -50px;
+    left: -15px;
     text-align: left;
     top: 100%;
     width: 150px;
@@ -2375,7 +2341,6 @@ footer .logo {
     visibility: hidden;
     line-height: initial;
     border: 1px solid #e1e8ed;
-    box-shadow: 0 5px 10px rgba(0,0,0,.2);
 }
 
 .user-setting.active {
@@ -2540,7 +2505,7 @@ footer .logo {
 .panel-title {
     color: #303030;
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 600;
     margin-bottom: 20px;
     text-transform: uppercase;
 }
@@ -2583,7 +2548,7 @@ footer .logo {
 }
 
 .theme-layout::before {
-    background: rgba(0,0,0,.7);
+    background: url(../images/dot-pattern.png);
     background-repeat: repeat;
     content: "";
     height: 100%;
@@ -2591,7 +2556,7 @@ footer .logo {
     position: absolute;
     top: 0;
     width: 100%;
-    z-index: 999;
+    z-index: 99;
     transition: all 0.5s linear 0s;
     visibility: hidden;
     opacity: 0;
@@ -2606,11 +2571,8 @@ footer .logo {
 /*-- widgets ---*/
 
 .sidebar .widget ul.recent-photos li {
-    float: left;
     margin-bottom: 5px;
-    margin-left: 2.5px;
-    margin-right: 2.5px;
-    width: 31%;
+    width: 31.8%;
 }
 
 .widget ul.recent-photos {
@@ -2618,16 +2580,13 @@ footer .logo {
     padding-bottom: 20px;
     width: 100%;
 }
-.widget ul.recent-photos li a i{
-	overflow: unset;
-}
+
 
 /*-- short profile widget ---*/
 
 .short-profile li span {
     display: inline-block;
-    font-size: 14px;
-    font-weight: 500;
+    font-weight: 700;
     margin-bottom: 5px;
     text-transform: capitalize;
     width: 100%;
@@ -2674,7 +2633,6 @@ li.google {
 
 .socials > li a span {
     font-size: 13px;
-	color: #fff;
 }
 
 .socials > li a ins {
@@ -2682,7 +2640,6 @@ li.google {
     font-size: 12px;
     margin-top: 4px;
     text-decoration: none;
-	color: #fff;
 }
 
 .socials > li a:hover {
@@ -2722,7 +2679,7 @@ li.google {
     color: #545454;
     font-size: 14px;
     font-style: normal;
-    font-weight: 500;
+    font-weight: bold;
     text-transform: capitalize;
     width: 100%;
 }
@@ -2773,7 +2730,6 @@ li.google {
     stroke-dashArray: 300;
     stroke-width: 4px;
     transition: stroke-dashoffset 1s ease, opacity 1s ease;
-	opacity: 0.7;
 }
 
 .icon {
@@ -2897,7 +2853,7 @@ li.google {
     font-size: 100px;
     margin-bottom: 0;
     text-transform: capitalize;
-    font-weight: 500;
+    font-weight: bold;
     color: #222;
 }
 
@@ -3269,9 +3225,9 @@ nav.breadcrumb {
     vertical-align: middle;
     color: #fff;
 }
-.top-banner .breadcrumb > a{color: #fff;}
+
 .breadcrumb > a {
-    color: #424242;
+    color: #fff;
 }
 
 .breadcrumb-item + .breadcrumb-item::before {
@@ -3279,7 +3235,7 @@ nav.breadcrumb {
 }
 
 .breadcrumb-item.active {
-    color: #aeaeae;
+    color: #dedede;
 }
 
 .card-header {
@@ -3324,7 +3280,7 @@ nav.breadcrumb {
 .accordion {
     display: inline-block;
     margin-top: 30px;
-    width: 100%;
+    width: 90%;
 }
 
 .card-body {
@@ -3349,8 +3305,8 @@ nav.breadcrumb {
 
 .photos > li {
     display: inline-block;
-    min-width: 32.2%;
-    width: 32.2%;
+    min-width: 32.3%;
+    width: 32.3%;
     margin: 0 1.3px;
 }
 
@@ -3455,13 +3411,13 @@ nav.breadcrumb {
     padding-left: 15px;
     position: relative;
     vertical-align: middle;
-    width: 85%;
+    width: 88%;
 }
 
 .pepl-info > h4 {
     display: inline-block;
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 600;
     text-transform: capitalize;
 }
 
@@ -3475,7 +3431,6 @@ a.add-butn {
     right: 0;
     text-transform: capitalize;
     top: 10px;
-	border-radius: 4px;
 }
 
 .pepl-info > span {
@@ -3527,7 +3482,7 @@ a.add-butn {
 .page-meta > a {
     display: inline-block;
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 600;
     text-transform: capitalize;
     width: auto;
 }
@@ -3578,7 +3533,6 @@ a.add-butn {
     padding: 5px 0;
     text-transform: uppercase;
     width: 100%;
-    border-radius: 4px;
 }
 
 .nav.nav-tabs.likes-btn > li a.active {
@@ -3588,7 +3542,7 @@ a.add-butn {
 .page-likes .tab-content .tab-pane > span {
     font-size: 22px;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 600;
     text-align: center;
     float: left;
     width: 100%;
@@ -3656,7 +3610,7 @@ a.add-butn {
 }
 
 .frnds .nav-tabs .nav-item a {
-    font-weight: 500;
+    font-weight: bold;
 }
 
 .frnds .nav-tabs .nav-item > span {
@@ -3737,15 +3691,14 @@ a.add-butn.more-action {
 .basics > li,
 .education > li {
     color: #999;
-    font-size: 13px;
-    list-style: outside none none;
+    font-size: 14px;
     margin-bottom: 20px;
     text-transform: capitalize;
 }
 
 .basics > li i,
 .education > li i {
-    margin-right: 15px;
+    margin-right: 30px;
 }
 
 .location-map #map-canvas {
@@ -3787,14 +3740,13 @@ a.add-butn.more-action {
 
 .f-title {
     font-size: 17.5px;
-    font-weight: 500;
+    font-weight: 600;
     text-transform: capitalize;
-    color: #424242;
+    color: #000;
     margin-bottom: 20px;
     padding-bottom: 20px;
     position: relative;
     display: inline-block;
-	width: 100%
 }
 
 .f-title::before {
@@ -3803,7 +3755,7 @@ a.add-butn.more-action {
     height: 2px;
     left: 0;
     position: absolute;
-    width: 50px;
+    width: 100%;
 }
 
 .f-title.ext-margin {
@@ -3943,7 +3895,7 @@ a.forgot-pwd {
 .onoff-options .setting-row > span {
     font-size: 14px;
     width: 100%;
-    font-weight: 500;
+    font-weight: bold;
     color: #3c3c3c;
 }
 
@@ -4005,8 +3957,6 @@ a.forgot-pwd {
 .advertisment-box img {
     display: inline-block;
     margin: 0 auto;
-	width: 100%;
-	border-radius: 4px;
 }
 
 
@@ -4032,7 +3982,6 @@ a.forgot-pwd {
     margin-bottom: 20px;
     padding-bottom: 20px;
     width: 100%;
-	position: relative;
 }
 
 .notification-box > ul li figure {
@@ -4052,10 +4001,10 @@ a.forgot-pwd {
 }
 
 .notifi-meta > p {
-    color: #424242;
-    font-size: 14px;
+    font-size: 15px;
     margin-bottom: 0;
     text-transform: capitalize;
+    color: #3a3a3a;
 }
 
 .notifi-meta > span {
@@ -4070,15 +4019,14 @@ a.forgot-pwd {
 }
 
 .notification-box > ul li > i.del {
-    color: red;
     cursor: pointer;
     display: inline-block;
     opacity: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    transition: all 0.2s linear 0s;
+    text-align: right;
+    vertical-align: top;
     visibility: hidden;
+    transition: all 0.2s linear 0s;
+    color: red;
 }
 
 .notification-box > ul li:hover > i.del {
@@ -4088,8 +4036,8 @@ a.forgot-pwd {
 
 .more-options {
     display: inline-block;
+    float: right;
     position: relative;
-	float: right;
 }
 
 .more-options > i {
@@ -4113,7 +4061,7 @@ a.forgot-pwd {
     max-height: 462px;
     padding-left: 0;
     position: relative;
-    width: 160px;
+    width: 200px;
 }
 
 .peoples > li {
@@ -4135,10 +4083,10 @@ a.forgot-pwd {
 .peoples > li figure {
     display: inline-block;
     margin-bottom: 0;
-    max-width: 35px;
-    min-width: 35px;
+    max-width: 45px;
+    min-width: 45px;
     vertical-align: middle;
-    width: 35px;
+    width: 45px;
     position: relative;
 }
 
@@ -4151,7 +4099,7 @@ a.forgot-pwd {
 
 .people-name > span {
     display: inline-block;
-    font-size: 13px;
+    font-size: 14px;
     text-transform: capitalize;
     font-weight: 400;
 }
@@ -4181,7 +4129,7 @@ a.forgot-pwd {
 .peoples-mesg-box {
     display: inline-block;
     vertical-align: top;
-    width: 78%;
+    width: 64.5%;
     padding-left: 15px;
 }
 
@@ -4213,7 +4161,7 @@ a.forgot-pwd {
 
 .peoples-mesg-box > ul > li p {
     display: inline-block;
-    font-size: 13px;
+    font-size: 14px;
     line-height: initial;
     margin-bottom: 0;
     margin-left: 10px;
@@ -4284,12 +4232,12 @@ a.forgot-pwd {
 
 .conversation-head > span {
     display: inline-block;
-    font-weight: 500;
+    font-weight: bold;
     line-height: initial;
     margin-left: 10px;
     text-transform: capitalize;
     vertical-align: middle;
-    width: 79%;
+    width: 83%;
     font-size: 18px;
 }
 
@@ -4403,9 +4351,9 @@ a.forgot-pwd {
     margin-right: 3px;
     transition: all 0.15s linear 0s;
     position: relative;
-    max-width: 32.3%;
-    min-width: 32.3%;
-    width: 32.3%;
+    max-width: 32.5%;
+    min-width: 32.5%;
+    width: 32.5%;
     padding-bottom: 15px;
     margin-top: 20px;
     overflow: hidden;
@@ -4434,7 +4382,7 @@ a.forgot-pwd {
 .page-infos > h5 {
     display: inline-block;
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 700;
     width: 100%;
     margin-bottom: 0;
 }
@@ -4451,7 +4399,7 @@ a.dislike-btn {
     bottom: 0;
     color: #fff;
     font-size: 13px;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: 0.6px;
     padding: 2px 10px;
     position: absolute;
@@ -4583,11 +4531,6 @@ canvas {
     width: 50px;
     transition: all 0.2s linear 0s;
     z-index: 77;
-	-ms-box-shadow: 0px 5px 10px rgba(0,0,0,.2);
-	-moz-box-shadow: 0px 5px 10px rgba(0,0,0,.2);
-	-o-box-shadow: 0px 5px 10px rgba(0,0,0,.2);
-	-webkit-box-shadow: 0px 5px 10px rgba(0,0,0,.2);
-	box-shadow: 0px 5px 10px rgba(0,0,0,.2);
 }
 
 .central-meta button.btn-view {
@@ -4627,7 +4570,7 @@ canvas {
 
 .mh-text {
     font-size: 16px;
-    font-weight: 500;
+    font-weight: bold;
 }
 
 .mh-head .hamburger-inner,
@@ -4766,15 +4709,15 @@ canvas {
 
 .top-area > ul.main-menu > li {
     line-height: 59px;
-    margin-right: 10px;
-    padding-right: 10px;
+    margin-right: 30px;
+    padding-right: 30px;
     position: relative;
 }
 
 .top-area > ul.main-menu > li a {
     color: #575b5f;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 700;
     text-transform: capitalize;
     letter-spacing: 0.3px;
 }
@@ -4793,15 +4736,15 @@ canvas {
 }
 
 .top-area > ul.main-menu > li > ul li a {
-    border-radius: 0 0 5px 5px;
-    color: #9f9f9f;
+    color: #5f5f5f;
     display: inline-block;
-    font-size: 13px;
-    font-weight: 500;
+    font-size: 13.5px;
+    font-weight: normal;
     padding: 10px 15px;
+    width: 100%;
     text-transform: capitalize;
     transition: all 0.2s linear 0s;
-    width: 100%;
+    border-radius: 0 0 5px 5px;
 }
 
 .top-area > ul.main-menu > li > ul li a:hover {
@@ -4850,7 +4793,7 @@ canvas {
 
 .chat-head > h6 {
     display: inline-block;
-    font-weight: 500;
+    font-weight: bold;
     margin: 0;
     vertical-align: top;
 }
@@ -4940,7 +4883,6 @@ canvas {
     display: inline-block;
     font-size: 13px;
     padding: 12px;
-    color: #333;
 }
 
 .notification-date {
@@ -4992,6 +4934,7 @@ canvas {
     width: 100%;
     border: 1px solid #e1e8ed;
     background: #fafafa;
+    margin-left: 30px;
 }
 
 .inbox-sec > .row {
@@ -5012,7 +4955,7 @@ canvas {
 
 .inbox-panel-head {
     float: left;
-    padding: 20px;
+    padding: 30px;
     width: 100%;
 }
 
@@ -5030,7 +4973,7 @@ canvas {
 .inbox-panel-head > h1 {
     display: block;
     font-size: 16px;
-    font-weight: 500;
+    font-weight: bold;
     letter-spacing: 0.4px;
     margin: 3px 0 8px;
 }
@@ -5096,7 +5039,7 @@ canvas {
     letter-spacing: 0.5px;
     cursor: pointer;
     width: 80%;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .inbox-navigation > ul > li {
@@ -5119,7 +5062,7 @@ canvas {
     color: #ffffff;
     float: right;
     font-size: 12px;
-    font-weight: 500;
+    font-weight: 600;
     height: 20px;
     text-align: center;
     width: 20px;
@@ -5138,11 +5081,11 @@ canvas {
 
 .flaged > h3 {
     float: left;
-    font-size: 14px;
+    font-size: 16px;
     margin: 10px 0 0;
     padding: 24px 39px;
     width: 100%;
-    font-weight: 500;
+    font-weight: bold;
 }
 
 .flaged > h3 > i {
@@ -5161,7 +5104,6 @@ canvas {
     float: left;
     padding: 8px 37px;
     width: 100%;
-	font-size: 13px;
 }
 
 .flaged li a i {
@@ -5303,7 +5245,6 @@ canvas {
     white-space: nowrap;
     width: 100%;
     cursor: pointer;
-    font-size: 13px;
 }
 
 .message-list > li > a {
@@ -5400,12 +5341,12 @@ canvas {
 
 .sidebar.left {
     float: right;
-    width: 100%;
+    width: 74%;
 }
 
 .sidebar.right {
     float: left;
-    width: 100%;
+    width: 74%;
 }
 
 .row.merged20 > div {
@@ -5484,7 +5425,7 @@ canvas {
 }
 
 .chat-friendz .chat-box {
-    bottom: -43px;
+    bottom: -40px;
 }
 
 .menu-left {
@@ -5708,10 +5649,9 @@ canvas {
 
 .post-title > h4 {
     font-size: 18px;
-    font-weight: 500;
+    font-weight: 600;
     line-height: 26px;
     text-transform: capitalize;
-    color: #424242;
 }
 
 .post-title > h4 a {
@@ -5748,7 +5688,7 @@ canvas {
 .read {
     display: inline-block;
     font-size: 12px;
-    font-weight: 500;
+    font-weight: bold;
     margin-top: 20px;
     text-transform: uppercase;
     -webkit-transition: all 0.2s linear 0s;
@@ -5770,7 +5710,7 @@ canvas {
     -o-border-radius: 3px;
     border-radius: 3px;
     display: inline-block;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
     padding: 15px;
     width: 100%;
 }
@@ -5779,7 +5719,7 @@ canvas {
     float: left;
     position: relative;
     vertical-align: middle;
-    width: 270px;
+    width: 280px;
 }
 
 .purify {
@@ -5817,7 +5757,7 @@ form.filter-form input {
 
 .purify > span {
     text-transform: capitalize;
-    font-weight: 500;
+    font-weight: bold;
     margin-right: 10px;
 }
 
@@ -5857,7 +5797,7 @@ form.filter-form input {
     color: #fff;
     display: inline-block;
     font-size: 12px;
-    font-weight: 500;
+    font-weight: bold;
     letter-spacing: 0.8px;
     line-height: initial;
     padding: 15px 20px;
@@ -6085,7 +6025,7 @@ form.filter-form input {
     border-radius: 5px;
     display: inline-block;
     font-size: 18px;
-    font-weight: 500;
+    font-weight: bold;
     padding: 11px 60px;
     vertical-align: middle;
     -webkit-transition: all 0.2s linear 0s;
@@ -6232,7 +6172,7 @@ form.filter-form input {
 }
 
 .detail-meta > h2 {
-    color: #424242;
+    color: #282828;
     display: inline-block;
     margin-bottom: 10px;
     max-width: 73%;
@@ -6344,7 +6284,7 @@ figure.aligncenter,
 .tags > span {
     font-size: 15px;
     margin-right: 3px;
-    font-weight: 500;
+    font-weight: bold;
 }
 
 .tags > a {
@@ -6444,10 +6384,10 @@ figure.aligncenter,
 
 .comment-title {
     border-bottom: 1px dotted;
-    color: #424242;
+    color: #323232;
     float: left;
     font-size: 22px;
-    font-weight: 500;
+    font-weight: bold;
     margin-bottom: 30px;
     text-transform: capitalize;
 }
@@ -6597,7 +6537,7 @@ a.reply {
     -o-border-radius: 5px;
     border-radius: 5px;
     display: inline-block;
-    padding: 20px 16px;
+    padding: 30px;
     width: 100%;
     margin-bottom: 30px;
 }
@@ -6622,7 +6562,7 @@ a.reply {
 .help-list > ul li a {
     color: #a1a1a1;
     display: inline-block;
-    font-size: 13px;
+    font-size: 14px;
     width: 100%;
     -webkit-transition: all 0.3s linear 0s;
     -moz-transition: all 0.3s linear 0s;
@@ -6709,7 +6649,7 @@ a.reply {
 
 .open-position > h4 {
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 600;
     line-height: 25px;
     text-transform: capitalize;
 }
@@ -6921,27 +6861,6 @@ a.reply {
     -ms-animation-delay: .50s;
     -o-animation-delay: .50s;
     animation-delay: .50s;
-}
-.overlay.open ul.offcanvas-menu > li:nth-of-type(5) {
-    -webkit-animation-delay: .55s;
-    -moz-animation-delay: .55s;
-    -ms-animation-delay: .55s;
-    -o-animation-delay: .55s;
-    animation-delay: .55s;
-}
-.overlay.open ul.offcanvas-menu > li:nth-of-type(6) {
-    -webkit-animation-delay: .60s;
-    -moz-animation-delay: .60s;
-    -ms-animation-delay: .60s;
-    -o-animation-delay: .60s;
-    animation-delay: .60s;
-}
-.overlay.open ul.offcanvas-menu > li:nth-of-type(7) {
-    -webkit-animation-delay: .65s;
-    -moz-animation-delay: .65s;
-    -ms-animation-delay: .65s;
-    -o-animation-delay: .65s;
-    animation-delay: .65s;
 }
 
 .overlay ul.offcanvas-menu {
@@ -7160,7 +7079,7 @@ ul.offcanvas-menu ul {
 
 .option-set.icon-style > li > a {
     font-size: 14px;
-    font-weight: 500;
+    font-weight: bold;
     text-transform: capitalize;
 }
 
@@ -7236,7 +7155,7 @@ ul.offcanvas-menu ul {
 .overlinks > h4 {
     display: inline-block;
     font-size: 24px;
-    font-weight: 500;
+    font-weight: bold;
     text-transform: capitalize;
     width: 100%;
     color: #2a2a2a;
@@ -7369,7 +7288,7 @@ ul.offcanvas-menu ul {
     color: #fff;
     display: inline-block;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: bold;
     line-height: 40px;
     margin-top: 50px;
     text-align: center;
@@ -7391,7 +7310,7 @@ ul.offcanvas-menu ul {
     color: #fff;
     float: left;
     font-size: 50px;
-    font-weight: 500;
+    font-weight: bold;
     letter-spacing: 0.3px;
     -webkit-text-decoration: none;
     -moz-text-decoration: none;
@@ -7455,7 +7374,7 @@ ul.offcanvas-menu ul {
     color: #242424;
     display: inline-block;
     font-size: 25px;
-    font-weight: 500;
+    font-weight: 700;
     margin-bottom: 20px;
     margin-top: 25px;
     -webkit-transition: all 0.2s linear 0s;
@@ -7488,7 +7407,7 @@ a.main-btn {
     border-radius: 30px;
     color: #fff;
     font-size: 13px;
-    font-weight: 500;
+    font-weight: 600;
     padding: 10px 26px;
     display: inline-block;
 }
@@ -7519,7 +7438,7 @@ a.main-btn {
 
 .category-box:hover .main-btn,
 .category-box.selected .main-btn {
-    color: #424242;
+    color: #000;
     background: #fff;
 }
 
@@ -7599,7 +7518,7 @@ a.main-btn {
 }
 
 .price-table > span {
-    color: #424242;
+    color: #000;
     display: inline-block;
     font-size: 35px;
     margin-top: 15px;
@@ -7683,7 +7602,7 @@ a.main-btn {
 
 .news-letter > h2 {
     font-size: 44px;
-    font-weight: 500;
+    font-weight: bold;
     margin-bottom: 0;
 }
 
@@ -7730,7 +7649,7 @@ a.main-btn {
     border-radius: 30px;
     color: #fff;
     font-size: 12px;
-    font-weight: 500;
+    font-weight: bold;
     letter-spacing: 0.1px;
     padding: 18px 35px;
     text-transform: uppercase;
@@ -7778,7 +7697,7 @@ a.main-btn {
 .team-info > h4 {
     display: inline-block;
     font-size: 18px;
-    font-weight: 500;
+    font-weight: bold;
     margin-bottom: 0;
     width: 100%;
 }
@@ -7922,7 +7841,7 @@ a.main-btn {
 
 .branches-box > ul li span i {
     font-style: normal;
-    font-weight: 500;
+    font-weight: bold;
 }
 
 .contct-info2 .contact-form form .form-group:nth-last-child(2) {
@@ -8061,7 +7980,7 @@ a.main-btn {
     color: #fff;
     display: inline-block;
     font-size: 13px;
-    font-weight: 500;
+    font-weight: bold;
     line-height: 10px;
     padding: 10px 20px;
     text-align: center;
@@ -8109,11 +8028,7 @@ a.main-btn {
     width: 100%;
     position: relative;
 }
-.help-topic-result:last-child{
-	border-bottom: 0 none;
-    margin-bottom: 0;
-    padding-bottom: 0;
-}
+
 .help-topic-result .checkd {
     color: green;
     font-size: 30px;
@@ -8140,7 +8055,7 @@ h3.resutl-found {
     color: #3d3d3d;
     display: inline-block;
     font-size: 24px;
-    font-weight: 500;
+    font-weight: bold;
     margin-bottom: 50px;
     width: 100%;
 }
@@ -8161,7 +8076,7 @@ h3.resutl-found > span {
 .about-winku > h4 {
     display: inline-block;
     font-size: 28px;
-    font-weight: 500;
+    font-weight: bold;
     margin-bottom: 20px;
     width: 100%;
     color: #333;
@@ -8188,7 +8103,7 @@ figure.sign-author {
 
 .fonder > h4 {
     font-size: 17px;
-    font-weight: 500;
+    font-weight: bold;
     margin-bottom: 0;
     text-transform: capitalize;
 }
@@ -8379,7 +8294,7 @@ figure.sign-author {
 .product-name > h5 {
     display: inline-block;
     font-size: 18px;
-    font-weight: 500;
+    font-weight: bold;
     margin-bottom: 0;
     width: 100%;
 }
@@ -8414,7 +8329,7 @@ figure.sign-author {
 }
 
 .prices > ins {
-    color: #424242;
+    color: #000;
     font-size: 16px;
     font-weight: 400;
     -webkit-text-decoration: none;
@@ -8427,7 +8342,7 @@ figure.sign-author {
 .prices > del {
     color: #999;
     font-size: 12px;
-    font-weight: 500;
+    font-weight: bold;
     letter-spacing: 0.7px;
     margin-left: 5px;
 }
@@ -8463,7 +8378,7 @@ figure.sign-author {
     -ms-border-radius: 5px;
     -o-border-radius: 5px;
     border-radius: 5px;
-    color: #424242 !important;
+    color: #000 !important;
     font-size: 14px;
     height: 40px;
     line-height: 38px;
@@ -8644,7 +8559,7 @@ a.shopping-cart > i {
     position: relative;
     width: 40px;
     margin-left: 12px;
-    font-weight: 500;
+    font-weight: bold;
 }
 
 .slick-arrow::before {
@@ -8728,7 +8643,7 @@ a.shopping-cart > i {
     font-size: 15px;
     letter-spacing: 0.3px;
     line-height: 27px;
-    font-weight: 500;
+    font-weight: bold;
 }
 
 .cat-heading > a {
@@ -8768,7 +8683,7 @@ a.btn2 {
     color: #363636;
     display: inline-block;
     font-size: 12px;
-    font-weight: 500;
+    font-weight: bold;
     line-height: 49px;
     text-align: center;
     text-transform: uppercase;
@@ -8821,7 +8736,7 @@ a.btn2:hover {
     color: #7b7d7f;
     display: inline-block;
     font-size: 13px;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: 0.1px;
     padding: 9px 20px;
 }
@@ -8885,7 +8800,7 @@ a.btn2:hover {
 
 .tab-content .comment-text .user-name {
     font-size: 15px;
-    font-weight: 500;
+    font-weight: bold;
     margin-right: 35px;
 }
 
@@ -9033,7 +8948,7 @@ table.adition tbody tr td {
     padding-top: 18px;
 }
 
-table.adition tbody tr td {
+table.adition tbody tr td.bold {
     color: #1c1f23;
     font-weight: 500;
 }
@@ -9055,7 +8970,7 @@ table.adition tbody tr:last-child td {
     padding-right: 50px;
     position: relative;
     text-transform: capitalize;
-    font-weight: 500;
+    font-weight: bold;
 }
 
 .share > span::before {
@@ -9085,7 +9000,7 @@ table.adition tbody tr:last-child td {
     color: #424040;
     display: inline-block;
     font-size: 30px;
-    font-weight: 500;
+    font-weight: bold;
     line-height: 35px;
     margin-bottom: 0;
     padding-bottom: 16px;
@@ -9104,7 +9019,7 @@ table.adition tbody tr:last-child td {
 
 .full-postmeta .shopnow {
     display: inline-block;
-    font-weight: 500;
+    font-weight: bold;
     margin: 10px 0;
     -webkit-text-decoration: underline;
     -moz-text-decoration: underline;
@@ -9118,7 +9033,7 @@ table.adition tbody tr:last-child td {
 .prices.style2 ins span {
     display: inline-block;
     font-size: 23px;
-    font-weight: 500;
+    font-weight: bold;
 }
 
 .prices.style2 {
@@ -9186,7 +9101,7 @@ table.adition tbody tr:last-child td {
 .c-form button.submit {
     color: #fff;
     font-size: 12px;
-    font-weight: 500;
+    font-weight: bold;
     margin-top: 20px;
     padding-left: 43px;
     padding-right: 43px;
@@ -9264,7 +9179,7 @@ button.submit-checkout {
 
 .total-box > ul > li.final-total {
     border-top: 1px solid #d6d6d6;
-    font-weight: 500;
+    font-weight: bold;
     margin-top: 10px;
     padding-top: 20px;
     text-transform: uppercase;
@@ -9314,7 +9229,7 @@ button.submit-checkout {
     color: #727272;
     float: left;
     font-size: 15px;
-    font-weight: 500;
+    font-weight: bold;
     height: 38px;
     padding: 0;
     text-align: center;
@@ -9353,7 +9268,7 @@ button.submit-checkout {
 .cart-sec table tr th {
     border: 2px solid #eaeaea;
     font-size: 13px;
-    font-weight: 500;
+    font-weight: bold;
     padding: 20px;
     text-transform: uppercase;
     text-align: center;
@@ -9382,7 +9297,7 @@ button.submit-checkout {
     color: #fff;
     content: "";
     font-size: 10px;
-    font-weight: 500;
+    font-weight: bold;
     height: 26px;
     line-height: 26px;
     position: absolute;
@@ -9412,7 +9327,7 @@ button.submit-checkout {
     float: left;
     font: 18px;
     line-height: 23px;
-    font-weight: 500;
+    font-weight: bold;
     max-width: 70%;
     text-align: left;
 }
@@ -9435,7 +9350,7 @@ button.submit-checkout {
 .cart-prices ins {
     display: inline-block;
     font-size: 18px;
-    font-weight: 500;
+    font-weight: bold;
     -webkit-text-decoration: none;
     -moz-text-decoration: none;
     -ms-text-decoration: none;
@@ -9530,7 +9445,7 @@ button.submit-checkout {
 
 .total-area > ul li.order-total {
     border-top: 1px solid #ccc;
-    font-weight: 500;
+    font-weight: bold;
     margin-bottom: 0;
     margin-top: 20px;
     max-width: 100%;
@@ -9642,7 +9557,7 @@ button.submit-checkout {
     margin-bottom: 6px;
     width: 100%;
     color: #515365;
-    font-weight: 500;
+    font-weight: bold;
 }
 
 .logout-meta > p {
@@ -9705,7 +9620,7 @@ a.addnewforum {
     color: #fff;
     display: inline-block;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600;
     margin-bottom: 30px;
     padding: 10px 30px;
 }
@@ -9837,7 +9752,7 @@ aside.sidebar.full-style {
 .widget ul.feature-topics > li > a {
     color: #646464;
     font-size: 13px;
-    font-weight: 500;
+    font-weight: bold;
     line-height: 18px;
     -webkit-transition: all 0.2s linear 0s;
     -moz-transition: all 0.2s linear 0s;
@@ -9930,7 +9845,7 @@ aside.sidebar.full-style {
 .forum-open > h5 {
     display: inline-block;
     font-size: 18px;
-    font-weight: 500;
+    font-weight: 600;
     margin-bottom: 40px;
     width: 100%;
 }
@@ -10000,7 +9915,7 @@ aside.sidebar.full-style {
 }
 .employer-info > ul li span {
     display: inline-block;
-    font-weight: 500;
+    font-weight: bold;
     width: 130px;
 }
 .employer-info > ul li > i {
@@ -10024,11 +9939,12 @@ aside.sidebar.full-style {
     margin: 0 2px;
 }
 .sociaz-media > li > a {
+    border: 1px solid #bababa;
     border-radius: 3px;
     display: inline-block;
     font-size: 12px;
-    font-weight: 500;
-    padding: 5px 13px;
+    font-weight: bold;
+    padding: 3px 13px;
     transition: all 0.2s linear 0s;
 }
 .sociaz-media > li > a:hover {
@@ -10044,24 +9960,6 @@ aside.sidebar.full-style {
     display: inline-block;
     margin-bottom: 0;
     width: 100%;
-}
-.salary-area a.twitter {
-    background: #55acee;
-    color: #fff;
-}
-
-.salary-area a.google {
-    background: #dd4b39;
-    color: #fff;
-}
-
-.salary-area a.pinterest {
-    background: #ca212a;
-    color: #fff;
-}
-.salary-area a.facebook {
-    background: #516eab;
-    color: #fff;
 }
 .salary-area > span {
     color: #999;
@@ -10143,7 +10041,7 @@ aside.sidebar.full-style {
 }
 .company-intro > a {
     font-size: 12px;
-    font-weight: 500;
+    font-weight: bold;
     letter-spacing: 0.5px;
     text-transform: uppercase;
 }

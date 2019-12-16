@@ -55,7 +55,6 @@ a.forgot-pwd,
 .post-title > h4 a:hover,
 .post-title .p-date a:hover,
 .l-post .l-post-meta > h4 a:hover,
-.read,
 .read:hover,
 blockquote,
 .tags > a:hover,
@@ -151,9 +150,7 @@ a.addnewforum,
 	background: #088dcd;
 }
 
-.stroke-solid {
-	fill: #088dcd;
-}
+
 
 
 /*=========================

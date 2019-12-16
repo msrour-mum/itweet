@@ -1,0 +1,225 @@
+.login-reg-bg {
+    background-color: #1fb6ff;
+}
+
+.land-featurearea {
+    background-color: #fff;
+}
+
+.log-reg-area {
+    box-shadow: none;
+}
+
+.error {
+    color: #ff1f1f !important;
+}
+
+.logo-home img {
+    max-width: 90%;
+}
+
+.land-meta {
+    top: 45%;
+}
+
+.log-reg-area form .checkbox {
+    width: auto;
+}
+
+.log-reg-area form .forgot-pwd,
+.log-reg-area form .already-have {
+    vertical-align: middle;
+    text-align: initial;
+    width: auto;
+    padding-left: 20px;
+}
+
+.logo>a {
+    width: 120px;
+}
+
+.user-setting {
+    left: -50px;
+}
+
+.responsive-header .mh-text a {
+    width: 85px;
+}
+
+.sidebar {
+    width: 100%;
+}
+
+.sidebar .widget {
+    border-color: #dddfe2;
+}
+
+.gray-bg {
+    background: #e9ebee;
+}
+
+.gap {
+    padding: 50px 0;
+}
+
+.central-meta {
+    border-color: #dddfe2;
+}
+
+.we-video-info>ul li span.like {
+    color: #f72510;
+}
+
+.widget .your-page {
+    text-align: center;
+    margin-top: -10px;
+}
+
+.your-page>figure {
+    max-width: 110px;
+    width: auto;
+}
+
+.widget .adpholder {
+    text-align: center;
+    padding: 0 10px 10px 10px;
+}
+
+.widget.profile .widget-title {
+    text-align: center;
+}
+
+.widget.profile .widget-title::before {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.page-likes .nav.nav-tabs.likes-btn>li a {
+    font-size: 16px;
+    text-transform: initial;
+}
+
+.page-likes h6 {
+    text-align-last: center;
+}
+
+.page-likes .nav-item p {
+    font-size: 22px;
+    color: #545454;
+    padding: 10px;
+    font-weight: 500;
+    margin-bottom: 0;
+}
+
+.friend-meta>a {
+    font-size: 13px;
+}
+
+
+@media screen and (max-width: 980px) {
+    .log-reg-area {
+        border-left: 4px solid #31bce3;
+    }
+
+    .sidebar {
+        width: 100%;
+    }
+
+    .sidebar .widget {
+        margin-left: 0;
+        margin-right: 0;
+        width: 100%;
+    }
+
+    .sidebar {
+        width: 100%;
+    }
+}
+
+.timeline-info .admin-name>span {
+    font-size: 12px;
+}
+
+.timeline-info {
+    padding: 5px 0;
+}
+
+.timeline-info>ul li {
+    vertical-align: middle;
+}
+
+.timeline-info .admin-name {
+    line-height: initial;
+}
+
+.timeline-info .admin-name div {
+    font-size: 12px;
+    text-align: right;
+    margin-top: -5px;
+}
+
+.profile-photo {
+    width: 100%;
+    padding-top: 100%;
+    background: url(../images/profile-photo.png) no-repeat;
+    background-size: cover;
+}
+
+.cover-photo {
+    width: 100%;
+    padding-top: 29%;
+    background: url(../images/cover-photo.jpg) no-repeat;
+    background-size: cover;
+}
+
+.top-area .user-img>img {
+    width: 45px;
+    max-width: 45px;
+    max-height: 45px;
+}
+
+.comet-avatar img {
+    width: 45px;
+    max-width: 45px;
+}
+
+.frnds .nav-tabs .nav-item>span {
+    width: auto;
+    border-radius: 25%;
+    padding: 1px 3px;
+}
+
+#frends a.add-butn.more-action {
+    right: 0;
+}
+
+@media screen and (max-width: 570px) {
+    .land-featurearea {
+        float: none;
+        height: initial;
+    }
+
+    .friend-logo.logo-home>span {
+        font-size: 10px;
+    }
+
+    .friend-logo.logo-home img {
+        max-width: 50%;
+        margin: 20px 0;
+    }
+
+    .login-reg-bg {
+        float: none;
+        height: initial;
+    }
+
+    .land-meta {
+        position: initial;
+        transform: initial;
+        top: initial;
+    }
+}
+
+.fieldError  {
+    color:red;
+}
