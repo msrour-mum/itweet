@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<title>itweet Social Network</title>
+	<link rel="icon" href="images/fav.png" type="image/png" sizes="16x16">
+
+	<link rel="stylesheet" href="css/main.min.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/color.css">
+	<link rel="stylesheet" href="css/responsive.css">
+	<link rel="stylesheet" href="css/styles2.css">
+</head>
+
+<body>
+	<div class="theme-layout">
+		<div class="topbar stick">
+			<div class="top-area" style="position: absolute; right:25px;">
+				<ul class="setting-area">
+					<li><a href="#" title="Languages"><i class="fa fa-globe"></i></a>
+						<div class="dropdowns languages">
+							<a href="/login?lang=en" title=""><i class="ti-check"></i>English</a>
+							<a href="/login?lang=zh_CN" title="">中文</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div><!-- topbar -->
+		<div class="container-fluid pdng0">
+			<div class="row merged">
+				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+					<div class="land-featurearea">
+						<div class="land-meta">
+							<div class="friend-logo logo-home">
+								<span><img src="images/logo_home.png" width="400" alt=""></span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+					<div class="login-reg-bg">
+						<div class="log-reg-area sign">
+							<h2 class="log-title" th:text="#{login.title}"></h2>
+							<p class="error" style="display: none;">
+								Invalid user email or password !
+							</p>
+							<form action="#" th:action="@{/signin}" th:object="${userDto}" method="post">
+								<div class="form-group">
+									<input type="email" th:field="*{email}"/>
+									<label class="control-label" for="input" th:text="#{userName.lbl}">Username</label>
+									<i class="mtrl-select"></i>
+									<p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" th:errorclass="fieldError">Incorrect user name</p>
+								</div>
+								<div class="form-group">
+									<input type="password" th:field="*{pass}"/>
+									<label class="control-label" for="input" th:text="#{password.lbl}">password</label>
+									<i class="mtrl-select"></i>
+								</div>
+								<div class="checkbox">
+									<label>
+										<input type="checkbox" checked="checked"><i class="check-box"></i>
+										<span th:text="#{rememberMe.txt}">Always Remember Me.</span>
+									</label>
+								</div>
+								<a href="#" title="" class="forgot-pwd" th:text="#{forget.password}"></a>
+								<div class="submit-btns">
+									<button class="mtr-btn signin" type="submit"><span th:text="#{login.btn}">Login</span></button>
+									<button class="mtr-btn signup" type="button"><span th:text="#{register.btn}">Register</span></button>
+
+									<div class="facebook">
+										<a title="" href="/facebook">
+											<i class="fa fa-facebook"></i> <span th:text="#{facebook}">facebook</span>
+										</a>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="js/main.min.js"></script>
+	<script src="js/script.js"></script>
+
+</body>
+
+</html>

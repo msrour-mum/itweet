@@ -5,6 +5,7 @@ import mum.itweet.model.dto.UserDto;
 import mum.itweet.security.JwtToken;
 import mum.itweet.service.JwtUserDetailsService;
 import mum.itweet.service.UserService;
+import mum.itweet.utitlity.ConstantKeys;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -59,7 +60,8 @@ public class AuthenticationMvcController {
         final UserDetails userDetails = userDetailsService.loadUserByUsername(user.getEmail());
         final String token = jwtTokenUtil.generateToken(userDetails);
 
-        request.getSession().setAttribute("access_token", token);
+        request.getSession().setAttribute(ConstantKeys.ACCESS_TOKEN_SESSION_NAME, token);
+        request.getSession().setAttribute(ConstantKeys.USER_DETAILS_SESSION_NAME, userDetails);
         return "redirect:/";
     }
 
@@ -105,7 +107,7 @@ public class AuthenticationMvcController {
         org.springframework.social.facebook.api.User userProfile =
                 facebook.fetchObject("me",
                         org.springframework.social.facebook.api.User.class, fields);
-        ModelAndView model = new ModelAndView("index");
+        ModelAndView model = new ModelAndView("login");
         model.addObject("user", userProfile);
         return model;
 

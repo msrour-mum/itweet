@@ -2,6 +2,7 @@ package mum.itweet.security;
 
 import io.jsonwebtoken.ExpiredJwtException;
 import mum.itweet.service.JwtUserDetailsService;
+import mum.itweet.utitlity.ConstantKeys;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -33,13 +34,13 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         // JWT Token is in the form "Bearer token". Remove Bearer word and get
         // only the Token
         if ((requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) ||
-           request.getSession().getAttribute("access_token") != null) {
+           request.getSession().getAttribute(ConstantKeys.ACCESS_TOKEN_SESSION_NAME) != null) {
             if(requestTokenHeader != null) {
                 jwtToken = requestTokenHeader.substring(7);
             }
             else
             {
-                jwtToken = request.getSession().getAttribute("access_token").toString();
+                jwtToken = request.getSession().getAttribute(ConstantKeys.ACCESS_TOKEN_SESSION_NAME).toString();
             }
             try {
                 username = this.jwtToken.getUsernameFromToken(jwtToken);

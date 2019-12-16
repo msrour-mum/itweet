@@ -13,12 +13,14 @@ import java.util.stream.Collectors;
 
 public class JPAUserDetails implements UserDetails {
 
+    private int id;
     private String username;
     private String password;
     private boolean isActive;
     private List<Role> roles;
 
     public JPAUserDetails(User user) {
+        id = user.getId();
         username = user.getEmail();
         password = user.getPass();
         isActive = user.isActive();
@@ -61,5 +63,13 @@ public class JPAUserDetails implements UserDetails {
     @Override
     public boolean isEnabled() {
         return isActive;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

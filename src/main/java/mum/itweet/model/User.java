@@ -5,7 +5,6 @@ import lombok.NoArgsConstructor;
 import mum.itweet.model.lookups.Gender;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
 @Entity
@@ -15,7 +14,7 @@ public class User  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @Column(nullable = false)
     private String name;
