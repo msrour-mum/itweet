@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<body>
+<div class="container">
+	<h2>All advertisements</h2>
+	<p><a href="/ads/edit">Create new advertisement</a> </p>
+
+	<table class="table">
+		<thead>
+		<tr>
+			<th scope="col">ID</th>
+			<th scope="col">advertisement name</th>
+			<th scope="col">active</th>
+			<th scope="col">gender</th>
+			<th scope="col">ageFrom</th>
+			<th scope="col">ageTo</th>
+			<th scope="col">edit</th>
+			<th scope="col">delet</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr th:each="ad, iter : ${ads}">
+			<th scope="row" th:text="${iter.index + 1}">1</th>
+			<td th:text="${ad.name}">Otto</td>
+			<td th:text="${ad.active}">yes</td>
+			<td th:text="${ad.gender}">All</td>
+			<td th:text="${ad.ageFrom}">20</td>
+			<td th:text="${ad.ageTo}">60</td>
+			<td th:text=""><p><a href="/ads/edit">edit</a> </p></td>
+			<td th:text=""><p><a href="/ads/edit">delete</a> </p></td>
+		</tr>
+
+		</tbody>
+	</table>
+
+
+</div>
+
+</body>
+</html>
