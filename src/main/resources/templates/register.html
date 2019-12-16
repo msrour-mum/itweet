@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -18,6 +18,22 @@
 
 <body>
 	<div class="theme-layout">
+
+		<!--Languages-->
+		<div class="topbar stick">
+			<div class="top-area" style="position: absolute; right:25px;">
+				<ul class="setting-area">
+					<li><a href="#" title="Languages"><i class="fa fa-globe"></i></a>
+						<div class="dropdowns languages">
+							<a href="/register?lang=en" title=""><i class="ti-check"></i>English</a>
+							<a href="/register?lang=zh_CN" title="">中文</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div><!-- topbar -->
+		<!--End Languages-->
+
 		<div class="container-fluid pdng0">
 			<div class="row merged">
 				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -32,45 +48,37 @@
 				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 					<div class="login-reg-bg show">
 						<div class="log-reg-area reg">
-							<h2 class="log-title">Register</h2>
+							<h2 class="log-title" th:text="#{register.title}">Register</h2>
 							<p class="error" style="display: none;">
 								Invalid user email or password !
 							</p>
-							<form method="post">
+							<form action="#" th:action="@{/register}" th:object="${userDto}" method="post">
 								<div class="form-group">
-									<input type="text" required="required" />
-									<label class="control-label" for="input">First & Last Name</label><i
-										class="mtrl-select"></i>
-								</div>
-								<div class="form-group">
-									<input type="text" required="required" />
-									<label class="control-label" for="input">User Name</label><i
-										class="mtrl-select"></i>
+									<input type="text" th:field="*{name}" autofocus/>
+									<label class="control-label" for="input" th:text="#{name.lbl}">Name</label>
+									<i class="mtrl-select"></i>
+									<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" th:errorclass="fieldError"></p>
 								</div>
 								<div class="form-group">
-									<input type="password" required="required" />
-									<label class="control-label" for="input">Password</label><i class="mtrl-select"></i>
-								</div>
-								<div class="form-radio">
-									<div class="radio">
-										<label>
-											<input type="radio" name="radio" checked="checked" /><i
-												class="check-box"></i>Male
-										</label>
-									</div>
-									<div class="radio">
-										<label>
-											<input type="radio" name="radio" /><i class="check-box"></i>Female
-										</label>
-									</div>
+									<input type="email" th:field="*{email}"/>
+									<label class="control-label" for="input" th:text="#{userName.lbl}"></label>
+									<i class="mtrl-select"></i>
+									<p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" th:errorclass="fieldError"></p>
 								</div>
 								<div class="form-group">
-									<input type="text" required="required" />
-									<label class="control-label" for="input">Email</label><i class="mtrl-select"></i>
+									<input type="password" th:field="*{pass}"/>
+									<label class="control-label" for="input" th:text="#{password.lbl}"></label>
+									<i class="mtrl-select"></i>
+									<p th:if="${#fields.hasErrors('pass')}" th:errors="*{pass}" th:errorclass="fieldError"></p>
 								</div>
+<!--								<div class="checkbox">-->
+<!--									<label>-->
+<!--										<input type="checkbox" checked="checked"><i class="check-box"></i>Accept Terms &amp; Conditions ?-->
+<!--									</label>-->
+<!--								</div>-->
+								<a href="/login" title="" class="already-have" th:text="#{already.have.account.txt}">Already have an account</a>
 								<div class="submit-btns">
-									<button class="mtr-btn signup" type="button"><span>Register</span></button>
-									<a href="./login.html" title="" class="already-have">Already have an account</a>
+									<button class="mtr-btn" type="submit"><span th:text="#{register.btn}">Register</span></button>
 								</div>
 							</form>
 						</div>

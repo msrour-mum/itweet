@@ -49,10 +49,10 @@ public class AuthenticationMvcController {
         return "login";
     }
 
-//    @GetMapping("/register")
-//    public String register(@ModelAttribute User user) {
-//        return "register";
-//    }
+    @GetMapping("/register")
+    public String register(@ModelAttribute UserDto user) {
+        return "register";
+    }
 
     @PostMapping("/signin")
     public String signin(@ModelAttribute UserDto user, HttpServletRequest request) throws Exception {
@@ -69,7 +69,7 @@ public class AuthenticationMvcController {
     public String register(@Valid @ModelAttribute UserDto user, BindingResult bindingResult) throws Exception {
 
         if (bindingResult.hasErrors()) {
-            return "login";
+            return "register";
         }
         User userToAdd = new User();
         userToAdd.setName(user.getName());

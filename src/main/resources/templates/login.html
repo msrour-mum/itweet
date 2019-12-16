@@ -18,6 +18,8 @@
 
 <body>
 	<div class="theme-layout">
+
+		<!--Languages-->
 		<div class="topbar stick">
 			<div class="top-area" style="position: absolute; right:25px;">
 				<ul class="setting-area">
@@ -30,6 +32,8 @@
 				</ul>
 			</div>
 		</div><!-- topbar -->
+		<!--End Languages-->
+
 		<div class="container-fluid pdng0">
 			<div class="row merged">
 				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -53,7 +57,7 @@
 									<input type="email" th:field="*{email}"/>
 									<label class="control-label" for="input" th:text="#{userName.lbl}">Username</label>
 									<i class="mtrl-select"></i>
-									<p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" th:errorclass="fieldError">Incorrect user name</p>
+									<p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" th:errorclass="fieldError"></p>
 								</div>
 								<div class="form-group">
 									<input type="password" th:field="*{pass}"/>
@@ -69,7 +73,7 @@
 								<a href="#" title="" class="forgot-pwd" th:text="#{forget.password}"></a>
 								<div class="submit-btns">
 									<button class="mtr-btn signin" type="submit"><span th:text="#{login.btn}">Login</span></button>
-									<button class="mtr-btn signup" type="button"><span th:text="#{register.btn}">Register</span></button>
+									<button class="mtr-btn signup" type="submit" onclick="window.location.href='/register';"><span th:text="#{register.btn}">Register</span></button>
 
 									<div class="facebook">
 										<a title="" href="/facebook">

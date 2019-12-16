@@ -18,12 +18,12 @@ import java.util.List;
 @NoArgsConstructor
 public class UserDto {
 
+    @NotEmpty
+    private String name;
     @UserName
     private String email;
     @NotEmpty
     private String pass;
-    @NotEmpty
-    private String name;
     private Date birthDate;
     private Gender gender;
     private String mobile;

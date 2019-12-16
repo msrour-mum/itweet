@@ -219,3 +219,7 @@
         top: initial;
     }
 }
+
+.fieldError  {
+    color:red;
+}
