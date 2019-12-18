@@ -33,8 +33,9 @@
 			<td th:text="${ad.gender}">All</td>
 			<td th:text="${ad.ageFrom}">20</td>
 			<td th:text="${ad.ageTo}">60</td>
-			<td th:text=""><p><a href="/ads/edit">edit</a> </p></td>
-			<td th:text=""><p><a href="/ads/edit">delete</a> </p></td>
+			<td><a th:href="@{http://localhost:8080/ads/edit}" th:text="edit" target="_blank"  /></td>
+			<td><a th:href="@{http://localhost:8080/api/ads}" th:text="delete"  /></td>
+
 		</tr>
 
 		</tbody>

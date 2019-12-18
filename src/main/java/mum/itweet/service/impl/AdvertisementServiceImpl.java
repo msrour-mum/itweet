@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import javax.xml.crypto.Data;
 import java.util.List;
+import java.util.Random;
 
 @Service
 @Transactional
@@ -42,8 +43,10 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     }
 
     @Override
-    public List<Advertisement> getRandomActiveAdvertisements() {
-        return null;
+    public Advertisement getRandomActiveAdvertisement() {
+       List<Advertisement> advertisements = advertisementRepository.getActiveAdvertisements();
+        Random random = new Random();
+        return advertisements.get(random.nextInt(advertisements.size()));
     }
 
 

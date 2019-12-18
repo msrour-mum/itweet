@@ -25,7 +25,7 @@ public class ItweetApplication
 		SpringApplication.run(ItweetApplication.class, args);
 
 		//Zein : Use this if you want to fill data at Database
-		//DataGenerate.Generate();
+//		DataGenerate.Generate();
 
 
 	}

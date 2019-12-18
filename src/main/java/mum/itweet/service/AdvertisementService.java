@@ -12,6 +12,6 @@ public interface AdvertisementService {
     public void deleteAdvertisement(long id);
     public Advertisement getAdvertisementById(long id);
     public List<Advertisement> getAllAdvertisements();
-    public List<Advertisement>getRandomActiveAdvertisements();
+    public Advertisement getRandomActiveAdvertisement();
 
 }

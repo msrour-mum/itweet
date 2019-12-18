@@ -1,4 +1,4 @@
-package mum.itweet.controller;
+package mum.itweet.controller.mvc;
 
 import mum.itweet.model.Advertisement;
 import mum.itweet.service.AdvertisementService;
@@ -13,7 +13,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping(value="/ads")
-public class AdvertisementController {
+public class AdvertisementMVCController {
     @Autowired
     AdvertisementService advertisementService;
 
@@ -29,7 +29,7 @@ public class AdvertisementController {
         List<Advertisement> ads = Arrays.asList(ad1,ad2,ad3,ad4,ad5,ad6);
        // List<Advertisement> ads = advertisementService.getAllAdvertisements();
         model.addAttribute("ads",ads);
-        return "advertisementController";
+        return "adsPage";
     }
 
     @GetMapping("/edit")
