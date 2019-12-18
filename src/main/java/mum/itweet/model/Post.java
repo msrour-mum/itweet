@@ -10,6 +10,7 @@ import mum.itweet.model.lookups.PostStatus;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -42,12 +43,12 @@ public class Post  {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name ="post_id", nullable = false)
-    List<Comment> comments;
+    List<Comment> comments =new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name ="post_id" , nullable = false)
     //@JsonManagedReference
-    List<PostLikes> postLikes;
+    List<PostLikes> postLikes =new ArrayList<>();
 
 
     public void addLike(PostLikes likes)    {        postLikes.add(likes);    }
@@ -56,7 +57,9 @@ public class Post  {
         postLikes.remove(likes);
     }
 
-    public void addComment(Comment comment)    {        comments.add(comment);    }
+    public void addComment(Comment comment)    {
+
+        if (comment!=null)    comments.add(comment);    }
     public void removeComment(Comment comment)
     {
         comments.remove(comment);

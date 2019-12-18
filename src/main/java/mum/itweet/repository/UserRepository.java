@@ -20,4 +20,11 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     @Query(value = "Select u.* from following f inner join user u on u.id=f.following_id where f.follower_id=:userId", nativeQuery = true)
     public List<User> ListFollowing(@Param("userId")  int userId);
 
+    @Query(value = "Select count (u.*) from following f inner join user u on u.id=f.follower_id where f.following_id=:userId", nativeQuery = true)
+    public int getCountFollower(@Param("userId")  int userId);
+
+    @Query(value = "Select count (u.*)  from following f inner join user u on u.id=f.following_id where f.follower_id=:userId", nativeQuery = true)
+    public int getCountFollowing(@Param("userId")  int userId);
+
+
 }

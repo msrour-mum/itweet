@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<html lang="en">
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -73,19 +73,18 @@
 					</li>
 					<li><a href="#" title="Languages"><i class="fa fa-globe"></i></a>
 						<div class="dropdowns languages">
-							<a href="/home?lang=en" title=""><i class="ti-check"></i>English</a>
-							<a href="/home?lang=zh_CN" title="">中文</a>
+							<a href="#" title=""><i class="ti-check"></i>English</a>
+							<a href="#" title="">French</a>
 						</div>
-					</li>
 					</li>
 				</ul>
 				<div class="user-img">
 					<img src="images/profile-photo.png">
 					<div class="user-setting">
-						<a href="#" title="" th:text="#{main.menu.viewProfile}"><i class="ti-user"></i> view profile</a>
-						<a href="#" title="" th:text="#{main.menu.editProfile}"><i class="ti-pencil-alt"></i>edit profile</a>
-						<a href="#" title="" th:text="#{main.menu.accountSetting}"><i class="ti-settings"></i>account setting</a>
-						<a href="/logout" title="" th:text="#{main.menu.logout}"><i class="ti-power-off"></i>log out</a>
+						<a href="./profile.html"><i class="ti-user"></i> view profile</a>
+						<a href="./edit-profile.html"><i class="ti-pencil-alt"></i>edit profile</a>
+						<a href="#"><i class="ti-settings"></i>account setting</a>
+						<a href="./index.html"><i class="ti-power-off"></i>log out</a>
 					</div>
 				</div>
 			</div>
@@ -108,12 +107,11 @@
 												</figure>
 												<div class="page-likes">
 													<ul class="nav nav-tabs likes-btn">
-														<li class="nav-item"><a class="active" href="./profile.html"
-																data-toggle="tab">Following</a>
+														<li class="nav-item"><a class="active"
+																href="./following.html">Following</a>
 															<p>34</p>
 														</li>
-														<li class="nav-item"><a class="" href="#link2"
-																data-toggle="tab">Followers</a>
+														<li class="nav-item"><a href="./following.html">Followers</a>
 															<p>884</p>
 														</li>
 													</ul>

@@ -1,6 +1,7 @@
 package mum.itweet.repository;
 
 import mum.itweet.model.Post;
+import mum.itweet.model.dto.PostItem;
 import mum.itweet.model.lookups.PostStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -27,6 +28,14 @@ public interface PostRepository extends JpaRepository<Post, Long> {
             "(select f.following_id from following f where f.follower_id=?0))\n" +
             "order by p.publishDate desc", nativeQuery = true)
     public List<Post> listPostForUser(int userId);
+
+
+    @Query(value = "select * , \n" +
+            "(select count(c.id) from comment c where c.post_id=p.id ) as commentCount ,\n" +
+            "(select count(k.id) from post_likes k where k.post_id=p.id ) as likeCount ,\n" +
+            "(select  ct.commentText  from comment ct where ct.post_id=p.id order by ct.id desc limit 1 ) as lastComment \n" +
+            "from post p", nativeQuery = true)
+    public List<PostItem> listPostForUser2(int userId);
 
 }
 
