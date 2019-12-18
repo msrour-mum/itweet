@@ -10,6 +10,7 @@ public class ItweetApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ItweetApplication.class, args);
 
+<<<<<<< HEAD
 //<<<<<<< HEAD
 		//Zein : Use this if you want to fill data at Database
 		DataGenerate.Generate();
@@ -18,6 +19,12 @@ public class ItweetApplication {
 		// Zein : Use this if you want to fill data at Database
 		// DataGenerate.Generate();
 //>>>>>>> master
+=======
+		//Zein : Use this if you want to fill data at Database
+	//	DataGenerate.Generate();
+
+
+>>>>>>> master
 
 	}
 
