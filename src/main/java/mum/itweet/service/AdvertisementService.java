@@ -8,10 +8,10 @@ import java.util.List;
 public interface AdvertisementService {
 
     public Advertisement create(Advertisement advertisement);
-    public Advertisement update(Advertisement advertisement);
+    public Advertisement update(long adId,Advertisement advertisement);
     public void deleteAdvertisement(long id);
     public Advertisement getAdvertisementById(long id);
     public List<Advertisement> getAllAdvertisements();
-    public List<Advertisement>getRandomActiveAdvertisements();
+    public Advertisement getRandomActiveAdvertisement();
 
 }

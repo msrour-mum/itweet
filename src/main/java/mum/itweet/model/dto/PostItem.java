@@ -16,7 +16,7 @@ import javax.persistence.SqlResultSetMapping;
 public class PostItem {
 
 
-    private int id;
+    private long id;
     private String postText;
     private int userId;
     private String imageUrl;
@@ -27,4 +27,14 @@ public class PostItem {
     private int commentCount;
     private String lastComment;
 
+    public PostItem(long id, String postText, int userId, String imageUrl, String videoUrl, int likeCount, int commentCount, String lastComment) {
+        this.id = id;
+        this.postText = postText;
+        this.userId = userId;
+        this.imageUrl = imageUrl;
+        this.videoUrl = videoUrl;
+        this.likeCount = likeCount;
+        this.commentCount = commentCount;
+        this.lastComment = lastComment;
+    }
 }

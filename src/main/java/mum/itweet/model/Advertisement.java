@@ -31,6 +31,17 @@ public class Advertisement {
 
     private String gender ;
 
+    public Advertisement(String name, String imageUrl, Date creationDate, Boolean active, int ageFrom, int ageTo, String gender, MultipartFile image) {
+        this.name = name;
+        this.imageUrl = imageUrl;
+        this.creationDate = creationDate;
+        this.active = active;
+        this.ageFrom = ageFrom;
+        this.ageTo = ageTo;
+        this.gender = gender;
+        this.image = image;
+    }
+
     @Transient
     MultipartFile image;
 

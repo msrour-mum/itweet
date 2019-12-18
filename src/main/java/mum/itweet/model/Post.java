@@ -77,7 +77,10 @@ public class Post  {
 
     }
 
-
+ public int getCoSize()
+ {
+     return comments.size();
+ }
     public long getId() {
         return id;
     }

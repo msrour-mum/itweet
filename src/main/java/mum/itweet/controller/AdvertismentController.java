@@ -29,14 +29,17 @@ public class AdvertismentController {
         return advertisementService.create(advertisement);
     }
     @PostMapping("/update/{id}")
-    public Advertisement update(@RequestBody Advertisement advertisement){
-        return advertisementService.update(advertisement);
+    public Advertisement update(@PathVariable long id,@RequestBody Advertisement advertisement){
+        return advertisementService.update(id,advertisement);
     }
 
-    @PostMapping("/delet/{id}")
+    @PostMapping("/delete/{id}")
     public void delete(@PathVariable long id ){
         advertisementService.deleteAdvertisement(id);
     }
 
-
+    @GetMapping("/activerandom")
+    public Advertisement getRandomActiveAd(){
+        return advertisementService.getRandomActiveAdvertisement();
+    }
 }
