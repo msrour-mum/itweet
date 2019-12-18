@@ -28,4 +28,7 @@ public interface FollowingService {
 
     public Following addFollow(int followerId, int followingId);
 
+    public int getCountFollower(int userId) ;
+    public int getCountFollowing(int userId) ;
+
 }

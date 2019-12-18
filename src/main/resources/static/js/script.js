@@ -3,22 +3,31 @@ jQuery(document).ready(function ($) {
 	"use strict";
 
 	//------- Notifications Dropdowns
-	$('.top-area > .setting-area > li').on("click", function () {
-		$(this).siblings().children('div').removeClass('active');
-		$(this).children('div').addClass('active');
+	$('.top-area > .setting-area > li > a').on("click", function () {
+		var $parent = $(this).parent('li');
+		$parent.siblings().children('div').removeClass('active');
+		$(this).siblings('div').addClass('active');
 		return false;
 	});
 	//------- remove class active on body
-	$("body *").not('.top-area > .setting-area > li').on("click", function () {
+	$("body *").not('.top-area > .setting-area > li > a').on("click", function () {
 		$(".top-area > .setting-area > li > div").removeClass('active');
 	});
 
 
 	//--- user setting dropdown on topbar	
-	$('.user-img').on('click', function () {
+	$('.user-img img').on('click', function () {
 		$('.user-setting').toggleClass("active");
 		return false;
 	});
+	//------- remove class active on body
+	$("body *").not('.user-img img').on("click", function () {
+		$(".user-setting").removeClass('active');
+	});
+
+	//--- page likes (followers count)	
+	// $('.page-likes .nav-tabs a').off();
+	// $('.page-likes .nav-tabs a').unbind();
 
 	//--- side message box	
 	$('.friendz-list > li, .chat-users > li').on('click', function () {
