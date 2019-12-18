@@ -82,8 +82,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // make sure we use stateless session; session won't be used to
                 // store user's state.
                 //.exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 ;
                 // Add a filter to validate the tokens with every request
                 httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);

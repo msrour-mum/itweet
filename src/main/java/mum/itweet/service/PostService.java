@@ -13,6 +13,7 @@ public interface PostService {
     public Post create(PostDto post);
     public Post get(long id);
     public Post update(PostDto post);
+    public Post update(Post post);
     public void delete(long id);
     public List<Post> getAll();
 
