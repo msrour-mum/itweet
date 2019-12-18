@@ -19,12 +19,15 @@ public class AdvertisementServiceImpl implements AdvertisementService {
 
     @Override
     public Advertisement create(Advertisement advertisement) {
-        return advertisementRepository.save(advertisement);
+        return advertisementRepository.saveAndFlush(advertisement);
     }
 
     @Override
-    public Advertisement update(Advertisement advertisement) {
-        return advertisementRepository.save(advertisement);
+    public Advertisement update(long adId,Advertisement advertisement) {
+        Advertisement old = advertisementRepository.getOne(adId);
+        old = advertisement ;
+        advertisementRepository.deleteById(adId);
+        return advertisementRepository.save(old);
     }
 
     @Override

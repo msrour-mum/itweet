@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -19,15 +20,29 @@ public class AdvertisementMVCController {
 
     @GetMapping("/")
     public String getAdsData(Model model){
-        Advertisement ad1 = new Advertisement("job",true,"All",20,50);
-        Advertisement ad2 = new Advertisement("job",true,"All",30,40);
-        Advertisement ad3 = new Advertisement("job",true,"All",19,29);
-        Advertisement ad4 = new Advertisement("job",true,"Male",40,45);
-        Advertisement ad5 = new Advertisement("job",true,"All",22,27);
-        Advertisement ad6 = new Advertisement("job",true,"Female",24,35);
 
-        List<Advertisement> ads = Arrays.asList(ad1,ad2,ad3,ad4,ad5,ad6);
-       // List<Advertisement> ads = advertisementService.getAllAdvertisements();
+//        Advertisement ad1 = new Advertisement("job1","",new Date(),true,29,
+//                50,"male",null);
+//        advertisementService.create(ad1);
+//
+//        Advertisement ad2 = new Advertisement("job2","",new Date(),false,29,
+//                50,"male",null);
+//        advertisementService.create(ad2);
+////
+        Advertisement ad3 = new Advertisement("updated","",new Date(),true,29,
+                50,"" +
+                "all",null);
+//        advertisementService.create(ad3);
+//
+//        Advertisement ad4 = new Advertisement("job4","",new Date(),false,29,
+//                50,"male",null);
+//        advertisementService.create(ad4);
+
+       // List<Advertisement> ads = Arrays.asList(ad1,ad2,ad3,ad4);
+        advertisementService.update(advertisementService.getAllAdvertisements().get(0).getId(),ad3);
+        List<Advertisement> ads = advertisementService.getAllAdvertisements();
+        //ads.add(advertisementService.getRandomActiveAdvertisement());
+
         model.addAttribute("ads",ads);
         return "adsPage";
     }
