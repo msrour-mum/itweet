@@ -1,8 +1,10 @@
 package mum.itweet.service.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import mum.itweet.model.view.PostDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,7 +13,6 @@ import mum.itweet.model.Post;
 import mum.itweet.model.User;
 import mum.itweet.model.dto.PostDto;
 import mum.itweet.model.lookups.PostStatus;
-import mum.itweet.model.view.PostView;
 import mum.itweet.repository.CommentRepository;
 import mum.itweet.repository.PostLiksRepository;
 import mum.itweet.repository.PostRepository;
@@ -73,10 +74,9 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public List<Post> findByUserId(int userId) {
-
-		// return postRepository.findByUserId(userId);
-		return postRepository.findAll();
+	public List<PostDetail> findByUserId(int userId) {
+		 return convertToDetails( postRepository.findByUserId(userId));
+		//return convertToDetails( postRepository.findAll());
 	}
 
 	@Override
@@ -92,18 +92,13 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public List<Post> listPendingPosts() {
-		return postRepository.findByStatusOrderByIdDesc(PostStatus.Pending);
+	public List<PostDetail> listPendingPosts() {
+		return convertToDetails( postRepository.findByStatusOrderByIdDesc(PostStatus.Pending));
 	}
 
 	@Override
-	public List<Post> listPostForUser(int userId) {
-		return postRepository.listPostForUser(userId);
-	}
-
-	@Override
-	public List<PostView> listPostForUser2(int userId) {
-		return postRepository.listPostForUser2(userId);
+	public List<PostDetail> listPostForUser(int userId) {
+		return convertToDetails( postRepository.listPostForUser(userId));
 	}
 
 	@Override
@@ -111,6 +106,36 @@ public class PostServiceImpl implements PostService {
 		Post post = get(postId);
 		post.setStatus(postStatus);
 		return postRepository.save(post);
+	}
+
+	@Override
+	public int getDisabledPostCountPerUser(int userId)
+	{
+		return postRepository.getDisabledPostCountPerUser(userId);
+	}
+
+	@Override
+	public boolean isPostContainBadWords(String postText)
+	{
+		return false;
+	}
+
+
+	public  List<PostDetail> convertToDetails(List<Post> lst)
+	{
+		if (lst==null) return null;
+		List<PostDetail> resultPost=new ArrayList<>();
+		for (Post post : lst)
+		{
+			int commetsCount=post.getComments().size();
+			String lastComment = "";
+			if (commetsCount>0)
+				lastComment=post.getComments().get(commetsCount-1).getCommentText();
+
+			PostDetail postView =new PostDetail(post.getId(), post.getUser().getId(),post.getPostText(),post.getStatus().ordinal(),post.getImageUrl(),post.getVideoUrl(),post.getCreationDate(),post.getPublishDate(),post.getPostLikes().size(),commetsCount,lastComment);
+			resultPost.add(postView);
+		}
+		return resultPost;
 	}
 
 }

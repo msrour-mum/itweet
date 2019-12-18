@@ -5,7 +5,7 @@ import mum.itweet.model.Post;
 import mum.itweet.model.User;
 import mum.itweet.model.dto.FollowingDto;
 import mum.itweet.model.dto.PostItem;
-import mum.itweet.model.view.PostView;
+import mum.itweet.model.view.PostDetail;
 import mum.itweet.service.FollowingService;
 import mum.itweet.service.PostService;
 import mum.itweet.service.UserService;
@@ -117,7 +117,7 @@ public class UserController {
 
 
     @GetMapping(value = "/{userId}/post")
-    public List<Post> getUserPosts(@PathVariable("userId") int userId) {
+    public List<PostDetail> getUserPosts(@PathVariable("userId") int userId) {
         try {
             return postService.listPostForUser(userId);
 
@@ -127,17 +127,7 @@ public class UserController {
         return null;
     }
 
-    @GetMapping(value = "/{userId}/post2")
-    public List<PostView> getUserPosts2(@PathVariable("userId") int userId) {
-        try {
-            List<PostView> lst = postService.listPostForUser2(userId);
-            return lst;
 
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return null;
-    }
 
 
 }
