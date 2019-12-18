@@ -2,6 +2,7 @@ package mum.itweet.model.view;
 
 import lombok.Data;
 import mum.itweet.model.Comment;
+import mum.itweet.model.User;
 import mum.itweet.model.dto.CommentDto;
 
 import javax.persistence.Column;
@@ -12,7 +13,7 @@ import java.util.Date;
 public class PostDetail {
 
     private long id;
-    private int userId;
+    private User user;
     private String postText;
     private int statusId;
     private String imageUrl;
@@ -21,12 +22,12 @@ public class PostDetail {
     private Date publishDate;
     private int likeCount;
     private int commentCount;
-    private CommentDto lastComment;
+    private CommentDetail lastComment;
 
 
-    public PostDetail(long id, int userId, String postText, int statusId, String imageUrl, String videoUrl, Date creationDate, Date publishDate, int likeCount, int commentCount, CommentDto lastComment) {
+    public PostDetail(long id, User user, String postText, int statusId, String imageUrl, String videoUrl, Date creationDate, Date publishDate, int likeCount, int commentCount, CommentDetail lastComment) {
         this.id=id;
-        this.userId = userId;
+        this.user = user;
         this.postText = postText;
         this.statusId = statusId;
         this.imageUrl = imageUrl;
@@ -46,12 +47,12 @@ public class PostDetail {
         this.id = id;
     }
 
-    public int getUserId() {
-        return userId;
+    public User getUserId() {
+        return user;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUserId(User user) {
+        this.user = user;
     }
 
     public String getPostText() {
@@ -118,11 +119,11 @@ public class PostDetail {
         this.commentCount = commentCount;
     }
 
-    public CommentDto getLastComment() {
+    public CommentDetail getLastComment() {
         return lastComment;
     }
 
-    public void setLastComment(CommentDto lastComment) {
+    public void setLastComment(CommentDetail lastComment) {
         this.lastComment = lastComment;
     }
 }

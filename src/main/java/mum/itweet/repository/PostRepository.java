@@ -31,4 +31,12 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 	public List<Post> listPostForUser(@Param("userId") int userId);
 
 
+	@Query(value = "select count(1) from post where statusId = 2 and user_id=:userId", nativeQuery = true)
+	public int isContainBadWord(@Param("userId") int userId);
+
+
+
+
+
+
 }

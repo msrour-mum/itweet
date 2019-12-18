@@ -5,8 +5,11 @@ import java.util.Date;
 import java.util.List;
 
 import mum.itweet.model.Comment;
+import mum.itweet.model.UnhealthyKey;
 import mum.itweet.model.dto.CommentDto;
+import mum.itweet.model.view.CommentDetail;
 import mum.itweet.model.view.PostDetail;
+import mum.itweet.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,10 +18,6 @@ import mum.itweet.model.Post;
 import mum.itweet.model.User;
 import mum.itweet.model.dto.PostDto;
 import mum.itweet.model.lookups.PostStatus;
-import mum.itweet.repository.CommentRepository;
-import mum.itweet.repository.PostLiksRepository;
-import mum.itweet.repository.PostRepository;
-import mum.itweet.repository.UserRepository;
 import mum.itweet.service.PostService;
 
 @Service
@@ -36,6 +35,9 @@ public class PostServiceImpl implements PostService {
 
 	@Autowired
 	private PostLiksRepository postLiksRepository;
+
+	@Autowired
+	UnhealthykeyRepository unhealthykeyRepository;
 
 	@Override
 	public Post create(PostDto postDto) {
@@ -119,6 +121,13 @@ public class PostServiceImpl implements PostService {
 	@Override
 	public boolean isPostContainBadWords(String postText)
 	{
+		String[] words = postText.split(" ");
+		for (String w : words)
+		{
+			List<UnhealthyKey> lst= unhealthykeyRepository.findByWordKeyIgnoreCase(w);
+			if(lst!=null && lst.size()>0)
+				return  true;
+		}
 		return false;
 	}
 
@@ -130,12 +139,12 @@ public class PostServiceImpl implements PostService {
 		for (Post post : lst)
 		{
 			int commetsCount=post.getComments().size();
-			CommentDto lastComment = null;
+			CommentDetail lastComment = null;
 			if (commetsCount>0) {
 				Comment comment=post.getComments().get(commetsCount - 1);
-				lastComment = new CommentDto(comment.getId(),comment.getUser().getId(),post.getId(),comment.getCommentText());
+				lastComment = new CommentDetail(comment.getId(),comment.getCommentText(),comment.getCreationDate(), comment.getUser(),post.getId());
 			}
-			PostDetail postView =new PostDetail(post.getId(), post.getUser().getId(),post.getPostText(),post.getStatus().ordinal(),post.getImageUrl(),post.getVideoUrl(),post.getCreationDate(),post.getPublishDate(),post.getPostLikes().size(),commetsCount,lastComment);
+			PostDetail postView =new PostDetail(post.getId(), post.getUser(),post.getPostText(),post.getStatus().ordinal(),post.getImageUrl(),post.getVideoUrl(),post.getCreationDate(),post.getPublishDate(),post.getPostLikes().size(),commetsCount,lastComment);
 			resultPost.add(postView);
 		}
 		return resultPost;
