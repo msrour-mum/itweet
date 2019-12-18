@@ -73,8 +73,7 @@
 								<a href="#" title="" class="forgot-pwd" th:text="#{forget.password}"></a>
 								<div class="submit-btns">
 									<button class="mtr-btn signin" type="submit"><span th:text="#{login.btn}">Login</span></button>
-									<button class="mtr-btn signup" type="submit" onclick="window.location.href='/register';"><span th:text="#{register.btn}">Register</span></button>
-
+									<a href="/register" class="already-have" th:text="#{signUp.lnk}">Don't have account? Sign Up</a>
 									<div class="facebook">
 										<a title="" href="/facebook">
 											<i class="fa fa-facebook"></i> <span th:text="#{facebook}">facebook</span>
