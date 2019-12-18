@@ -4,6 +4,8 @@ import mum.itweet.model.Post;
 import mum.itweet.model.User;
 import mum.itweet.model.dto.PostDto;
 import mum.itweet.model.lookups.PostStatus;
+import mum.itweet.repository.CommentRepository;
+import mum.itweet.repository.PostLiksRepository;
 import mum.itweet.repository.PostRepository;
 import mum.itweet.repository.UserRepository;
 import mum.itweet.service.PostService;
@@ -23,6 +25,13 @@ public class PostServiceImpl implements PostService {
 
     @Autowired
     private UserRepository userRepository;
+
+
+    @Autowired
+    private CommentRepository commentRepository;
+
+    @Autowired
+    private PostLiksRepository postLiksRepository;
 
     @Override
     public Post create(PostDto postDto) {
@@ -46,7 +55,13 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    public Post update(Post post) {
+        return postRepository.save(post);
+    }
+
+    @Override
     public void delete(long id) {
+
         postRepository.deleteById(id);
     }
 
@@ -54,7 +69,6 @@ public class PostServiceImpl implements PostService {
     public List<Post> getAll() {
         return postRepository.findAll();
     }
-
 
 
     @Override

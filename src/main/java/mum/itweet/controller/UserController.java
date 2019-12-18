@@ -117,7 +117,7 @@ public class UserController {
     @GetMapping(value = "/{userId}/post")
     public List<Post> getUserPosts(@PathVariable("userId") int userId) {
         try {
-            return postService.findByUserId(userId);
+            return postService.listPostForUser(userId);
 
         } catch (Exception e) {
             System.out.println(e.getMessage());

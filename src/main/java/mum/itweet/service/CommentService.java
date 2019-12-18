@@ -17,4 +17,6 @@ public interface CommentService {
     public Comment update(CommentDto comment);
 
     public void delete(long id);
+
+    public void deleteByPostId(long postId);
 }

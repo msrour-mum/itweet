@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "api/comment")
+@RequestMapping(value = "api/post/comment")
 
 public class CommentController {
     @Autowired
@@ -17,7 +17,13 @@ public class CommentController {
 
     @PostMapping()
     public Comment addComment(@RequestBody CommentDto commentDto){
+
         return commentService.create(commentDto);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteComment(@PathVariable long id){
+        commentService.delete(id);
     }
 
     @GetMapping("/{id}")
@@ -25,9 +31,5 @@ public class CommentController {
         return commentService.get(id);
     }
 
-    @GetMapping("/post/{postId}/comment")
-    //@ToDo post id dateType
-    public List<Comment> getCommentsByPostId(@PathVariable int postId){
-        return commentService.getCommentsByPostId(postId);
-    }
+
 }

@@ -10,42 +10,21 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "api/PostLikes")
+@RequestMapping(value = "api/post/like")
 public class PostLikesController {
     @Autowired
     LikeService likeService;
 
-    @PostMapping(value = "/add")
-    public PostLikes add(@RequestBody PostLikesDto postLikes) {
-        try {
-            return likeService.create(postLikes);
-        } catch (DataIntegrityViolationException e) {
-            System.out.println("PostLikes already exist!");
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return null;
+  /*  @PostMapping()
+    public PostLikes addLike(@RequestBody PostLikesDto postLikes) {
+        return likeService.create(postLikes);
     }
 
-   /* @DeleteMapping(value = "/getPostLiks/{postId}")
-    public List<PostLikes> getPostLiks(@PathVariable("postId") long postId) {
-        try {
-            return likeService.getPostLikes(postId);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return null;
-    }
-*/
-    @DeleteMapping(value = "/delete/{id}")
-    public String delete(@PathVariable("id") int id) {
-        try {
-            likeService.delete(id);
-            return "success";
-        } catch (Exception e) {
-            return "failed";
-        }
-    }
+    @DeleteMapping()
+    public void deleteLike(@PathVariable long id){
+        likeService.delete(id);
+    }*/
+
 }
 
 

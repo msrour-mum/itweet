@@ -69,12 +69,12 @@ public class FollowingServiceImpl implements FollowingService {
 
     @Override
     public List<User> listFollower(int userId) {
-        return followingRepository.ListFollower(userId);
+        return userRepository.ListFollower(userId);
     }
 
     @Override
     public List<User> listFollowing(int userId) {
-        return followingRepository.ListFollowing(userId);
+        return userRepository.ListFollowing(userId);
     }
 
 

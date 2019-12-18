@@ -10,36 +10,63 @@
 <img src="/uploads/angry.png"/>
 <img src="/uploads/27/8300b60e-55f0-4399-994c-92553fc5d28a.jpg"/>
 <img src="/uploads/29/7356a44a-7eb0-402a-8e16-7ca9c664239d.jpg"/>
-<form action="#" th:action="@{/person}" th:object="${person}" method="post" enctype="multipart/form-data">
+<!--<form action="#" th:action="@{/person}" th:object="${person}" method="post" enctype="multipart/form-data">-->
+<!--    <fieldset>-->
+<!--        <legend><span th:text="#{person.form.title}"></span></legend>-->
+<!--        <ul th:if="${#fields.hasErrors('*')}">-->
+<!--            <li th:each="err : ${#fields.errors('*')}" th:text="${err}">-->
+<!--                Input is incorrect-->
+<!--            </li>-->
+<!--        </ul>-->
+<!--        <p>-->
+<!--            <label for="id"><span data-th-text="#{person.form.id}">ID</span></label>-->
+<!--            <input type="text" id="id" th:field="*{id}"/>-->
+<!--        <p th:if="${#fields.hasErrors('id')}" th:errors="*{id}" th:errorclass="fieldError">Incorrect</p>-->
+<!--        <p>-->
+<!--            <label for="name"><span th:text="#{person.form.name}"></span></label>-->
+<!--            <input type="text" th:field="*{name}"/>-->
+<!--        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" th:errorclass="fieldError">Incorrect name</p>-->
+<!--        <p>-->
+<!--            <label for="age"><span th:text="#{person.form.age}"></span></label>-->
+<!--            <input type="number" th:field="*{age}"/>-->
+<!--        <p th:if="${#fields.hasErrors('age')}" th:errors="*{age}" th:errorclass="fieldError">Incorrect age</p>-->
+<!--        <p><input type="file"-->
+<!--                  accept="image/x-png,image/jpeg,image/jpg"-->
+<!--                  th:field="*{image}"/></p>-->
+<!--        <p><input type="file"-->
+<!--                  accept="video/mp4,video/x-m4v,video/*"-->
+<!--                  th:field="*{video}"/></p>-->
+
+<!--        <p id="buttons">-->
+<!--            <input id="reset" type="reset" th:value="#{person.form.resetbtn}" value="Reset" tabindex="4">-->
+<!--            <input id="submit" type="submit" tabindex="5" th:value="#{person.form.addbtn}" value="Add Person">-->
+<!--        </p>-->
+<!--    </fieldset>-->
+<!--</form>-->
+
+<form action="/user/1/post" th:object="${post}" method="post" enctype="multipart/form-data">
     <fieldset>
-        <legend><span th:text="#{person.form.title}"></span></legend>
+        <legend><span>Post a tweet</span></legend>
         <ul th:if="${#fields.hasErrors('*')}">
             <li th:each="err : ${#fields.errors('*')}" th:text="${err}">
                 Input is incorrect
             </li>
         </ul>
         <p>
-            <label for="id"><span data-th-text="#{person.form.id}">ID</span></label>
-            <input type="text" id="id" th:field="*{id}"/>
-        <p th:if="${#fields.hasErrors('id')}" th:errors="*{id}" th:errorclass="fieldError">Incorrect</p>
-        <p>
-            <label for="name"><span th:text="#{person.form.name}"></span></label>
-            <input type="text" th:field="*{name}"/>
-        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" th:errorclass="fieldError">Incorrect name</p>
-        <p>
-            <label for="age"><span th:text="#{person.form.age}"></span></label>
-            <input type="number" th:field="*{age}"/>
-        <p th:if="${#fields.hasErrors('age')}" th:errors="*{age}" th:errorclass="fieldError">Incorrect age</p>
+            <label for="postText">Post Text</label>
+            <input type="text" th:field="*{postText}"/>
+        <p th:if="${#fields.hasErrors('postText')}" th:errors="*{postText}" th:errorclass="fieldError">Incorrect name
+        </p>
+
         <p><input type="file"
                   accept="image/x-png,image/jpeg,image/jpg"
-                  th:field="*{image}" /></p>
+                  th:field="*{image}"/></p>
         <p><input type="file"
                   accept="video/mp4,video/x-m4v,video/*"
-                  th:field="*{video}" /></p>
+                  th:field="*{video}"/></p>
 
-        <p id="buttons">
-            <input id="reset" type="reset" th:value="#{person.form.resetbtn}" value="Reset" tabindex="4">
-            <input id="submit" type="submit" tabindex="5" th:value="#{person.form.addbtn}" value="Add Person">
+        <p id="buttons2">
+            <input id="submit2" type="submit" tabindex="5" value="Post a tweet">
         </p>
     </fieldset>
 </form>

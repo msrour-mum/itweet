@@ -25,13 +25,14 @@ public class CommentServiceImpl implements CommentService {
     @Autowired
     private PostRepository postRepository;
 
+
     @Override
     public Comment create(CommentDto commentDto) {
         User user = userRepository.getOne(commentDto.getUserId());
-        //@ToDo why post id is long in jpaRepository
         Post post = postRepository.getOne((long)commentDto.getPostId());
-        Comment comment = new Comment(user,post,commentDto.getCommentText());
-        return commentRepository.save(comment);
+        Comment comment = new Comment(user,commentDto.getCommentText());
+        post.addComment(comment);
+        return commentRepository.saveAndFlush(comment);
     }
 
     @Override
@@ -41,8 +42,7 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public List<Comment> getCommentsByPostId(int postid) {
-        //@ToDo get commets by using postDao
-        return commentRepository.findByPostId(postid);
+         return commentRepository.findByPostId(postid);
     }
 
 
@@ -50,9 +50,8 @@ public class CommentServiceImpl implements CommentService {
     public Comment update(CommentDto commentDto) {
 
         User user = userRepository.getOne(commentDto.getUserId());
-        //@ToDo why post id is long in jpaRepository
         Post post = postRepository.getOne((long)commentDto.getPostId());
-        Comment comment = new Comment(user,post,commentDto.getCommentText());
+        Comment comment = new Comment(user,commentDto.getCommentText());
         return commentRepository.save(comment);
     }
 
@@ -62,6 +61,11 @@ public class CommentServiceImpl implements CommentService {
         commentRepository.deleteById(id);
     }
 
+    @Override
+    public void deleteByPostId(long postId)
+    {
+        commentRepository.deleteByPostId(postId);
+    }
 
 }
 

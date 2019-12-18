@@ -22,7 +22,6 @@ public class Post  {
     private long id;
 
     @ManyToOne(optional = false)
-    //@JsonBackReference
     private User user;
 
     @Column(nullable = false , length = 200)
@@ -41,23 +40,26 @@ public class Post  {
     @Column(name ="publishDate" , nullable = true)
     private Date publishDate;
 
-    @OneToMany
-    @JoinColumn(name ="post_id")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name ="post_id", nullable = false)
     List<Comment> comments;
 
-    @OneToMany
-    @JoinColumn(name ="post_id")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name ="post_id" , nullable = false)
     //@JsonManagedReference
-    List<PostLikes> PostLikes;
+    List<PostLikes> postLikes;
 
 
-    public void addLike(PostLikes likes)
-    {
-        PostLikes.add(likes);
-    }
+    public void addLike(PostLikes likes)    {        postLikes.add(likes);    }
     public void removeLike(PostLikes likes)
     {
-        PostLikes.remove(likes);
+        postLikes.remove(likes);
+    }
+
+    public void addComment(Comment comment)    {        comments.add(comment);    }
+    public void removeComment(Comment comment)
+    {
+        comments.remove(comment);
     }
 
     public Post(User user, String postText, PostStatus status, String imageUrl, String videoUrl, Date creationDate, Date publishDate)

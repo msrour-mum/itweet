@@ -32,7 +32,7 @@ public class Comment  {
     @Column(name ="creationDate",nullable = false, columnDefinition = "DATETIME default now()")
     private Date creationDate;
 
-    public Comment(User user, Post post, String commentText) {
+    public Comment(User user,  String commentText) {
         this.user = user;
         //this.post = post;
         this.commentText = commentText;
