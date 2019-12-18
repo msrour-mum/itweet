@@ -89,8 +89,10 @@ public class DataGenerate {
                 if(!isNotActivePost) {
                     for (User userAction : users) {
                         if (doRandom(3, i)) {
-                            Comment comment = new Comment(userAction, post, "This comments from user " + userAction.getEmail());
-                            em.persist(comment);
+                            //Comment comment = new Comment(userAction, post, "This comments from user " + userAction.getEmail());
+                            Comment comment = new Comment(userAction,  "This comments from user " + userAction.getEmail());
+                            post.addComment(comment);
+                            em.persist(post);
                         }
 
                         if (doRandom(4, i)) {

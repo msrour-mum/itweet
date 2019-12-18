@@ -10,8 +10,11 @@ public interface LikeService {
     //Default
     public PostLikes create(PostLikesDto postLikes);
     public PostLikes like(int userId,long postId);
+    public void dislike(int userId,long postId);
+
     public PostLikes get(long id);
     public void delete(long id);
     //Custom
     public List<PostLikes> findByPostId(long postId);
+    public void deleteByPostId(long postId);
 }

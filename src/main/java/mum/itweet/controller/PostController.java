@@ -1,9 +1,11 @@
 package mum.itweet.controller;
 
+import mum.itweet.model.Comment;
 import mum.itweet.model.Post;
 import mum.itweet.model.PostLikes;
 import mum.itweet.model.User;
 import mum.itweet.model.dto.PostDto;
+import mum.itweet.service.CommentService;
 import mum.itweet.service.LikeService;
 import mum.itweet.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,56 +24,33 @@ public class PostController {
     @Autowired
     LikeService likeService;
 
+    @Autowired
+    CommentService commentService;
+
+
     @PostMapping()
     public Post add(@RequestBody PostDto post) {
-        try {
-            return postService.create(post);
-        } catch (DataIntegrityViolationException e) {
-            System.out.println("Post already exist!");
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return null;
+        return postService.create(post);
     }
 
     @PutMapping()
     public Post update(@RequestBody PostDto post) {
-        try {
-            return postService.create(post);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return null;
+        return postService.create(post);
     }
 
     @GetMapping()
     public List<Post> getAll() {
-        try {
-            return postService.getAll();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return null;
+        return postService.getAll();
     }
 
     @GetMapping(value = "/{id}")
     public Post get(@PathVariable("id") long id) {
-        try {
-            return postService.get(id);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return null;
+        return postService.get(id);
     }
 
    @DeleteMapping(value = "/{id}")
-    public String delete(@PathVariable("id") long id) {
-        try {
-            postService.delete(id);
-            return "success";
-        } catch (Exception e) {
-            return "failed";
-        }
+    public void delete(@PathVariable("id") long id) {
+       postService.delete(id);
     }
 
 
@@ -82,19 +61,30 @@ public class PostController {
     }
 
     @GetMapping("/{postId}/likeCount")
-    public int getLikesCount(long postId) {
+    public int getLikesCount(@PathVariable("postId") long postId) {
         return postService.getLikesCount(postId);
     }
 
     @GetMapping("/{postId}/CommentCount")
-    public int getCommentsCount(long postId) {
+    public int getCommentsCount(@PathVariable("postId") long postId) {
         return postService.getCommentsCount(postId);
     }
 
+    @GetMapping("/{postId}/comment")
+    public List<Comment> getCommentsByPostId(@PathVariable int postId){
+        return commentService.getCommentsByPostId(postId);
+    }
+
     @PostMapping(value = "/{postId}/liked/{userId}")
-    public PostLikes add(@PathVariable("postId") int userId, @PathVariable("userId") long postId) {
+    public PostLikes like(@PathVariable("postId") int userId, @PathVariable("userId") long postId) {
         return likeService.like(userId, postId);
     }
+
+    @DeleteMapping(value = "/{postId}/disliked/{userId}")
+    public void dislike(@PathVariable("postId") int userId, @PathVariable("userId") long postId) {
+        likeService.dislike(userId, postId);
+    }
+
 }
 
 

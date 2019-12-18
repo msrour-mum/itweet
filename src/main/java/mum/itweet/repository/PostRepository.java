@@ -4,7 +4,9 @@ import mum.itweet.model.Post;
 import mum.itweet.model.lookups.PostStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 public interface PostRepository extends JpaRepository<Post, Long> {
@@ -25,6 +27,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
             "(select f.following_id from following f where f.follower_id=?0))\n" +
             "order by p.publishDate desc", nativeQuery = true)
     public List<Post> listPostForUser(int userId);
+
 }
 
 
