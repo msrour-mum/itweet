@@ -1,6 +1,8 @@
 package mum.itweet.model.view;
 
 import lombok.Data;
+import mum.itweet.model.Comment;
+import mum.itweet.model.dto.CommentDto;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
@@ -19,10 +21,10 @@ public class PostDetail {
     private Date publishDate;
     private int likeCount;
     private int commentCount;
-    private String lastComment;
+    private CommentDto lastComment;
 
 
-    public PostDetail(long id, int userId, String postText, int statusId, String imageUrl, String videoUrl, Date creationDate, Date publishDate, int likeCount, int commentCount, String lastComment) {
+    public PostDetail(long id, int userId, String postText, int statusId, String imageUrl, String videoUrl, Date creationDate, Date publishDate, int likeCount, int commentCount, CommentDto lastComment) {
         this.id=id;
         this.userId = userId;
         this.postText = postText;
@@ -116,11 +118,11 @@ public class PostDetail {
         this.commentCount = commentCount;
     }
 
-    public String getLastComment() {
+    public CommentDto getLastComment() {
         return lastComment;
     }
 
-    public void setLastComment(String lastComment) {
+    public void setLastComment(CommentDto lastComment) {
         this.lastComment = lastComment;
     }
 }

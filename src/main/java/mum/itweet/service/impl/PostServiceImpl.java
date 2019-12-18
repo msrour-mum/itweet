@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import mum.itweet.model.Comment;
+import mum.itweet.model.dto.CommentDto;
 import mum.itweet.model.view.PostDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -128,10 +130,11 @@ public class PostServiceImpl implements PostService {
 		for (Post post : lst)
 		{
 			int commetsCount=post.getComments().size();
-			String lastComment = "";
-			if (commetsCount>0)
-				lastComment=post.getComments().get(commetsCount-1).getCommentText();
-
+			CommentDto lastComment = null;
+			if (commetsCount>0) {
+				Comment comment=post.getComments().get(commetsCount - 1);
+				lastComment = new CommentDto(comment.getId(),comment.getUser().getId(),post.getId(),comment.getCommentText());
+			}
 			PostDetail postView =new PostDetail(post.getId(), post.getUser().getId(),post.getPostText(),post.getStatus().ordinal(),post.getImageUrl(),post.getVideoUrl(),post.getCreationDate(),post.getPublishDate(),post.getPostLikes().size(),commetsCount,lastComment);
 			resultPost.add(postView);
 		}
