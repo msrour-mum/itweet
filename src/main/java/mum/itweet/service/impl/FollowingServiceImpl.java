@@ -78,6 +78,16 @@ public class FollowingServiceImpl implements FollowingService {
     }
 
 
+    @Override
+    public int getCountFollower(int userId) {
+        return userRepository.getCountFollower(userId);
+    }
+
+    @Override
+    public int getCountFollowing(int userId) {
+        return userRepository.getCountFollowing(userId);
+    }
+
 
 }
 
