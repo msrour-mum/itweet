@@ -1,4 +1,4 @@
-package mum.itweet.controller.mvc;
+package mum.itweet.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

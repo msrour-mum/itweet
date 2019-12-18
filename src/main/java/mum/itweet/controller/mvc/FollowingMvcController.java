@@ -1,4 +1,4 @@
 package mum.itweet.controller.mvc;
 
-public class FollowingController {
+public class FollowingMvcController {
 }

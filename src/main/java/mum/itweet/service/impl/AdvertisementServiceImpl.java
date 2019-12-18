@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import javax.xml.crypto.Data;
 import java.util.List;
 
 @Service
@@ -39,5 +40,11 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     public List<Advertisement> getAllAdvertisements() {
         return advertisementRepository.findAll();
     }
+
+    @Override
+    public List<Advertisement> getRandomActiveAdvertisements() {
+        return null;
+    }
+
 
 }

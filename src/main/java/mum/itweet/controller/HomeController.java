@@ -1,4 +1,4 @@
-package mum.itweet.controller.mvc;
+package mum.itweet.controller;
 
 import mum.itweet.security.JPAUserDetails;
 import mum.itweet.service.AdvertisementService;
@@ -31,8 +31,6 @@ public class HomeController {
     @Autowired
     FollowingService followingService;
 
-    @Autowired
-    AdvertisementService advertisementService ;
 
     @GetMapping()
     public String getHomeData(Model model, HttpServletRequest request)
