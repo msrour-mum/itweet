@@ -25,19 +25,19 @@ public class DataGenerate {
 
         Role roleAdmin = new Role(1, "Admin Roll");
         Role roleUser = new Role(2, "User Roll");
-        User userAdmin1 = new User("Admin", "admin@mum.com", true, roleAdmin, "123", true, new Date(), Gender.Male, "1232", "Admin User");
-        User userAdmin2 = new User("Admin Zein", "adminzein@mum.com", true, roleAdmin, "123", true, new Date(), Gender.Male, "1232", "Admin User");
-        User userAdmin3 = new User("Admin Mah", "adminmah@mum.com", true, roleAdmin, "123", true, new Date(), Gender.Male, "1232", "Admin User");
-        User userAdmin4 = new User("Admin Ibrahim", "adminIbrahim@mum.com", true, roleAdmin, "123", true, new Date(), Gender.Male, "1232", "Admin User");
+        User userAdmin1 = new User("Admin", "admin@mum.com", true, roleAdmin, "123", true, new Date(), 1, "1232", "Admin User");
+        User userAdmin2 = new User("Admin Zein", "adminzein@mum.com", true, roleAdmin, "123", true, new Date(), 1, "1232", "Admin User");
+        User userAdmin3 = new User("Admin Mah", "adminmah@mum.com", true, roleAdmin, "123", true, new Date(), 1, "1232", "Admin User");
+        User userAdmin4 = new User("Admin Ibrahim", "adminIbrahim@mum.com", true, roleAdmin, "123", true, new Date(), 1, "1232", "Admin User");
 
 
-        User user1 = new User("Moustafa Zein", "user1@mum.com", false, roleAdmin, "123", true, new Date(), Gender.Male, "1232", "User 1");
-        User user2 = new User("Mahmoud Sorir", "user2@mum.com", false, roleAdmin, "123", true, new Date(), Gender.Male, "1232", "User 2");
-        User user3 = new User("Mo Salah", "user3@mum.com", false, roleAdmin, "123", true, new Date(), Gender.Male, "1232", "User 3");
-        User user4 = new User("Ibrahim Samer", "user4@mum.com", false, roleAdmin, "123", true, new Date(), Gender.Male, "1232", "User 4");
-        User user5 = new User("Mobark Salem", "user5@mum.com", false, roleAdmin, "123", true, new Date(), Gender.Male, "1232", "User 5");
-        User user6 = new User("Yasser Kmal", "user6@mum.com", false, roleAdmin, "123", true, new Date(), Gender.Male, "1232", "User 6");
-        User user7 = new User("Said Said", "user7@mum.com", false, roleAdmin, "123", true, new Date(), Gender.Male, "1232", "User 7");
+        User user1 = new User("Moustafa Zein", "user1@mum.com", false, roleAdmin, "123", true, new Date(), 1, "1232", "User 1");
+        User user2 = new User("Mahmoud Srour", "user2@mum.com", false, roleAdmin, "123", true, new Date(), 1, "1232", "User 2");
+        User user3 = new User("Mo Salah", "user3@mum.com", false, roleAdmin, "123", true, new Date(), 1, "1232", "User 3");
+        User user4 = new User("Ibrahim Samer", "user4@mum.com", false, roleAdmin, "123", true, new Date(), 1, "1232", "User 4");
+        User user5 = new User("Mobark Salem", "user5@mum.com", false, roleAdmin, "123", true, new Date(), 1, "1232", "User 5");
+        User user6 = new User("Yasser Kmal", "user6@mum.com", false, roleAdmin, "123", true, new Date(), 1, "1232", "User 6");
+        User user7 = new User("Said Said", "user7@mum.com", false, roleAdmin, "123", true, new Date(), 1, "1232", "User 7");
 
         em.persist(roleAdmin);
         em.persist(roleUser);
@@ -57,7 +57,7 @@ public class DataGenerate {
         em.persist(user7);
 
         for (int i = 8; i < 15; i++) {
-            User userTemp = new User("Name : " + i, "user" + i + "@mum.com", false, roleAdmin, "123", true, new Date(), Gender.Male, "1232", "Bio " + i);
+            User userTemp = new User("Name : " + i, "user" + i + "@mum.com", false, roleAdmin, "123", true, new Date(), 1, "1232", "Bio " + i);
             em.persist(userTemp);
         }
 

@@ -36,13 +36,14 @@ public class User  {
 
     private Date birthDate;
 
-    @Enumerated(EnumType.ORDINAL)
+    //@Enumerated(EnumType.ORDINAL)
     @Column(name = "genderId")
-    private Gender gender;
+    private int gender;
     private String mobile;
+    @Lob
     private String bio;
 
-    public User(String name,String email, boolean isAdmin, Role role, String pass, boolean isActive, Date birthDate, Gender gender, String mobile, String bio) {
+    public User(String name,String email, boolean isAdmin, Role role, String pass, boolean isActive, Date birthDate, int gender, String mobile, String bio) {
         this.name = name;
         this.email = email;
         this.isAdmin = isAdmin;

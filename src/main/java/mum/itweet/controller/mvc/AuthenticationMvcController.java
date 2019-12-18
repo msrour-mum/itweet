@@ -6,6 +6,7 @@ import mum.itweet.security.JwtToken;
 import mum.itweet.service.JwtUserDetailsService;
 import mum.itweet.service.UserService;
 import mum.itweet.utitlity.ConstantKeys;
+import mum.itweet.utitlity.Context;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -46,12 +47,16 @@ public class AuthenticationMvcController {
 
     @GetMapping("/login")
     public String loginForm(@ModelAttribute UserDto user) {
-        return "login";
+        if (!Context.isAuthenticated())
+            return "login";
+        return "redirect:/";
     }
 
     @GetMapping("/register")
     public String register(@ModelAttribute UserDto user) {
-        return "register";
+        if (!Context.isAuthenticated())
+            return "register";
+        return "redirect:/";
     }
 
     @PostMapping("/signin")
@@ -66,7 +71,7 @@ public class AuthenticationMvcController {
     }
 
     @PostMapping("/register")
-    public String register(@Valid @ModelAttribute UserDto user, BindingResult bindingResult) throws Exception {
+    public String register(@Valid @ModelAttribute UserDto user, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             return "register";
