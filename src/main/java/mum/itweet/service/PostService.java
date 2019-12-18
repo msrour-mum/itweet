@@ -3,6 +3,7 @@ package mum.itweet.service;
 import mum.itweet.model.Post;
 import mum.itweet.model.User;
 import mum.itweet.model.dto.PostDto;
+import mum.itweet.model.dto.PostItem;
 import mum.itweet.model.lookups.PostStatus;
 
 import java.util.List;
@@ -21,6 +22,8 @@ public interface PostService {
     public  List<Post> findByUserId(int userId) ;
     public  List<Post> listPendingPosts() ;
     public  List<Post> listPostForUser(int userId) ;
+    public  List<PostItem> listPostForUser2(int userId) ;
+
     public Post updateStatus(long postId, PostStatus postStatus);
 
     public int getLikesCount(long postId) ;
