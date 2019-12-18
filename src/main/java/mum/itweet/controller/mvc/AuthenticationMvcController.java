@@ -28,7 +28,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 @Controller
-public class AuthenticationMvcController {
+public class AuthenticationController {
 
     @Autowired
     UserService userService;
