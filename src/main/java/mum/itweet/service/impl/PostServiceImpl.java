@@ -5,6 +5,7 @@ import mum.itweet.model.User;
 import mum.itweet.model.dto.PostDto;
 import mum.itweet.model.dto.PostItem;
 import mum.itweet.model.lookups.PostStatus;
+import mum.itweet.model.view.PostView;
 import mum.itweet.repository.CommentRepository;
 import mum.itweet.repository.PostLiksRepository;
 import mum.itweet.repository.PostRepository;
@@ -104,7 +105,7 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public  List<PostItem> listPostForUser2(int userId) {
+    public  List<PostView> listPostForUser2(int userId) {
         return postRepository.listPostForUser2(userId);
     }
 
