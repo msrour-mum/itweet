@@ -1,42 +1,33 @@
 package mum.itweet.repository;
 
-import mum.itweet.model.Post;
-import mum.itweet.model.dto.PostItem;
-import mum.itweet.model.lookups.PostStatus;
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
-import javax.transaction.Transactional;
-import java.util.List;
+import mum.itweet.model.Post;
+import mum.itweet.model.lookups.PostStatus;
+import mum.itweet.model.view.PostView;
 
 public interface PostRepository extends JpaRepository<Post, Long> {
 
-    @Query(value = "SELECT * FROM post where user_id=?1", nativeQuery = true)
-    public List<Post> findByUserId(int userId);
+	@Query(value = "SELECT * FROM post where user_id=?1", nativeQuery = true)
+	public List<Post> findByUserId(int userId);
 
-    @Query(value = "select count(*) from post_likes where post_id= ?0", nativeQuery = true)
-    public int getLikesCount(long postId);
+	@Query(value = "select count(*) from post_likes where post_id= ?0", nativeQuery = true)
+	public int getLikesCount(long postId);
 
-    @Query(value = "select count(*) from comment where post_id= ?0", nativeQuery = true)
-    public int getCommentsCount(long postId);
+	@Query(value = "select count(*) from comment where post_id= ?0", nativeQuery = true)
+	public int getCommentsCount(long postId);
 
-    public List<Post> findByStatusOrderByIdDesc(PostStatus postStatus);
+	public List<Post> findByStatusOrderByIdDesc(PostStatus postStatus);
 
-    @Query(value = "select * from post p \n" +
-            "where p.statusId=0 and (p.user_id=?0 or p.user_id in\n" +
-            "(select f.following_id from following f where f.follower_id=?0))\n" +
-            "order by p.publishDate desc", nativeQuery = true)
-    public List<Post> listPostForUser(int userId);
+	@Query(value = "select p.* from post p \n" + "where p.statusId=0 and (p.user_id=?1 or p.user_id in\n"
+			+ "(select f.following_id from following f where f.follower_id=?1))\n"
+			+ "order by p.publishDate desc", nativeQuery = true)
+	public List<Post> listPostForUser(int userId);
 
-
-    @Query(value = "select * , \n" +
-            "(select count(c.id) from comment c where c.post_id=p.id ) as commentCount ,\n" +
-            "(select count(k.id) from post_likes k where k.post_id=p.id ) as likeCount ,\n" +
-            "(select  ct.commentText  from comment ct where ct.post_id=p.id order by ct.id desc limit 1 ) as lastComment \n" +
-            "from post p", nativeQuery = true)
-    public List<PostItem> listPostForUser2(int userId);
+	@Query(value = "select p from PostView p where p.userId = ?1", nativeQuery = false)
+	public List<PostView> listPostForUser2(int userId);
 
 }
-
-
