@@ -1,4 +1,4 @@
-package mum.itweet.controller;
+package mum.itweet.controller.mvc;
 
 import mum.itweet.model.User;
 import mum.itweet.model.dto.UserDto;

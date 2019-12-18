@@ -1,4 +1,4 @@
-package mum.itweet.controller;
+package mum.itweet.controller.mvc;
 
 import mum.itweet.components.StorageService;
 import mum.itweet.model.Person;

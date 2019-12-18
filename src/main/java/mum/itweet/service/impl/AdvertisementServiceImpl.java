@@ -39,4 +39,5 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     public List<Advertisement> getAllAdvertisements() {
         return advertisementRepository.findAll();
     }
+
 }

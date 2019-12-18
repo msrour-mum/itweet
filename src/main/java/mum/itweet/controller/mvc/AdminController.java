@@ -1,4 +1,4 @@
-package mum.itweet.controller;
+package mum.itweet.controller.mvc;
 
 import mum.itweet.model.lookups.PostStatus;
 import mum.itweet.service.PostService;

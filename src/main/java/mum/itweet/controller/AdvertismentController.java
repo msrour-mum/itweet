@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "api/ads")
+@RequestMapping(value = "/api/ads")
 public class AdvertismentController {
 
     @Autowired
     AdvertisementService advertisementService;
 
-    @GetMapping("")
+    @GetMapping("/")
     public List<Advertisement>getAll(){
         return advertisementService.getAllAdvertisements();
     }
@@ -24,7 +24,7 @@ public class AdvertismentController {
         return advertisementService.getAdvertisementById(id);
     }
     // No Dto because you create a whole advertisement
-    @PostMapping()
+    @PostMapping("/")
     public Advertisement create(@RequestBody Advertisement advertisement){
         return advertisementService.create(advertisement);
     }
