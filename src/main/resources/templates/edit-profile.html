@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
-	<title>itweet Social Network - Profile</title>
+	<title>itweet Social Network - Edit Profile</title>
 	<base href="/">
 	<link rel="icon" href="images/fav.png" type="image/png" sizes="16x16">
 
@@ -19,7 +19,7 @@
 
 </head>
 
-<body>
+<body th:with="userPhoto=(${user.PhotoUrl} == null)? 'images/profile-photo.png' : ${user.PhotoUrl}, coverPhoto=(${user.CoverUrl} == null)? 'images/cover-photo.jpg' : ${user.CoverUrl}">
 	<div class="theme-layout">
 		<div class="responsive-header">
 			<div class="mh-head first Sticky">
@@ -104,7 +104,7 @@
 				<form id="editCoverImageFrom" class="edit-phto" action="/edit-cover-image" th:object="${user}" method="post" enctype="multipart/form-data">
 				<i class="fa fa-camera-retro"></i>
 					<label class="fileContainer">
-						Edit Cover Photo
+						<span th:text="#{edit.cover.photo}"></span>
 						<input type="file"
 							   accept="image/x-png,image/jpeg,image/jpg"
 							   th:field="*{cover}" id="userCoverImageFile"/></p>
@@ -116,8 +116,7 @@
 						<div class="col-lg-2 col-sm-3">
 							<div class="user-avatar">
 								<figure>
-									<div th:if="${user.getPhotoUrl() == null}" class="profile-photo" style="background-image: url(images/profile-photo.png)">
-									<div th:unless="${user.getPhotoUrl() == null}" class="profile-photo" th:style="${'background-image: url(' + user.getPhotoUrl()+');'}">
+									<div class="profile-photo" th:style="(${user.getPhotoUrl()})? 'background-image: url('+ ${user.getPhotoUrl()} +')':'background-image: url(images/profile-photo.png)'">
 									</div>
 									<form id="editUserImageFrom" class="edit-phto" action="/edit-user-image" th:object="${user}" method="post" enctype="multipart/form-data">
 
@@ -126,7 +125,7 @@
 											[[#{edit.profile.photo}]]
 											<input type="file"
 												   accept="image/x-png,image/jpeg,image/jpg"
-												   th:field="*{image}" id="userProfileImageFile"/></p>
+												   th:field="*{image}" id="userProfileImageFile"/>
 										</label>
 										<button type="submit" >Submit</button>
 									</form>
@@ -137,13 +136,13 @@
 							<div class="timeline-info">
 								<ul>
 									<li class="admin-name">
-										<h5>Ibrahim Samir</h5>
+										<h5>[[${user.name}]]</h5>
 										<div>Software Developer</div>
 									</li>
 									<li>
-										<a href="./profile.html">Posts (154)</a>
-										<a class="" href="./following.html">Following (48)</a>
-										<a href="./following.html">Followers (884)</a>
+										<a href="/profile">Posts (9)</a>
+										<a class="" href="/following">Following ([[${CountFollowing}]])</a>
+										<a href="/following">Followers ([[${CountFollower}]])</a>
 									</li>
 								</ul>
 							</div>
@@ -159,33 +158,9 @@
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="row" id="page-contents">
-								<div class="col-lg-3">
-									<aside class="sidebar static">
-										<div class="widget profile">
-											<h4 class="widget-title"><a href="./profile.html">Ibrahim Samir</a></h4>
-											<div class="your-page">
-												<figure>
-													<a href="./profile.html" title=""><img
-															src="images/profile-photo.png" alt=""></a>
-												</figure>
-												<div class="page-likes">
-													<ul class="nav nav-tabs likes-btn">
-														<li class="nav-item"><a class="active" href="./profile.html"
-																data-toggle="tab">Following</a>
-															<p>34</p>
-														</li>
-														<li class="nav-item"><a class="" href="#link2"
-																data-toggle="tab">Followers</a>
-															<p>884</p>
-														</li>
-													</ul>
-													<h6><a href="./profile.html" class="underline">View my profile</a>
-													</h6>
-												</div>
-											</div>
-										</div><!-- page like widget -->
-									</aside>
-								</div><!-- sidebar -->
+								
+								<div th:replace="home :: sidebar-left"></div>								
+								
 								<div class="col-lg-6">
 									<div class="central-meta">
 										<div class="editing-info">
@@ -199,7 +174,7 @@
 													<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" th:errorclass="fieldError"></p>
 												</div>
 												<div class="form-group">
-													<input type="text" th:field="*{email}" readonly/>
+													<input type="text" th:field="*{email}"/>
 													<label class="control-label" for="email" th:text="#{email.lbl}">Email</label>
 													<i class="mtrl-select"></i>
 												</div>
@@ -576,45 +551,9 @@
 										</div>
 									</div>
 								</div><!-- centerl meta -->
-								<div class="col-lg-3">
-									<aside class="sidebar static">
-										<div class="widget">
-											<h4 class="widget-title">Advertisement</h4>
-											<div class="adpholder">
-												<a href="#" target="_blank"><img src="images/pholder.jpg" alt=""></a>
-											</div>
-										</div>
-										<div class="widget">
-											<h4 class="widget-title">People to follow</h4>
-											<ul class="followers">
-												<li>
-													<figure><img src="images/profile-photo.png">
-													</figure>
-													<div class="friend-meta">
-														<h4><a href="time-line.html" title="">Kelly Bill</a></h4>
-														<a href="#" title="" class="underline follow">Follow</a>
-													</div>
-												</li>
-												<li>
-													<figure><img src="images/profile-photo.png">
-													</figure>
-													<div class="friend-meta">
-														<h4><a href="time-line.html" title="">Sophia</a></h4>
-														<a href="#" title="" class="underline follow">Follow</a>
-													</div>
-												</li>
-												<li>
-													<figure><img src="images/profile-photo.png">
-													</figure>
-													<div class="friend-meta">
-														<h4><a href="time-line.html" title="">Allen</a></h4>
-														<a href="#" title="" class="underline follow">Follow</a>
-													</div>
-												</li>
-											</ul>
-										</div><!-- who's following -->
-									</aside>
-								</div><!-- sidebar -->
+								
+								<div th:replace="home :: sidebar-right"></div>
+							
 							</div>
 						</div>
 					</div>

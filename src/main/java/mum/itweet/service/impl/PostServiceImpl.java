@@ -11,6 +11,7 @@ import mum.itweet.model.view.CommentDetail;
 import mum.itweet.model.view.PostDetail;
 import mum.itweet.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -131,6 +132,11 @@ public class PostServiceImpl implements PostService {
 		return false;
 	}
 
+	@Override
+	public List<PostDetail> searchPost(String txt)
+	{
+		return convertToDetails( postRepository.searchPost(txt));
+	}
 
 	public  List<PostDetail> convertToDetails(List<Post> lst)
 	{
@@ -141,7 +147,8 @@ public class PostServiceImpl implements PostService {
 			int commetsCount=post.getComments().size();
 			CommentDetail lastComment = null;
 			if (commetsCount>0) {
-				Comment comment=post.getComments().get(commetsCount - 1);
+				//Comment comment=post.getComments().get(commetsCount - 1);
+				Comment comment=post.getComments().get(0);
 				lastComment = new CommentDetail(comment.getId(),comment.getCommentText(),comment.getCreationDate(), comment.getUser(),post.getId());
 			}
 			PostDetail postView =new PostDetail(post.getId(), post.getUser(),post.getPostText(),post.getStatus().ordinal(),post.getImageUrl(),post.getVideoUrl(),post.getCreationDate(),post.getPublishDate(),post.getPostLikes().size(),commetsCount,lastComment);
@@ -149,5 +156,7 @@ public class PostServiceImpl implements PostService {
 		}
 		return resultPost;
 	}
+
+
 
 }

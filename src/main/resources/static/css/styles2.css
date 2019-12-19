@@ -189,6 +189,33 @@
     padding: 1px 3px;
 }
 
+.post-video{
+	text-align: center;
+}
+
+.post-video video{
+	max-width: 100%;
+    max-height: 400px;
+}
+
+.fileContainer{
+	cursor: pointer;
+}
+
+.central-meta{
+	padding-bottom: 15px;
+}
+
+.post-comt-box form button{
+	bottom: initial;
+    position: initial;
+    right: initial;
+    background: #088dcd;
+}
+.comment-btn{
+	text-align: right;
+}
+
 #frends a.add-butn.more-action {
     right: 0;
 }

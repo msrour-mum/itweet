@@ -1,35 +1,54 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
-
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Posts View</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 </head>
 <body>
+<div class="container">
+    <h2>Posts View</h2>
 
-<div th:text="${item.postText}">
+    <div >
 
-</div>
-<br>
+        <div class="card">
 
-<div>
+            <div class="card-header"><h5  th:text="${item.user.name}"></h5></div>
 
-    <div>
-        <form th:action="@{'/admin/pendingPosts/approve/'+ ${item.id}}" method="post">
-            <div style="display: inline-block"><input type="submit" value="Approve" name="action"></div>
-        </form>
+            <div class="card-body">
+
+                <br>
+                <p class="card-text" th:text="${item.postText}">
+
+                    <br>
+
+
+            </div>
+            <div class="card-footer" style="display: inline-block">
+
+                <div style="display: inline-block">
+                    <form th:action="@{'/admin/pendingPosts/approve/'+ ${item.id}}" method="post">
+                        <div style="display: inline-block"><input type="submit" value="Approve" name="action" class="btn btn-success"></div>
+                    </form>
+                </div>
+                <div style="display: inline-block">
+                    <form th:action="@{'/admin/pendingPosts/reject/'+ ${item.id}}" method="post">
+                        <div style="display: inline-block"><input type="submit" value="Reject" name="action" class="btn btn btn-danger"></div>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+
+
     </div>
-    <div>
-        <form th:action="@{'/admin/pendingPosts/reject/'+ ${item.id}}" method="post">
-            <div style="display: inline-block"><input type="submit" value="Reject" name="action"></div>
-        </form>
-    </div>
+    <br>
 
-</div>
 
-<br>
-<div>
-    <a href="/admin/pendingPosts">Back</a>
+
 </div>
 
 </body>

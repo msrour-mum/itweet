@@ -2,6 +2,7 @@ package mum.itweet.repository;
 
 import java.util.List;
 
+import mum.itweet.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -33,6 +34,11 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
 	@Query(value = "select count(1) from post where statusId = 2 and user_id=:userId", nativeQuery = true)
 	public int isContainBadWord(@Param("userId") int userId);
+
+
+	@Query(value = "SELECT * FROM Post where postText like %?1% ", nativeQuery = true)
+	public List<Post> searchPost(String txt);
+
 
 
 

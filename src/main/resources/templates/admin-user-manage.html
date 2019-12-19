@@ -1,23 +1,77 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
-
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>User Search</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 </head>
 <body>
+<div class="container">
+    <h2>User Search</h2>
 
-<form   modelAttribute="userSearchDto"  th:object="${userSearchDto}" method="post">
+    <div class="card" style="border: darkgray solid 1px ;margin: auto auto">
+        <div class="card-body" >
 
-    <p>Name: <input type="text" th:field="*{name}" /></p>
-    <p>Email: <input type="text" th:field="*{email}" /></p>
-    <p>Is Active: <input type="checkbox" th:field="*{active}" /></p>
-    <input type="submit" value="Search">
-
-</form>
-
+            <div class="card-textcol-md-12 col-sm-12" >
+                <form modelAttribute="userSearchDto" th:object="${userSearchDto}" method="post">
 
 
+                    <p>Name: <input type="text" th:field="*{name}"/></p>
+
+                    <p>Email: <input type="text" th:field="*{email}"/></p>
+                    <p>Is Active: <input type="checkbox" th:field="*{active}"/></p>
+                    <button type="submit" class="btn btn-primary" >Search</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Is Active</th>
+
+
+            <th scope="col"></th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.nameIsActive}"></td>
+            <td>
+                <div th:if="${user.active}">
+                    <form th:action="@{'/admin/users/disable/'+ ${user.id}}" method="post">
+                        <div style="display: inline-block">
+                            <button class="btn btn-danger" type="submit">Disable</button>
+                        </div>
+                    </form>
+                </div>
+                <div th:unless="${user.active}">
+                    <form th:action="@{'/admin/users/enable/'+ ${user.id}}" method="post">
+                        <div style="display: inline-block">
+                            <button class="btn btn-success" type="submit">Enable</button>
+                        </div>
+                    </form>
+                </div>
+            </td>
+            <td>
+
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+
+
+</div>
 
 </body>
 </html>

@@ -74,6 +74,7 @@ public class AdminController {
     public String getUser(@ModelAttribute UserSearchDto userSearchDto, Model model)
     {
 
+        model.addAttribute("users" , userService.getAllUser());
         return "admin-user-manage";
     }
 

@@ -18,6 +18,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.Random;
+import java.util.stream.Collectors;
 
 import javax.xml.crypto.Data;
 import java.time.Period;
@@ -100,6 +106,15 @@ public class UserServiceImpl implements UserService {
     {
         Role role= roleRepository.getOne(userRoleType.ordinal());
         return userRepository.getAllByRole(role);
+    }
+
+    @Override
+    public String[] getAdminAndContentUsersEmails()
+    {
+        List<User> adminUsers = this.getUsersByRole(UserRoleType.Admin);
+        adminUsers.addAll(this.getUsersByRole(UserRoleType.ContentManager));
+        List<String> emails = adminUsers.stream().map(User::getEmail).collect(Collectors.toList());
+        return emails.toArray(new String[emails.size()]);
     }
 
     @Override
