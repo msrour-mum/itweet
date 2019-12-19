@@ -11,61 +11,52 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    @Autowired
-    private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+	@Autowired
+	private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
-    @Autowired
-    private UserDetailsService jwtUserDetailsService;
+	@Autowired
+	private UserDetailsService jwtUserDetailsService;
 
-    @Autowired
-    private JwtRequestFilter jwtRequestFilter;
+	@Autowired
+	private JwtRequestFilter jwtRequestFilter;
 
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+	@Autowired
+	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 // configure AuthenticationManager so that it knows from where to load
 // user for matching credentials
 // Use BCryptPasswordEncoder
-        auth.userDetailsService(jwtUserDetailsService).passwordEncoder(passwordEncoder());
-    }
+		auth.userDetailsService(jwtUserDetailsService).passwordEncoder(passwordEncoder());
+	}
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 
-    @Bean
-    @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
-    }
+	@Bean
+	@Override
+	public AuthenticationManager authenticationManagerBean() throws Exception {
+		return super.authenticationManagerBean();
+	}
 
-    @Override
-    protected void configure(HttpSecurity httpSecurity) throws Exception {
+	@Override
+	protected void configure(HttpSecurity httpSecurity) throws Exception {
 // We don't need CSRF for this example
-        httpSecurity.csrf().disable()
+		httpSecurity.csrf().disable()
 // dont authenticate this particular request
-                .authorizeRequests()
-                .antMatchers(HttpMethod.POST,"/signin").permitAll()
-                .antMatchers("/login").permitAll()
-                .antMatchers("/auth").permitAll()
-                .antMatchers("/register").permitAll()
-                .antMatchers(HttpMethod.POST,"/api/user").permitAll()
-                .antMatchers("/error").permitAll()
-                .antMatchers("/forwardLogin", "/facebook").permitAll()
+				.authorizeRequests().antMatchers(HttpMethod.POST, "/signin").permitAll().antMatchers("/login")
+				.permitAll().antMatchers("/auth").permitAll().antMatchers("/register").permitAll()
+				.antMatchers(HttpMethod.POST, "/api/user").permitAll().antMatchers("/error").permitAll()
+				.antMatchers("/forwardLogin", "/facebook").permitAll()
 
                 // all other requests need to be authenticated
                 .anyRequest().authenticated()
@@ -85,12 +76,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        web
-                .ignoring()
-                .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**", "/fonts/**");
-    }
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+		web.ignoring().antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**", "/fonts/**");
+	}
 
 //    public void successAuthenticate(HttpServletRequest req, HttpServletResponse res, Authentication auth){
 //
