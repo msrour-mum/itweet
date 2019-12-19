@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.validation.Valid;
 
 import mum.itweet.model.Following;
+import mum.itweet.service.AdvertisementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,6 +32,9 @@ public class UserMvcController {
 	@Autowired
 	private IStorageService storageService;
 
+	@Autowired
+	AdvertisementService advertisementService ;
+
 	@GetMapping("/edit-profile")
 	public String get(Model model) {
 		int userId = Context.getUserId();
@@ -39,6 +43,7 @@ public class UserMvcController {
 		model.addAttribute("CountFollower", followingService.getCountFollower(userId));
 		model.addAttribute("CountFollowing", followingService.getCountFollowing(userId));
 		model.addAttribute("PeopleYouMayKnow", userService.PeopleYouMayKnow(userId, 5));
+		model.addAttribute("userRandomAdvertisement",advertisementService.getRandomAvilableAd(userId));
 		return "edit-profile";
 	}
 

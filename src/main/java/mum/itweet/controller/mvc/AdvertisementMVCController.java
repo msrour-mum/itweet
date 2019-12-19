@@ -1,7 +1,6 @@
 package mum.itweet.controller.mvc;
 
 import mum.itweet.components.storage.IStorageService;
-import mum.itweet.components.storage.IStorageService;
 import mum.itweet.components.storage.StorageService;
 import mum.itweet.model.Advertisement;
 import mum.itweet.service.AdvertisementService;
@@ -15,7 +14,7 @@ import java.util.Date;
 import java.util.List;
 
 @Controller
-@RequestMapping(value="admin/ads")
+@RequestMapping(value="/admin/ads")
 public class AdvertisementMVCController {
     @Autowired
     AdvertisementService advertisementService;
@@ -23,7 +22,7 @@ public class AdvertisementMVCController {
     private IStorageService storageService = new StorageService();
 
 
-    @GetMapping("/")
+    @GetMapping()
     public String getAdsData(Model model){
 
         List<Advertisement> ads = advertisementService.getAllAdvertisements();
