@@ -9,6 +9,7 @@ public class ConstantKeys {
     public static final String POST_DISABLED_ROUTING_KEY = "post-disabled";
     public static final String POST_ADDED_QUEUE_NAME = "post-added-queue";
     public static final String POST_DISABLED_QUEUE_NAME = "post-disabled-queue";
+    public static final String ERROR_CODE_ATTRIBUTE_NAME = "errorCode";
 
 
 }
