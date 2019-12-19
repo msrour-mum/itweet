@@ -80,7 +80,7 @@ public class DataGenerate {
 
 
         for (int i = 8; i < 15; i++) {
-            User userTemp = new User("Name : " + i, "user" + i + "@mum.com", false, roleUser, pass, true, new Date(), 1, "1232", "Bio " + i);
+            User userTemp = new User("Name : " + i, "user" + i + "@mum.com", false, roleUser, pass, true,new Date(), 1, "1232", "Bio " + i);
             em.persist(userTemp);
         }
 
@@ -199,7 +199,18 @@ public class DataGenerate {
             throw new IllegalArgumentException("max must be greater than min");
         }
 
-        Random r = new Random();
-        return r.nextInt((max - min) + 1) + min;
+        return (int) (min + (Math.random() * (max - min)));
+        //Random r = new Random();
+       // return r.nextInt((max - min) + 1) + min;
     }
+
+//    public static Date getBirthDate() {
+//
+//        Date date=new Date();
+//        date.
+//        date.setYear(getRandomNumberInRange(1970,2010));
+//        date.setMonth(getRandomNumberInRange(1,12));
+//
+//        return date;
+//    }
 }
