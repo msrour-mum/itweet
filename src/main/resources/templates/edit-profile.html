@@ -95,7 +95,8 @@
 		<section>
 			<div class="feature-photo">
 				<figure>
-					<div class="cover-photo" th:style="${'background-image: url(' + user.getCoverUrl()+');'}"></div>
+					<div th:if="${user.getCoverUrl() == null}" class="cover-photo" style="background-image:url(images/cover-photo.jpg);"></div>
+					<div th:unless="${user.getCoverUrl() == null}" class="cover-photo" th:style="${'background-image: url(' +  user.getCoverUrl() +');'}"></div>
 				</figure>
 <!--				<div class="add-btn">-->
 <!--					<a href="./edit-profile.html">Edit Profile</a>-->
@@ -115,7 +116,8 @@
 						<div class="col-lg-2 col-sm-3">
 							<div class="user-avatar">
 								<figure>
-									<div class="profile-photo" th:style="${'background-image: url(' + user.getPhotoUrl()+');'}">
+									<div th:if="${user.getPhotoUrl() == null}" class="profile-photo" style="background-image: url(images/profile-photo.png)">
+									<div th:unless="${user.getPhotoUrl() == null}" class="profile-photo" th:style="${'background-image: url(' + user.getPhotoUrl()+');'}">
 									</div>
 									<form id="editUserImageFrom" class="edit-phto" action="/edit-user-image" th:object="${user}" method="post" enctype="multipart/form-data">
 
