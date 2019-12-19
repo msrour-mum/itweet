@@ -35,22 +35,20 @@ public class AuthenticationController {
         final UserDetails userDetails = userDetailsService.loadUserByUsername(user.getEmail());
         final String token = jwtTokenUtil.generateToken(userDetails);
 
-        boolean x = auth.isAuthenticated();
-
-
         Map<Object, Object> model = new HashMap<>();
         model.put("token", token);
         return ResponseEntity.ok(model);
     }
 
     private Authentication authenticate(String username, String password) throws Exception {
-        try {
-            return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
-        } catch (DisabledException e) {
-            throw new Exception("USER_DISABLED", e);
-        } catch (BadCredentialsException e) {
-            throw new Exception("INVALID_CREDENTIALS", e);
-        }
+        return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+//        try {
+//            return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+//        } catch (DisabledException e) {
+//            throw new Exception("USER_DISABLED", e);
+//        } catch (BadCredentialsException e) {
+//            throw new Exception("INVALID_CREDENTIALS", e);
+//        }
     }
 }
 

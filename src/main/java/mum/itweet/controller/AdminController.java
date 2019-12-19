@@ -1,7 +1,9 @@
 package mum.itweet.controller;
 
+import mum.itweet.components.messages.publish.PostDisabledMessageSender;
 import mum.itweet.model.Post;
 import mum.itweet.model.User;
+import mum.itweet.model.dto.Message;
 import mum.itweet.model.dto.UserDto;
 import mum.itweet.model.dto.UserSearchDto;
 import mum.itweet.model.lookups.PostStatus;
@@ -22,7 +24,11 @@ public class AdminController {
     @Autowired
     PostService postService;
 
-    @Autowired (required = true)
+    @Autowired
+    PostDisabledMessageSender postDisabledMessageSender;
+
+
+    @Autowired
     UserService userService;
 
     @GetMapping("/pendingPosts")
@@ -48,8 +54,8 @@ public class AdminController {
 
     @PostMapping("/pendingPosts/reject/{postId}")
     public String reject(@PathVariable long postId, @ModelAttribute Post model) {
-
         postService.updateStatus(postId, PostStatus.Suspended);
+        postDisabledMessageSender.PostDisabledMessageSender(new Message(postId));
         return "redirect:/admin/pendingPosts";
     }
 

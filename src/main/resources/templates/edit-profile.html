@@ -75,18 +75,18 @@
 					</li>
 					<li><a href="#" title="Languages"><i class="fa fa-globe"></i></a>
 						<div class="dropdowns languages">
-							<a href="/home?lang=en" title=""><i class="ti-check"></i>English</a>
-							<a href="/home?lang=zh_CN" title="">中文</a>
+							<a href="./?lang=en" title=""><i class="ti-check"></i>English</a>
+							<a href="./?lang=zh_CN" title="">中文</a>
 						</div>
 					</li>
 				</ul>
 				<div class="user-img">
 					<img src="images/profile-photo.png" alt="">
 					<div class="user-setting">
-						<a href="#" title=""><i class="ti-user"></i> view profile</a>
-						<a href="#" title=""><i class="ti-pencil-alt"></i>edit profile</a>
-						<a href="#" title=""><i class="ti-settings"></i>account setting</a>
-						<a href="#" title=""><i class="ti-power-off"></i>log out</a>
+						<a href="/profile" th:text="#{main.menu.viewProfile}"><i class="ti-user"></i> view profile</a>
+						<a href="/edit-profile" th:text="#{main.menu.editProfile}"><i class="ti-pencil-alt"></i>edit profile</a>
+						<a href="#" th:text="#{main.menu.accountSetting}"><i class="ti-settings"></i>account setting</a>
+						<a href="/logout" th:text="#{main.menu.logout}"><i class="ti-power-off"></i>log out</a>
 					</div>
 				</div>
 			</div>
@@ -95,16 +95,20 @@
 		<section>
 			<div class="feature-photo">
 				<figure>
-					<div class="cover-photo"></div>
+					<div th:if="${user.getCoverUrl() == null}" class="cover-photo" style="background-image:url(images/cover-photo.jpg);"></div>
+					<div th:unless="${user.getCoverUrl() == null}" class="cover-photo" th:style="${'background-image: url(' +  user.getCoverUrl() +');'}"></div>
 				</figure>
-				<div class="add-btn">
-					<a href="./edit-profile.html">Edit Profile</a>
-				</div>
-				<form class="edit-phto">
-					<i class="fa fa-camera-retro"></i>
+<!--				<div class="add-btn">-->
+<!--					<a href="./edit-profile.html">Edit Profile</a>-->
+<!--				</div>-->
+				<form id="editCoverImageFrom" class="edit-phto" action="/edit-cover-image" th:object="${user}" method="post" enctype="multipart/form-data">
+				<i class="fa fa-camera-retro"></i>
 					<label class="fileContainer">
 						Edit Cover Photo
-						<input type="file" />
+						<input type="file"
+							   accept="image/x-png,image/jpeg,image/jpg"
+							   th:field="*{cover}" id="userCoverImageFile"/></p>
+						<button type="submit" >Submit</button>
 					</label>
 				</form>
 				<div class="container-fluid">
@@ -112,14 +116,19 @@
 						<div class="col-lg-2 col-sm-3">
 							<div class="user-avatar">
 								<figure>
-									<div class="profile-photo" style="background-image: url(images/profile-photo.png);">
+									<div th:if="${user.getPhotoUrl() == null}" class="profile-photo" style="background-image: url(images/profile-photo.png)">
+									<div th:unless="${user.getPhotoUrl() == null}" class="profile-photo" th:style="${'background-image: url(' + user.getPhotoUrl()+');'}">
 									</div>
-									<form class="edit-phto">
+									<form id="editUserImageFrom" class="edit-phto" action="/edit-user-image" th:object="${user}" method="post" enctype="multipart/form-data">
+
 										<i class="fa fa-camera-retro"></i>
 										<label class="fileContainer">
-											Edit Profile Photo
-											<input type="file" />
+											[[#{edit.profile.photo}]]
+											<input type="file"
+												   accept="image/x-png,image/jpeg,image/jpg"
+												   th:field="*{image}" id="userProfileImageFile"/></p>
 										</label>
+										<button type="submit" >Submit</button>
 									</form>
 								</figure>
 							</div>
@@ -199,6 +208,11 @@
 													<label class="control-label" for="mobile" th:text="#{mobile.lbl}">Mobile</label>
 													<i class="mtrl-select"></i>
 												</div>
+<!--												<div class="form-group">-->
+<!--													<input type="date" th:field="*{birthDate}"/>-->
+<!--													<label class="control-label" for="birthdate" th:text="#{birthDate.lbl}">Birth Date</label>-->
+<!--													<i class="mtrl-select"></i>-->
+<!--												</div>-->
 												<div class="dob">
 <!--													<div class="form-group">-->
 <!--														<select>-->

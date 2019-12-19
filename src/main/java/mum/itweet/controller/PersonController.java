@@ -1,9 +1,9 @@
 package mum.itweet.controller;
 
-import mum.itweet.components.StorageService;
+import mum.itweet.components.storage.StorageService;
 import mum.itweet.model.Person;
 import mum.itweet.service.IPersonService;
-import mum.itweet.components.IStorageService;
+import mum.itweet.components.storage.IStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
