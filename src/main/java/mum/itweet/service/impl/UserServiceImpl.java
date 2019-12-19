@@ -25,6 +25,10 @@ import java.util.Optional;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+import javax.xml.crypto.Data;
+import java.time.Period;
+import java.util.*;
+
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
@@ -146,6 +150,15 @@ public class UserServiceImpl implements UserService {
             resultUser.add(userDetail);
         }
         return resultUser;
+    }
+
+    public int calculateUserAge(int userId){
+        Date curDate = new Date();
+        Date userBirthDate = userRepository.getOne(userId).getBirthDate();
+        long ageMillisecond = curDate.getTime() - userBirthDate.getTime();
+
+        Date age = new Date(ageMillisecond);
+        return age.getYear() -70;
     }
 
 }

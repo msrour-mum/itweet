@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8">
     <title>User Search Result</title>
@@ -14,9 +14,9 @@
     <table class="table">
         <thead>
         <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Is Active</th>
+            <th scope="col"><span th:text="#{Name}">Name</span>  </th>
+            <th scope="col"><span th:text="#{Email}">Email</span></th>
+            <th scope="col"><span th:text="#{Is.Active}">Is Active</span></th>
 
 
             <th scope="col"></th>
@@ -31,13 +31,13 @@
                 <div th:if="${user.active}">
                     <form th:action="@{'/admin/users/disable/'+ ${user.id}}" method="post">
                         <div style="display: inline-block"><input type="submit" value="disable"
-                                                                  name="action"></div>
+                                                                  name="action" th:value="#{disable}"></div>
                     </form>
                 </div>
                 <div th:unless="${user.active}">
                     <form th:action="@{'/admin/users/enable/'+ ${user.id}}" method="post">
                         <div style="display: inline-block"><input type="submit" value="enable"
-                                                                  name="action"></div>
+                                                                  name="action" th:value="#{enable}"></div>
                     </form>
                 </div>
             </td>

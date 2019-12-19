@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8">
     <title>Posts View</title>
@@ -9,8 +9,7 @@
 </head>
 <body>
 <div class="container">
-    <h2>Posts View</h2>
-
+    <h2 th:text="#{Posts.View}">Posts View</h2>
     <div >
 
         <div class="card">
@@ -30,12 +29,12 @@
 
                 <div style="display: inline-block">
                     <form th:action="@{'/admin/pendingPosts/approve/'+ ${item.id}}" method="post">
-                        <div style="display: inline-block"><input type="submit" value="Approve" name="action" class="btn btn-success"></div>
+                        <div style="display: inline-block"><input type="submit" value="Approve" name="action" class="btn btn-success" th:value="#{Approve}"></div>
                     </form>
                 </div>
                 <div style="display: inline-block">
                     <form th:action="@{'/admin/pendingPosts/reject/'+ ${item.id}}" method="post">
-                        <div style="display: inline-block"><input type="submit" value="Reject" name="action" class="btn btn btn-danger"></div>
+                        <div style="display: inline-block"><input type="submit" value="Reject" name="action" class="btn btn btn-danger" th:value="#{Reject}"></div>
                     </form>
                 </div>
 

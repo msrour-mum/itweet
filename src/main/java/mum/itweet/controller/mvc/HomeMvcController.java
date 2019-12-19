@@ -1,6 +1,10 @@
 package mum.itweet.controller.mvc;
 
 import mum.itweet.model.dto.CommentDto;
+import mum.itweet.model.Advertisement;
+import mum.itweet.model.User;
+import mum.itweet.model.lookups.UserRoleType;
+import mum.itweet.service.AdvertisementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +27,9 @@ public class HomeMvcController {
 	@Autowired
 	FollowingService followingService;
 
+	@Autowired
+	AdvertisementService advertisementService ;
+
 	@GetMapping("/")
 	public String home(Model model, @ModelAttribute("post") PostDto postDto,
 					   				@ModelAttribute("comment") CommentDto commentDto) {
@@ -32,6 +39,8 @@ public class HomeMvcController {
 		model.addAttribute("CountFollower", followingService.getCountFollower(userId));
 		model.addAttribute("CountFollowing", followingService.getCountFollowing(userId));
 		model.addAttribute("PeopleYouMayKnow", userService.PeopleYouMayKnow(userId, 5));
+		model.addAttribute("PeopleYouMayKnow", userService.PeopleYouMayKnow(userId,5));
+		model.addAttribute("userRandomAdvertisement",advertisementService.getRandomAvilableAd(userId));
 		return "home";
 	}
 

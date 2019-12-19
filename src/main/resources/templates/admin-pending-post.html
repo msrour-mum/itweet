@@ -1,22 +1,33 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
     <title>Pending Posts</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+    <link rel="icon" href="images/fav.png" type="image/png" sizes="16x16">
+    <link rel="stylesheet" href="css/main.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/color.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/styles2.css">
+
 </head>
 <body>
 <div class="container">
-    <h2>Pending Posts</h2>
+    <h2 th:text="#{Pending.Posts}">Pending Posts</h2>
 
     <table class="table">
         <thead>
         <tr>
-            <td>User</td>
-            <td>Post</td>
-            <td>View</td>
+            <td><span th:text="#{User}">User</span>  </td>
+            <td><span th:text="#{Post}">Post</span></td>
+            <td><span th:text="#{View}">View</span></td>
             <td></td>
             <td></td>
         </tr>
@@ -24,15 +35,15 @@
         <tr th:each="task : ${pending}">
             <td th:text="${task.user.name}"></td>
             <td th:text="${task.postText}"></td>
-            <td><a  th:href="@{'/admin/pendingPosts/view/'+ ${task.id}}" > View Post</a></td>
+            <td><a  th:href="@{'/admin/pendingPosts/view/'+ ${task.id}}" ><span th:text="#{View.Post}">View Post</span> </a></td>
             <td>
                 <form th:action="@{'/admin/pendingPosts/approve/'+ ${task.id}}" method="post">
-                    <div style="display: inline-block"><input type="submit" value="Approve" name="action"></div>
+                    <div style="display: inline-block"><input type="submit" value="Approve" name="action" th:value="#{Approve}" ></div>
                 </form>
             </td>
             <td>
                 <form th:action="@{'/admin/pendingPosts/reject/'+ ${task.id}}" method="post">
-                    <div style="display: inline-block"><input type="submit" value="Reject" name="action"></div>
+                    <div style="display: inline-block"><input type="submit" value="Reject" name="action" th:value="#{Reject}"></div>
                 </form>
             </td>
         </tr>

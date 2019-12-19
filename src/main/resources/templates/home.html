@@ -228,8 +228,11 @@
 										<div class="widget">
 											<h4 class="widget-title" th:text="#{advertisement}"></h4>
 											<div class="adpholder">
-												<a href="#" target="_blank"><img
-													src="images/pholder.jpg" alt=""></a>
+<!--												<span th:text="${userRandomAdvertisement.getName()}"></span>-->
+
+												<a href="#" target="_blank">
+													<img th:if="${userRandomAdvertisement.getImageUrl()}"
+														 th:src="${userRandomAdvertisement.getImageUrl()}" alt=""></a>
 											</div>
 										</div>
 										<div class="widget">
