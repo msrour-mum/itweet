@@ -71,6 +71,10 @@ public class UserServiceImpl implements UserService {
         List<User> lst =userRepository.PeopleYouMayKnow(userId);
         List<User> resultList =new ArrayList<>();
         Random rand = new Random();
+
+        if (fetchRecordCount>lst.size())
+            fetchRecordCount=lst.size();
+
         for (int i = 0; i < fetchRecordCount; i++) {
             int randomIndex = rand.nextInt(lst.size());
             User selcetedUser = lst.get(randomIndex);
