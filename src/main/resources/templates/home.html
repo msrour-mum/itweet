@@ -210,8 +210,9 @@
 																<img src="images/profile-photo.png">
 															</div>
 															<div class="post-comt-box">
-																<form method="post">
-																	<textarea placeholder="Post your comment"></textarea>
+																<form action="#" th:action="@{/comment}" th:object="${comment}" method="post">
+																	<input type="hidden" th:value="${post.getId()}" name="postId"/>
+																	<textarea placeholder="Post your comment" th:field="*{commentText}"></textarea>
 																	<div class="comment-btn"><button type="submit">Post</button></div>
 																</form>
 															</div>

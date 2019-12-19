@@ -10,6 +10,10 @@ public class CommentDto {
    private long postId ;
    private String commentText ;
 
+    public CommentDto() {
+
+    }
+
     public CommentDto(long id, int userId, long postId, String commentText) {
         this.id = id;
         this.userId = userId;

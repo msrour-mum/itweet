@@ -1,5 +1,6 @@
 package mum.itweet.controller.mvc;
 
+import mum.itweet.model.dto.CommentDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +24,8 @@ public class HomeMvcController {
 	FollowingService followingService;
 
 	@GetMapping("/")
-	public String home(Model model, @ModelAttribute("post") PostDto postDto) {
+	public String home(Model model, @ModelAttribute("post") PostDto postDto,
+					   				@ModelAttribute("comment") CommentDto commentDto) {
 		int userId = Context.getUserId();
 		model.addAttribute("user", userService.get(userId));
 		model.addAttribute("posts", postService.listPostForUser(userId));
