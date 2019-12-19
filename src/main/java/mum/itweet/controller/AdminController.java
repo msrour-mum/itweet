@@ -2,6 +2,8 @@ package mum.itweet.controller;
 
 import mum.itweet.model.Post;
 import mum.itweet.model.User;
+import mum.itweet.model.dto.UserDto;
+import mum.itweet.model.dto.UserSearchDto;
 import mum.itweet.model.lookups.PostStatus;
 import mum.itweet.model.view.UserDetail;
 import mum.itweet.service.PostService;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping(value="/admin")
@@ -19,7 +22,7 @@ public class AdminController {
     @Autowired
     PostService postService;
 
-    @Autowired
+    @Autowired (required = true)
     UserService userService;
 
     @GetMapping("/pendingPosts")
@@ -62,29 +65,24 @@ public class AdminController {
 
 
     @GetMapping(value ="/users" )
-    public String getUser( Model model)
+    public String getUser(@ModelAttribute UserSearchDto userSearchDto, Model model)
     {
 
-
-        model.addAttribute("users",userService.getAllUser());
         return "admin-user-manage";
     }
 
-    @GetMapping(value ="/searchUser" , params = { "name","email", "enabled" } )
-    public String getSearchUser(
-//            @RequestParam(name = "name" ,defaultValue = "") String name,
-//            @RequestParam(name = "email" ,defaultValue = "") String email,
-//            @RequestParam(name = "enabled" ,defaultValue = "0") String enabled,
-            @RequestParam String name,
-            @RequestParam String email,
-            @RequestParam boolean enabled,
-
-            Model model)
+    @PostMapping(value ="/users" )
+    public String getSearchUser(@ModelAttribute UserSearchDto userSearchDto, RedirectAttributes redirectAttributes)
     {
+        if (userSearchDto!=null)
+            redirectAttributes.addFlashAttribute("users",userService.quickSearch(userSearchDto.getName(),userSearchDto.getEmail(),userSearchDto.getActive()));
+        return "redirect:/admin/userSearch";
+    }
 
-
-        model.addAttribute("users",userService.quickSearch(name,email,enabled));
-        return "admin-user-manage";
+    @GetMapping(value ="/userSearch" )
+    public String userSearchResul(@ModelAttribute UserSearchDto userSearchDto, Model model)
+    {
+        return "admin-user-search-result";
     }
 
     @GetMapping("/users/{userId}")
@@ -95,16 +93,20 @@ public class AdminController {
     }
 
     @PostMapping("/users/enable/{userId}")
-    public String enable(@PathVariable int userId, @ModelAttribute Post model) {
+    public String enable(@PathVariable int userId, @ModelAttribute User model) {
 
-        postService.updateStatus(userId, PostStatus.Active);
+        User user =userService.get(userId);
+        user.setActive(true);
+        userService.update(user);
         return "redirect:/admin/users";
     }
 
     @PostMapping("/users/disable/{userId}")
-    public String disable(@PathVariable int userId, @ModelAttribute Post model) {
+    public String disable(@PathVariable int userId, @ModelAttribute User model) {
 
-        postService.updateStatus(userId, PostStatus.Suspended);
+        User user =userService.get(userId);
+        user.setActive(false);
+        userService.update(user);
         return "redirect:/admin/users";
     }
 

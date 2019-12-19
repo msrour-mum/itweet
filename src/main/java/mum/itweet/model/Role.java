@@ -12,16 +12,16 @@ import javax.persistence.Id;
 @NoArgsConstructor
 public class Role {
     @Id
-    private int id;
+    private Integer id;
 
     @Column(nullable = false)
     private String name;
 
-    public Role(int id) {
+    public Role(Integer id) {
         this.id = id;
     }
 
-    public Role(int id, String name) {
+    public Role(Integer id, String name) {
         this.id = id;
         this.name = name;
     }

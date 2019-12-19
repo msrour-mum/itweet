@@ -104,9 +104,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserDetail> quickSearch(String name, String email, boolean enable)
     {
-       // return userRepository.quickSearch(name,email,enable);
+        String ac="0";
+        if (enable)
+            ac="1";
+       return convertToDetails(userRepository.quickSearch(name,email,ac));
       //  return convertToDetails( userRepository.findAll());
-        return convertToDetails(userRepository.getAllByNameContainsAndEmailContainingAndIsActiveEquals(name,email,enable));
+        //return convertToDetails(userRepository.getAllByNameContainingAndEmailContainingAndIsActiveEqualsAllIgnoreCase(name,email,enable));
+
+        //return convertToDetails(userRepository.getAllByNameContainingAndEmailContainingAllIgnoreCase(name,email));
     }
 
 
@@ -123,8 +128,9 @@ public class UserServiceImpl implements UserService {
         for (User user : lst)
         {
 
-            UserDetail userDetail=new UserDetail(user.getId(), user.getName(),user.getEmail(),user.getBirthDate(),user.getGender(),user.getMobile(),user.getBio(),user.getPhotoUrl(),user.getCoverUrl(),user.isActive(),user.isAdmin());
 
+            UserDetail userDetail=new UserDetail(user.getId(), user.getName(),user.getEmail(),user.getBirthDate(),user.getGender(),user.getMobile(),user.getBio(),user.getPhotoUrl(),user.getCoverUrl(),user.isActive(),user.isAdmin());
+            System.out.println("User : :"+user.getId()+" "+user.getName());
             resultUser.add(userDetail);
         }
         return resultUser;

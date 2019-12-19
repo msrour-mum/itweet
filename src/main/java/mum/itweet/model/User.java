@@ -27,13 +27,13 @@ public class User  {
     private boolean isAdmin;
 
     @ManyToOne(optional = false)
-    private Role role;
+    private Role role=new Role();
 
     @Column(nullable = false)
     private String pass;
 
     @Column(name = "isActive",nullable = false, columnDefinition = "BIT(1) default 1")
-    private boolean isActive;
+    private Boolean isActive;
 
     private Date birthDate;
 
@@ -110,5 +110,57 @@ public class User  {
 
     public String getCoverUrl() {
         return CoverUrl;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public void setGender(Integer gender) {
+        this.gender = gender;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        PhotoUrl = photoUrl;
+    }
+
+    public void setCoverUrl(String coverUrl) {
+        CoverUrl = coverUrl;
     }
 }

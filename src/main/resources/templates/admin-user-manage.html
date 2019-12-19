@@ -7,44 +7,15 @@
 </head>
 <body>
 
-<table>
-    <thead>
-    <tr>
-        <td>Name</td>
-        <td>Email</td>
-        <td>Is Active</td>
-        <td>View</td>
-        <td></td>
-        <td></td>
-    </tr>
-    </thead>
-    <tr th:each="item : ${users}">
-        <td th:text="${item.name}"></td>
-        <td th:text="${item.email}"></td>
-        <td th:text="${item.nameIsActive}"></td>
+<form   modelAttribute="userSearchDto"  th:object="${userSearchDto}" method="post">
 
-<!--        <td>-->
-<!--            <input type="checkbox" th:checked="${item.isActive}">-->
-<!--        </td>-->
+    <p>Name: <input type="text" th:field="*{name}" /></p>
+    <p>Email: <input type="text" th:field="*{email}" /></p>
+    <p>Is Active: <input type="checkbox" th:field="*{active}" /></p>
+    <input type="submit" value="Search">
 
-        <td>
-        <input type="checkbox"  name="mycheckbox" th:checked="${item.isActive} ? 'checked'">
+</form>
 
-        </td>
-
-        <td><a  th:href="@{'/admin/users/'+ ${item.id}}" > View users </a></td>
-        <td>
-            <form th:action="@{'/admin/users/enable/'+ ${item.id}}" method="post">
-                <div style="display: inline-block"><input type="submit" value="enable" name="action"></div>
-            </form>
-        </td>
-        <td>
-            <form th:action="@{'/admin/users/disable/'+ ${item.id}}" method="post">
-                <div style="display: inline-block"><input type="submit" value="disable" name="action"></div>
-            </form>
-        </td>
-    </tr>
-</table>
 
 
 
