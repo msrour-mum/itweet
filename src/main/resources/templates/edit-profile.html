@@ -104,7 +104,7 @@
 				<form id="editCoverImageFrom" class="edit-phto" action="/edit-cover-image" th:object="${user}" method="post" enctype="multipart/form-data">
 				<i class="fa fa-camera-retro"></i>
 					<label class="fileContainer">
-						Edit Cover Photo
+						<span th:text="#{edit.cover.photo}"></span>
 						<input type="file"
 							   accept="image/x-png,image/jpeg,image/jpg"
 							   th:field="*{cover}" id="userCoverImageFile"/></p>

@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.validation.Valid;
 
+import mum.itweet.model.dto.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -58,7 +59,7 @@ public class PostMvcController {
 			post.setVideoUrl(path);
 			post = postService.update(post);
 		}
-		// postAddedMessageSender.PostAddedMessageSender(new Message(post.getId()));
+		postAddedMessageSender.PostAddedMessageSender(new Message(post.getId()));
 		return "redirect:/";
 	}
 }
