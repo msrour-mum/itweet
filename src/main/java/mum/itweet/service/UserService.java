@@ -24,4 +24,6 @@ public interface UserService {
 
     public List<User> PeopleYouMayKnow(int userId , int fetchRecordCount);
     public List<User> getUsersByRole(UserRoleType userRoleType);
+
+    public int calculateUserAge(int userId);
 }

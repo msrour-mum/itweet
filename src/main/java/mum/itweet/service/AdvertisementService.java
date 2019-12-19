@@ -16,4 +16,6 @@ public interface AdvertisementService {
     public List<Advertisement> getAdsByAge(int ageFrom,int ageTo);
     public List<Advertisement>getAdsByGender(String gender);
 
+    public Advertisement getRandomAvilableAd(int userId);
+
 }

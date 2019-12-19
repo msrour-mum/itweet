@@ -3,6 +3,7 @@ package mum.itweet.controller;
 import mum.itweet.model.Advertisement;
 import mum.itweet.model.dto.AdAgeFilterDto;
 import mum.itweet.model.dto.AdGenderFilterDto;
+import mum.itweet.model.dto.UserAdvertisementDto;
 import mum.itweet.service.AdvertisementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -51,6 +52,10 @@ public class AdvertismentController {
     @PostMapping("/genderFilter")
     public List<Advertisement> getAdsByGenderFilter(@RequestBody AdGenderFilterDto adGenderFilterDto){
             return advertisementService.getAdsByGender(adGenderFilterDto.getGender());
+    }
+    @GetMapping("/userAd")
+    public Advertisement getUserAd(@RequestBody UserAdvertisementDto userAdvertisementDto){
+        return advertisementService.getRandomAvilableAd(userAdvertisementDto.getUserId());
     }
 
 }

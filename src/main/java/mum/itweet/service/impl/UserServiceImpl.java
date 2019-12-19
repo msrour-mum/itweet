@@ -18,10 +18,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
+
+import javax.xml.crypto.Data;
+import java.time.Period;
+import java.util.*;
 
 @Service
 @Transactional
@@ -129,6 +129,15 @@ public class UserServiceImpl implements UserService {
             resultUser.add(userDetail);
         }
         return resultUser;
+    }
+
+    public int calculateUserAge(int userId){
+        Date curDate = new Date();
+        Date userBirthDate = userRepository.getOne(userId).getBirthDate();
+        long ageMillisecond = curDate.getTime() - userBirthDate.getTime();
+
+        Date age = new Date(ageMillisecond);
+        return age.getYear() -70;
     }
 
 }

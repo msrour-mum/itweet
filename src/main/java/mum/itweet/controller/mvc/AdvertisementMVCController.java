@@ -1,7 +1,8 @@
 package mum.itweet.controller.mvc;
 
-import mum.itweet.components.IStorageService;
-import mum.itweet.components.StorageService;
+import mum.itweet.components.storage.IStorageService;
+import mum.itweet.components.storage.IStorageService;
+import mum.itweet.components.storage.StorageService;
 import mum.itweet.model.Advertisement;
 import mum.itweet.service.AdvertisementService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,7 @@ import java.util.Date;
 import java.util.List;
 
 @Controller
-@RequestMapping(value="/ads")
+@RequestMapping(value="admin/ads")
 public class AdvertisementMVCController {
     @Autowired
     AdvertisementService advertisementService;
@@ -48,7 +49,7 @@ public class AdvertisementMVCController {
         }
         //else add.setImageUrl("");
         advertisementService.create(add);
-        return "redirect:/ads/";
+        return "redirect:/admin/ads/";
     }
 
     @GetMapping("/delete/{id}")
@@ -56,7 +57,7 @@ public class AdvertisementMVCController {
         System.out.println(id);
         advertisementService.deleteAdvertisement(Long.parseLong(id));
 
-        return "redirect:/ads/";
+        return "redirect:/admin/ads/";
 
     }
 }
