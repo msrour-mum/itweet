@@ -2,6 +2,7 @@ package mum.itweet.service;
 
 
 import mum.itweet.model.User;
+import mum.itweet.model.lookups.UserRoleType;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
@@ -19,4 +20,5 @@ public interface UserService {
 
 
     public List<User> PeopleYouMayKnow(int userId , int fetchRecordCount);
+    public List<User> getUsersByRole(UserRoleType userRoleType);
 }

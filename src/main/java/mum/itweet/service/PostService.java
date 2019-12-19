@@ -1,9 +1,7 @@
 package mum.itweet.service;
 
 import mum.itweet.model.Post;
-import mum.itweet.model.User;
 import mum.itweet.model.dto.PostDto;
-import mum.itweet.model.dto.PostItem;
 import mum.itweet.model.lookups.PostStatus;
 import mum.itweet.model.view.PostDetail;
 

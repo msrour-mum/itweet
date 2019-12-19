@@ -1,6 +1,7 @@
 package mum.itweet.controller.mvc;
 
 import mum.itweet.model.User;
+import mum.itweet.model.lookups.UserRoleType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
