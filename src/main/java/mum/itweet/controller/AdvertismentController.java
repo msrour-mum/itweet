@@ -1,6 +1,8 @@
 package mum.itweet.controller;
 
 import mum.itweet.model.Advertisement;
+import mum.itweet.model.dto.AdAgeFilterDto;
+import mum.itweet.model.dto.AdGenderFilterDto;
 import mum.itweet.service.AdvertisementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -42,4 +44,13 @@ public class AdvertismentController {
     public Advertisement getRandomActiveAd(){
         return advertisementService.getRandomActiveAdvertisement();
     }
+    @PostMapping("/ageFilter")
+    public List<Advertisement> getAdsByAgeFilter(@RequestBody AdAgeFilterDto ageFilterDto){
+        return advertisementService.getAdsByAge(ageFilterDto.getAgeFrom(),ageFilterDto.getAgeTo());
+    }
+    @PostMapping("/genderFilter")
+    public List<Advertisement> getAdsByGenderFilter(@RequestBody AdGenderFilterDto adGenderFilterDto){
+            return advertisementService.getAdsByGender(adGenderFilterDto.getGender());
+    }
+
 }

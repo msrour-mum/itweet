@@ -13,5 +13,7 @@ public interface AdvertisementService {
     public Advertisement getAdvertisementById(long id);
     public List<Advertisement> getAllAdvertisements();
     public Advertisement getRandomActiveAdvertisement();
+    public List<Advertisement> getAdsByAge(int ageFrom,int ageTo);
+    public List<Advertisement>getAdsByGender(String gender);
 
 }

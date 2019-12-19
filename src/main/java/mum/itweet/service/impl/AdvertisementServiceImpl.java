@@ -25,8 +25,10 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     @Override
     public Advertisement update(long adId,Advertisement advertisement) {
         Advertisement old = advertisementRepository.getOne(adId);
+
         old = advertisement ;
         advertisementRepository.deleteById(adId);
+        //old.setId(adId);
         return advertisementRepository.save(old);
     }
 
@@ -50,6 +52,16 @@ public class AdvertisementServiceImpl implements AdvertisementService {
        List<Advertisement> advertisements = advertisementRepository.getActiveAdvertisements();
         Random random = new Random();
         return advertisements.get(random.nextInt(advertisements.size()));
+    }
+
+    @Override
+    public List<Advertisement> getAdsByAge(int ageFrom, int ageTo) {
+        return advertisementRepository.getAdsByAge(ageFrom,ageTo);
+    }
+
+    @Override
+    public List<Advertisement> getAdsByGender(String gender) {
+        return advertisementRepository.findAllByGender(gender);
     }
 
 
