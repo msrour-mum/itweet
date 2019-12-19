@@ -1,5 +1,6 @@
 package mum.itweet.controller;
 
+import mum.itweet.model.Post;
 import mum.itweet.model.lookups.PostStatus;
 import mum.itweet.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,35 +23,26 @@ public class AdminController {
         return "admin-pending-post";
     }
 
+    @GetMapping("/pendingPosts/view/{postId}")
+    public String approve(@PathVariable long postId,@ModelAttribute Post post,  Model  model) {
 
-   /* @PostMapping("/pendingPosts/approve/{postId}")
-    public String approve(@PathVariable long postId, Model model)
-    {
+        model.addAttribute("item", postService.get(postId));
+        return "admin-pending-post-view";
+    }
+
+    @PostMapping("/pendingPosts/approve/{postId}")
+    public String approve(@PathVariable long postId, @ModelAttribute Post model) {
+
         postService.updateStatus(postId, PostStatus.Active);
         return "redirect:/admin/pendingPosts";
     }
 
     @PostMapping("/pendingPosts/reject/{postId}")
-    public String reject(@PathVariable long postId, Model model)
-    {
+    public String reject(@PathVariable long postId, @ModelAttribute Post model) {
+
         postService.updateStatus(postId, PostStatus.Suspended);
         return "redirect:/admin/pendingPosts";
     }
-*/
-    @PostMapping("/pendingPosts/approve/{postId}")
-    public String approve(@PathVariable long postId, @ModelAttribute Model model,
-                             @RequestParam(value="action", required=true) String action) {
 
-        if (action.equals("Approve")) {
-            postService.updateStatus(postId, PostStatus.Active);
-            return "redirect:/admin/pendingPosts";
-        }
 
-        if (action.equals("Reject")) {
-            postService.updateStatus(postId, PostStatus.Suspended);
-            return "redirect:/admin/pendingPosts";
-        }
-        //return modelAndView;
-        return "redirect:/admin/pendingPosts";
-    }
 }
