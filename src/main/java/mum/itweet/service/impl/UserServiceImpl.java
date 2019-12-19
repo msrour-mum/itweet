@@ -2,6 +2,8 @@ package mum.itweet.service.impl;
 
 import mum.itweet.model.Role;
 import mum.itweet.model.User;
+import mum.itweet.model.lookups.UserRoleType;
+import mum.itweet.repository.RoleRepository;
 import mum.itweet.repository.UserRepository;
 import mum.itweet.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,8 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    RoleRepository roleRepository;
 
     @Bean
     public PasswordEncoder passwordUtil() {
@@ -82,6 +86,14 @@ public class UserServiceImpl implements UserService {
             lst.remove(randomIndex);
         }
         return resultList;
+    }
+
+
+    @Override
+    public List<User> getUsersByRole(UserRoleType userRoleType)
+    {
+        Role role= roleRepository.getOne(userRoleType.ordinal());
+        return userRepository.getAllByRole(role);
     }
 
 }

@@ -3,6 +3,7 @@ package mum.itweet.repository;
 import java.util.List;
 import java.util.Optional;
 
+import mum.itweet.model.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -32,5 +33,8 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 			"where u.isActive=1 and u.isAdmin=0 \n" +
 			"and u.id not in (select f.follower_id from following f  where f.following_id = :userId )", nativeQuery = true)
 	public List<User> PeopleYouMayKnow(@Param("userId") int userId);
+
+
+	public List<User> getAllByRole(Role role);
 
 }
