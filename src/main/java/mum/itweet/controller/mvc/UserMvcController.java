@@ -55,7 +55,7 @@ public class UserMvcController {
             user.setPhotoUrl(path);
             userService.update(user);
         }
-        return "redirect:/";
+        return "redirect:/edit-profile";
     }
 
     @PostMapping("/edit-cover-image")
@@ -67,7 +67,7 @@ public class UserMvcController {
             user.setCoverUrl(path);
             userService.update(user);
         }
-        return "redirect:/";
+        return "redirect:/edit-profile";
     }
 }
 
