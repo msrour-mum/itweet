@@ -40,22 +40,21 @@ public class PostMvcController {
         return "person";
     }
 
-    @PostMapping("/user/{userId}/post")
-    public String add(@Valid @ModelAttribute("post") PostDto postDto, @PathVariable("userId") int userId, BindingResult bindingResult) throws IOException {
+    @PostMapping("/post")
+    public String add(@Valid @ModelAttribute("post") PostDto postDto, BindingResult bindingResult) throws IOException {
 
         if (bindingResult.hasErrors()) {
             return "home";
         }
-
         System.out.println(Context.getUserIdAsString());
-        postDto.setUserId(userId);
+        postDto.setUserId(Context.getUserId());
         Post post = postService.create(postDto);
         if (!postDto.getImage().isEmpty()) {
-            String path = storageService.uploadMultipartFile(postDto.getImage(), Integer.toString(userId));
+            String path = storageService.uploadMultipartFile(postDto.getImage(), Context.getUserIdAsString());
             post.setImageUrl(path);
             post= postService.update(post);
         } else if (!postDto.getVideo().isEmpty()) {
-            String path = storageService.uploadMultipartFile(postDto.getVideo(),  Integer.toString(userId));
+            String path = storageService.uploadMultipartFile(postDto.getVideo(), Context.getUserIdAsString());
             post.setVideoUrl(path);
             post= postService.update(post);
         }
