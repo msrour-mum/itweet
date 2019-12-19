@@ -11,8 +11,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 @Service
 @Transactional
@@ -61,4 +63,21 @@ public class UserServiceImpl implements UserService {
     public Optional<User> findByEmail(String email) {
         return userRepository.findByEmail(email);
     }
+
+
+    @Override
+    public List<User> PeopleYouMayKnow(int userId , int fetchRecordCount)
+    {
+        List<User> lst =userRepository.PeopleYouMayKnow(userId);
+        List<User> resultList =new ArrayList<>();
+        Random rand = new Random();
+        for (int i = 0; i < fetchRecordCount; i++) {
+            int randomIndex = rand.nextInt(lst.size());
+            User selcetedUser = lst.get(randomIndex);
+            resultList.add(selcetedUser);
+            lst.remove(randomIndex);
+        }
+        return resultList;
+    }
+
 }

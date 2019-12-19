@@ -1,5 +1,6 @@
 package mum.itweet.model;
 
+import io.swagger.models.auth.In;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import mum.itweet.model.lookups.Gender;
@@ -38,7 +39,7 @@ public class User  {
 
     //@Enumerated(EnumType.ORDINAL)
     @Column(name = "genderId")
-    private int gender;
+    private Integer gender;
     private String mobile;
     @Lob
     private String bio;
