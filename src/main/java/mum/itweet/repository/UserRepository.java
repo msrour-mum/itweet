@@ -37,4 +37,9 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
 	public List<User> getAllByRole(Role role);
 
+	@Query(value = "SELECT * FROM user where email like :email and name like :name and isActive=:enable", nativeQuery = true)
+	public List<User> quickSearch(@Param("name")String name, @Param("email") String email, @Param("enable") String enable);
+
+	public List<User> getAllByNameContainsAndEmailContainingAndIsActiveEquals(String name, String email,  boolean enable);
+
 }

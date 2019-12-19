@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<table>
+    <thead>
+    <tr>
+        <td>Name</td>
+        <td>Email</td>
+        <td>Is Active</td>
+        <td>View</td>
+        <td></td>
+        <td></td>
+    </tr>
+    </thead>
+    <tr th:each="item : ${users}">
+        <td th:text="${item.name}"></td>
+        <td th:text="${item.email}"></td>
+        <td th:text="${item.nameIsActive}"></td>
+
+<!--        <td>-->
+<!--            <input type="checkbox" th:checked="${item.isActive}">-->
+<!--        </td>-->
+
+        <td>
+        <input type="checkbox"  name="mycheckbox" th:checked="${item.isActive} ? 'checked'">
+
+        </td>
+
+        <td><a  th:href="@{'/admin/users/'+ ${item.id}}" > View users </a></td>
+        <td>
+            <form th:action="@{'/admin/users/enable/'+ ${item.id}}" method="post">
+                <div style="display: inline-block"><input type="submit" value="enable" name="action"></div>
+            </form>
+        </td>
+        <td>
+            <form th:action="@{'/admin/users/disable/'+ ${item.id}}" method="post">
+                <div style="display: inline-block"><input type="submit" value="disable" name="action"></div>
+            </form>
+        </td>
+    </tr>
+</table>
+
+
+
+</body>
+</html>
