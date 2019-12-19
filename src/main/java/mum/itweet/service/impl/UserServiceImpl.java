@@ -24,8 +24,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
+
     @Autowired
-    RoleRepository roleRepository;
+    private RoleRepository roleRepository;
 
     @Bean
     public PasswordEncoder passwordUtil() {

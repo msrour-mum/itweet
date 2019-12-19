@@ -1,20 +1,21 @@
 package mum.itweet.controller;
 
-import mum.itweet.components.IStorageService;
-import mum.itweet.components.StorageService;
+import mum.itweet.components.messages.publish.PostAddedMessageSender;
+import mum.itweet.components.storage.IStorageService;
 import mum.itweet.model.Person;
 import mum.itweet.model.Post;
-import mum.itweet.model.PostLikes;
+import mum.itweet.model.dto.Message;
 import mum.itweet.model.dto.PostDto;
 import mum.itweet.service.LikeService;
 import mum.itweet.service.PostService;
 import mum.itweet.utitlity.Context;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
 import java.io.IOException;
@@ -22,8 +23,11 @@ import java.io.IOException;
 @Controller
 public class PostMvcController {
 
-    //@Autowired
-    private IStorageService storageService = new StorageService();
+    @Autowired
+    private IStorageService storageService;
+
+    @Autowired
+    PostAddedMessageSender postAddedMessageSender;
 
     @Autowired
     PostService postService;
@@ -49,13 +53,14 @@ public class PostMvcController {
         if (!postDto.getImage().isEmpty()) {
             String path = storageService.uploadMultipartFile(postDto.getImage(), Integer.toString(userId));
             post.setImageUrl(path);
-            postService.update(post);
+            post= postService.update(post);
         } else if (!postDto.getVideo().isEmpty()) {
             String path = storageService.uploadMultipartFile(postDto.getVideo(),  Integer.toString(userId));
             post.setVideoUrl(path);
-            postService.update(post);
+            post= postService.update(post);
         }
-        return "redirect:/home";
+        postAddedMessageSender.PostAddedMessageSender(new Message(post.getId()));
+        return "redirect:/";
     }
 }
 
