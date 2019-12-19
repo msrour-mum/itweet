@@ -60,4 +60,5 @@ public class AdvertisementMVCController {
         return "redirect:/admin/ads/";
 
     }
+
 }
