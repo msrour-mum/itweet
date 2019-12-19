@@ -20,12 +20,12 @@
 
     <div>
         <form th:action="@{'/admin/pendingPosts/approve/'+ ${item.id}}" method="post">
-            <div style="display: inline-block"><input type="submit" value="Approve" name="action"></div>
+            <div style="display: inline-block"><input type="submit" value="Approve" name="action" th:value="#{Approve}"></div>
         </form>
     </div>
     <div>
         <form th:action="@{'/admin/pendingPosts/reject/'+ ${item.id}}" method="post">
-            <div style="display: inline-block"><input type="submit" value="Reject" name="action"></div>
+            <div style="display: inline-block"><input type="submit" value="Reject" name="action" th:value="#{Reject}"></div>
         </form>
     </div>
 

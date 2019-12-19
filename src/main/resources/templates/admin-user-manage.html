@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8">
     <title>User Search</title>
@@ -9,7 +9,8 @@
 </head>
 <body>
 <div class="container">
-    <h2>User Search</h2>
+
+    <h2 th:text="#{User.Search}">User Search</h2>
 
     <div class="card" style="border: darkgray solid 1px ;margin: auto auto">
         <div class="card-body" >
@@ -18,11 +19,11 @@
                 <form modelAttribute="userSearchDto" th:object="${userSearchDto}" method="post">
 
 
-                    <p>Name: <input type="text" th:field="*{name}"/></p>
+                    <p><span th:text="#{Name}">Name</span> : <input type="text" th:field="*{name}"/></p>
 
-                    <p>Email: <input type="text" th:field="*{email}"/></p>
-                    <p>Is Active: <input type="checkbox" th:field="*{active}"/></p>
-                    <button type="submit" class="btn btn-primary" >Search</button>
+                    <p><span th:text="#{Email}">Email</span> : <input type="text" th:field="*{email}"/></p>
+                    <p><span th:text="#{Is.Active}">Is Active</span> : <input type="checkbox" th:field="*{active}" /></p>
+                    <button type="submit" class="btn btn-primary" th:value="#{Search}">Search</button>
 
                 </form>
             </div>
@@ -32,9 +33,9 @@
     <table class="table">
         <thead>
         <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Is Active</th>
+            <th scope="col"><span th:text="#{Name}">Name</span>  </th>
+            <th scope="col"><span th:text="#{Email}">Email</span> </th>
+            <th scope="col"><span th:text="#{Is.Active}">Is Active</span> </th>
 
 
             <th scope="col"></th>
@@ -50,14 +51,14 @@
                 <div th:if="${user.active}">
                     <form th:action="@{'/admin/users/disable/'+ ${user.id}}" method="post">
                         <div style="display: inline-block">
-                            <button class="btn btn-danger" type="submit">Disable</button>
+                            <button class="btn btn-danger" type="submit" th:value="#{Disable}">Disable</button>
                         </div>
                     </form>
                 </div>
                 <div th:unless="${user.active}">
                     <form th:action="@{'/admin/users/enable/'+ ${user.id}}" method="post">
                         <div style="display: inline-block">
-                            <button class="btn btn-success" type="submit">Enable</button>
+                            <button class="btn btn-success" type="submit" th:value="#{Enable}">Enable</button>
                         </div>
                     </form>
                 </div>
