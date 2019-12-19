@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+	<link rel="stylesheet" type="text/css" href="adstyle.css">
+</head>
+<body>
+<form method="post" th:action="@{/admin/ads/create}" th:object="${add}" enctype="multipart/form-data">
+<br>
+	<fieldset>
+		<legend><span th:text="#{advertisement.form.txt}">Advertisement Form</span></legend>
+		<p><input type="file"
+		          accept="image/x-png,image/jpeg,image/jpg"
+		          th:field="*{image}"/></p><br><br>
+
+		[[#{name.lbl}]] :<input type="text" th:field="*{name}"><br><br>
+		[[#{ageFrom.lbl}]] :<input type="number" th:field="*{ageFrom}"><br><br>
+		[[#{age.to.lbl}]] :<input type="number" th:field="*{ageTo}"><br><br>
+		[[#{is.active.lbl}]] <input type="checkbox" th:field="*{active}" /><br><br>
+		[[#{select.gender.lbl}]]:
+		<select th:field="*{gender}">
+			<option th:value="male" th:text="#{male.txt}" ></option>
+			<option th:value="female" th:text="#{female.txt}"></option>
+			<option th:value="all" th:text="#{all.txt}"></option>
+		</select>
+	<br><br>
+	<input type="submit" value="save" >
+	</fieldset>
+</form>
+</body>
+
+</html>

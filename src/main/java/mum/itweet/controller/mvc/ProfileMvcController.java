@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import mum.itweet.model.dto.CommentDto;
 import mum.itweet.model.dto.PostDto;
 import mum.itweet.service.FollowingService;
 import mum.itweet.service.PostService;
@@ -26,6 +27,8 @@ public class ProfileMvcController {
 	@GetMapping({ "/profile", "/profile/{userId}" })
 //	public String home(@PathVariable int userId, Model model, @ModelAttribute("post") PostDto postDto) {
 	public String home(Model model, @ModelAttribute("post") PostDto postDto,
+			@ModelAttribute("comment") CommentDto commentDto,
+
 			@PathVariable(name = "userId", required = false) Integer userId) {
 		if (userId == null) {
 			userId = Context.getUserId();

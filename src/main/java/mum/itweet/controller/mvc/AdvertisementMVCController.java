@@ -1,55 +1,63 @@
 package mum.itweet.controller.mvc;
 
+import mum.itweet.components.storage.IStorageService;
+import mum.itweet.components.storage.IStorageService;
+import mum.itweet.components.storage.StorageService;
 import mum.itweet.model.Advertisement;
 import mum.itweet.service.AdvertisementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
 @Controller
-@RequestMapping(value="/ads")
+@RequestMapping(value="admin/ads")
 public class AdvertisementMVCController {
     @Autowired
     AdvertisementService advertisementService;
 
+    private IStorageService storageService = new StorageService();
+
+
     @GetMapping("/")
     public String getAdsData(Model model){
 
-//        Advertisement ad1 = new Advertisement("job1","",new Date(),true,29,
-//                50,"male",null);
-//        advertisementService.create(ad1);
-//
-//        Advertisement ad2 = new Advertisement("job2","",new Date(),false,29,
-//                50,"male",null);
-//        advertisementService.create(ad2);
-////
-        Advertisement ad3 = new Advertisement("updated","",new Date(),true,29,
-                50,"" +
-                "all",null);
-//        advertisementService.create(ad3);
-//
-//        Advertisement ad4 = new Advertisement("job4","",new Date(),false,29,
-//                50,"male",null);
-//        advertisementService.create(ad4);
-
-       // List<Advertisement> ads = Arrays.asList(ad1,ad2,ad3,ad4);
-        advertisementService.update(advertisementService.getAllAdvertisements().get(0).getId(),ad3);
         List<Advertisement> ads = advertisementService.getAllAdvertisements();
-        //ads.add(advertisementService.getRandomActiveAdvertisement());
-
         model.addAttribute("ads",ads);
-        return "adsPage";
+        return "allAds";
     }
 
-    @GetMapping("/edit")
-    public String editAds(){
+    @GetMapping("/create")
+    public String createAdd(@ModelAttribute("add") Advertisement add){
+        return "adForm";
+    }
 
-        return "editAd";
+    @PostMapping("/create")
+    public String saveAdd(@ModelAttribute("add") Advertisement add){
+        add.setCreationDate(new Date());
+        if(!add.getImage().isEmpty()){
+            try {
+                String imageUrl = storageService.uploadMultipartFile(add.getImage(),"advertising");
+                add.setImageUrl(imageUrl);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        //else add.setImageUrl("");
+        advertisementService.create(add);
+        return "redirect:/admin/ads/";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteAd(@PathVariable String id , Model model ){
+        System.out.println(id);
+        advertisementService.deleteAdvertisement(Long.parseLong(id));
+
+        return "redirect:/admin/ads/";
+
     }
 }
