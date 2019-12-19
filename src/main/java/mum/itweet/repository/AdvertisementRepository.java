@@ -17,7 +17,7 @@ public interface AdvertisementRepository extends JpaRepository<Advertisement,Lon
 
     public List<Advertisement>findAllByGender(String gender);
 
-    @Query("select a from Advertisement a where a.ageFrom >=:userAge and a.ageTo <=:userAge and a.active = true and a.gender =:gender")
+    @Query("select a from Advertisement a where a.ageFrom <= :userAge and a.ageTo >=:userAge and a.active = true and a.gender =:gender")
     public List<Advertisement> getAdvertisementForUser(@Param("userAge") int userAge,
                                                                          @Param("gender") String userGender);
 
