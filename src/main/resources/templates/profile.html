@@ -16,25 +16,27 @@
 	<link rel="stylesheet" href="css/styles2.css">
 
 </head>
-
-<body th:with="userPhoto=(${user.PhotoUrl} == null)? 'images/profile-photo.png' : ${user.PhotoUrl}">
+<body th:with="userPhoto=(${user.PhotoUrl} == null)? 'images/profile-photo.png' : ${user.PhotoUrl}, coverPhoto=(${user.CoverUrl} == null)? 'images/cover-photo.jpg' : ${user.CoverUrl}">
 	<div class="theme-layout">
 
 		<div th:replace="home :: header"></div>
 
-		<section>
+		<section th:fragment="profile-header">
 			<div class="feature-photo">
 				<figure>
-					<div class="cover-photo"></div>
+					<div class="cover-photo" th:style="'background-image: url('+${coverPhoto}+');'"></div>
 				</figure>
-				<div class="add-btn">
-					<a href="./edit-profile.html">Edit Profile</a>
-				</div>
-				<form class="edit-phto">
-					<i class="fa fa-camera-retro"></i>
+				<!-- <div class="add-btn">
+					<a href="/edit-profile">Edit Profile</a>
+				</div> -->
+				<form id="editCoverImageFrom" class="edit-phto" action="/edit-cover-image" th:object="${user}" method="post" enctype="multipart/form-data">
+				<i class="fa fa-camera-retro"></i>
 					<label class="fileContainer">
-						Edit Cover Photo
-						<input type="file" />
+						<span th:text="#{edit.cover.photo}"></span>
+						<input type="file"
+							   accept="image/x-png,image/jpeg,image/jpg"
+							   th:field="*{cover}" id="userCoverImageFile"/></p>
+						<button type="submit" >Submit</button>
 					</label>
 				</form>
 				<div class="container-fluid">
@@ -42,14 +44,18 @@
 						<div class="col-lg-2 col-sm-3">
 							<div class="user-avatar">
 								<figure>
-									<div class="profile-photo" style="background-image: url(images/profile-photo.png);">
+									<div class="profile-photo" th:style="'background-image: url('+${userPhoto}+');'">
 									</div>
-									<form class="edit-phto">
+									
+									<form id="editUserImageFrom" class="edit-phto" action="/edit-user-image" th:object="${user}" method="post" enctype="multipart/form-data">
 										<i class="fa fa-camera-retro"></i>
 										<label class="fileContainer">
-											Edit Profile Photo
-											<input type="file" />
+											[[#{edit.profile.photo}]]
+											<input type="file"
+												   accept="image/x-png,image/jpeg,image/jpg"
+												   th:field="*{image}" id="userProfileImageFile"/>
 										</label>
+										<button type="submit" >Submit</button>
 									</form>
 								</figure>
 							</div>
@@ -58,13 +64,13 @@
 							<div class="timeline-info">
 								<ul>
 									<li class="admin-name">
-										<h5>Ibrahim Samir</h5>
+										<h5>[[${user.name}]]</h5>
 										<div>Software Developer</div>
 									</li>
 									<li>
-										<a href="./profile.html">Posts (154)</a>
-										<a class="" href="./following.html">Following (48)</a>
-										<a href="./following.html">Followers (884)</a>
+										<a href="/profile">Posts (9)</a>
+										<a class="" href="/following">Following ([[${CountFollowing}]])</a>
+										<a href="/following">Followers ([[${CountFollower}]])</a>
 									</li>
 								</ul>
 							</div>
