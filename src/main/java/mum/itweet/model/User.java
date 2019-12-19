@@ -1,22 +1,27 @@
 package mum.itweet.model;
 
+import io.swagger.models.auth.In;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import mum.itweet.model.lookups.Gender;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Data
 @NoArgsConstructor
-public class User  {
+public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(nullable = false)
+    @NotEmpty
     private String name;
 
     @Column(unique = true, nullable = false)
@@ -36,13 +41,22 @@ public class User  {
 
     private Date birthDate;
 
-    @Enumerated(EnumType.ORDINAL)
+    //@Enumerated(EnumType.ORDINAL)
     @Column(name = "genderId")
-    private Gender gender;
+    private Integer gender;
     private String mobile;
+    @Lob
     private String bio;
 
-    public User(String name,String email, boolean isAdmin, Role role, String pass, boolean isActive, Date birthDate, Gender gender, String mobile, String bio) {
+    private String PhotoUrl;
+    private String CoverUrl;
+
+    @Transient
+    MultipartFile image;
+    @Transient
+    MultipartFile cover;
+
+    public User(String name,String email, boolean isAdmin, Role role, String pass, boolean isActive, Date birthDate, int gender, String mobile, String bio) {
         this.name = name;
         this.email = email;
         this.isAdmin = isAdmin;
@@ -53,5 +67,57 @@ public class User  {
         this.gender = gender;
         this.mobile = mobile;
         this.bio = bio;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public String getPass() {
+        return pass;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public Integer getGender() {
+        return gender;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public String getPhotoUrl() {
+        return PhotoUrl;
+    }
+
+    public String getCoverUrl() {
+        return CoverUrl;
     }
 }

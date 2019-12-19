@@ -49,15 +49,14 @@
 					<div class="login-reg-bg">
 						<div class="log-reg-area sign">
 							<h2 class="log-title" th:text="#{login.title}"></h2>
-							<p class="error" style="display: none;">
-								Invalid user email or password !
-							</p>
+							<p th:if="${errorCode==2}" class="error" th:text="#{deactivated.account.err.msg}"></p>
 							<form action="#" th:action="@{/signin}" th:object="${userDto}" method="post">
 								<div class="form-group">
 									<input type="email" th:field="*{email}"/>
 									<label class="control-label" for="input" th:text="#{userName.lbl}">Username</label>
 									<i class="mtrl-select"></i>
 									<p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" th:errorclass="fieldError"></p>
+									<p th:if="${errorCode==1}" class="error" th:text="#{invalid.username.password.err.msg}"></p>
 								</div>
 								<div class="form-group">
 									<input type="password" th:field="*{pass}"/>
@@ -66,15 +65,14 @@
 								</div>
 								<div class="checkbox">
 									<label>
-										<input type="checkbox" checked="checked"><i class="check-box"></i>
+										<input type="checkbox"><i class="check-box"></i>
 										<span th:text="#{rememberMe.txt}">Always Remember Me.</span>
 									</label>
 								</div>
 								<a href="#" title="" class="forgot-pwd" th:text="#{forget.password}"></a>
 								<div class="submit-btns">
 									<button class="mtr-btn signin" type="submit"><span th:text="#{login.btn}">Login</span></button>
-									<button class="mtr-btn signup" type="submit" onclick="window.location.href='/register';"><span th:text="#{register.btn}">Register</span></button>
-
+									<a href="/register" class="already-have" th:text="#{signUp.lnk}">Don't have account? Sign Up</a>
 									<div class="facebook">
 										<a title="" href="/facebook">
 											<i class="fa fa-facebook"></i> <span th:text="#{facebook}">facebook</span>

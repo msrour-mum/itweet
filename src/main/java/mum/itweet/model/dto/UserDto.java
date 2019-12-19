@@ -25,7 +25,9 @@ public class UserDto {
     @NotEmpty
     private String pass;
     private Date birthDate;
-    private Gender gender;
+    private int gender;
     private String mobile;
     private String bio;
+    private String PhotoUrl;
+    private String CoverUrl;
 }

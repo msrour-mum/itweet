@@ -6,6 +6,7 @@ import mum.itweet.security.JwtToken;
 import mum.itweet.service.JwtUserDetailsService;
 import mum.itweet.service.UserService;
 import mum.itweet.utitlity.ConstantKeys;
+import mum.itweet.utitlity.Context;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -20,9 +21,11 @@ import org.springframework.social.oauth2.AccessGrant;
 import org.springframework.social.oauth2.OAuth2Operations;
 import org.springframework.social.oauth2.OAuth2Parameters;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -46,17 +49,35 @@ public class AuthenticationMvcController {
 
     @GetMapping("/login")
     public String loginForm(@ModelAttribute UserDto user) {
-        return "login";
+        if (!Context.isAuthenticated())
+            return "login";
+        return "redirect:/";
     }
 
     @GetMapping("/register")
     public String register(@ModelAttribute UserDto user) {
-        return "register";
+        if (!Context.isAuthenticated())
+            return "register";
+        return "redirect:/";
     }
 
     @PostMapping("/signin")
-    public String signin(@ModelAttribute UserDto user, HttpServletRequest request) throws Exception {
-        authenticate(user.getEmail(), user.getPass());
+    public String signin(@ModelAttribute UserDto user, HttpServletRequest request, RedirectAttributes redirectAttributes) {
+        try {
+             authenticate(user.getEmail(), user.getPass());
+        } catch (BadCredentialsException e) {
+            System.out.println(new Exception("INVALID_CREDENTIALS", e));
+            redirectAttributes.addFlashAttribute(ConstantKeys.ERROR_CODE_ATTRIBUTE_NAME, 1);
+            return "redirect:/login";
+            //throw new Exception("INVALID_CREDENTIALS", e);
+        }
+        catch (DisabledException e) {
+            //throw new Exception("USER_DISABLED", e);
+            System.out.println(new Exception("USER_DISABLED", e));
+            redirectAttributes.addFlashAttribute(ConstantKeys.ERROR_CODE_ATTRIBUTE_NAME, 2);
+            return "redirect:/login";
+        }
+
         final UserDetails userDetails = userDetailsService.loadUserByUsername(user.getEmail());
         final String token = jwtTokenUtil.generateToken(userDetails);
 
@@ -66,7 +87,7 @@ public class AuthenticationMvcController {
     }
 
     @PostMapping("/register")
-    public String register(@Valid @ModelAttribute UserDto user, BindingResult bindingResult) throws Exception {
+    public String register(@Valid @ModelAttribute UserDto user, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             return "register";
@@ -113,13 +134,8 @@ public class AuthenticationMvcController {
 
     }
 
-    private Authentication authenticate(String username, String password) throws Exception {
-        try {
-            return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
-        } catch (DisabledException e) {
-            throw new Exception("USER_DISABLED", e);
-        } catch (BadCredentialsException e) {
-            throw new Exception("INVALID_CREDENTIALS", e);
-        }
+    private Authentication authenticate(String username, String password) {
+
+        return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
     }
 }

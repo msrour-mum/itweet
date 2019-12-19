@@ -25,4 +25,9 @@ public class Context {
     {
        return getUser().getUsername();
     }
+    public static boolean isAuthenticated()
+    {
+        //ToDo:Check another way
+       return !SecurityContextHolder.getContext().getAuthentication().getName().equals("anonymousUser");
+    }
 }

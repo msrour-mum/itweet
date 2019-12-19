@@ -7,21 +7,33 @@
 </head>
 <body>
 
-<th:block>
-    <div th:each="task : ${pending}">
-        <form  th:action="@{'/admin/pendingPosts/approve/'+ ${task.id}}" method="post">
-<!--            <form action="#" data-th-action="@{'/admin/pendingPosts/approve/'+ ${task.id}}  data-th-object="${model}" method="post">-->
+<table>
+    <thead>
+    <tr>
+        <td>User</td>
+        <td>Post</td>
+        <td>View</td>
+        <td></td>
+        <td></td>
+    </tr>
+    </thead>
+    <tr th:each="task : ${pending}">
+        <td th:text="${task.user.name}"></td>
+        <td th:text="${task.postText}"></td>
+        <td><a  th:href="@{'/admin/pendingPosts/view/'+ ${task.id}}" > View Post</a></td>
+        <td>
+            <form th:action="@{'/admin/pendingPosts/approve/'+ ${task.id}}" method="post">
+                <div style="display: inline-block"><input type="submit" value="Approve" name="action"></div>
+            </form>
+        </td>
+        <td>
+            <form th:action="@{'/admin/pendingPosts/reject/'+ ${task.id}}" method="post">
+                <div style="display: inline-block"><input type="submit" value="Reject" name="action"></div>
+            </form>
+        </td>
+    </tr>
+</table>
 
-
-            <div>
-                <div style="display: inline-block" th:text="${task.postText}"></div>
-                <input type="hidden" th:value="${task.id}">
-                <div style="display: inline-block"><input type="submit" value="Approve"  name="action" ></div>
-                <div style="display: inline-block"><input type="submit" value="Reject"  name="action" ></div>
-            </div>
-        </form>
-    </div>
-</th:block>
 
 
 </body>
