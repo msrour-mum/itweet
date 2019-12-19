@@ -202,6 +202,20 @@
 	cursor: pointer;
 }
 
+.central-meta{
+	padding-bottom: 15px;
+}
+
+.post-comt-box form button{
+	bottom: initial;
+    position: initial;
+    right: initial;
+    background: #088dcd;
+}
+.comment-btn{
+	text-align: right;
+}
+
 #frends a.add-butn.more-action {
     right: 0;
 }

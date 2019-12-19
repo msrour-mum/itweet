@@ -116,7 +116,7 @@
 						<div class="col-lg-2 col-sm-3">
 							<div class="user-avatar">
 								<figure>
-									<div th:unless="${user.getPhotoUrl() == null}" class="profile-photo" th:style="(${user.getPhotoUrl()})? 'background-image: url('+ ${user.getPhotoUrl()} +')':'background-image: url(images/profile-photo.png)'">
+									<div class="profile-photo" th:style="(${user.getPhotoUrl()})? 'background-image: url('+ ${user.getPhotoUrl()} +')':'background-image: url(images/profile-photo.png)'">
 									</div>
 									<form id="editUserImageFrom" class="edit-phto" action="/edit-user-image" th:object="${user}" method="post" enctype="multipart/form-data">
 
