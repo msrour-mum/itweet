@@ -7,7 +7,11 @@
 </head>
 <body>
 
-<div th:text="${item.postText}">
+<div th:text="${item.name}">
+<div th:text="${item.email}">
+
+<div th:if="${item.active}">Active</div>
+    <div th:unless="${item.active}">Not Active</div>
 
 </div>
 <br>
