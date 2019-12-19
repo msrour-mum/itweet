@@ -28,4 +28,6 @@ public class UserDto {
     private int gender;
     private String mobile;
     private String bio;
+    private String PhotoUrl;
+    private String CoverUrl;
 }

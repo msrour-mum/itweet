@@ -1,10 +1,7 @@
 package mum.itweet.controller;
 
 import mum.itweet.model.Following;
-import mum.itweet.model.Post;
 import mum.itweet.model.User;
-import mum.itweet.model.dto.FollowingDto;
-import mum.itweet.model.dto.PostItem;
 import mum.itweet.model.view.PostDetail;
 import mum.itweet.service.FollowingService;
 import mum.itweet.service.PostService;

@@ -44,6 +44,9 @@ public class User  {
     @Lob
     private String bio;
 
+    private String PhotoUrl;
+    private String CoverUrl;
+
     public User(String name,String email, boolean isAdmin, Role role, String pass, boolean isActive, Date birthDate, int gender, String mobile, String bio) {
         this.name = name;
         this.email = email;
