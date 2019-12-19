@@ -16,5 +16,10 @@ public class UnhealthyKey {
 
     @Column(nullable = false)
     private String wordKey;
+
+    public UnhealthyKey(int id, String wordKey) {
+        this.id = id;
+        this.wordKey = wordKey;
+    }
 }
 

@@ -29,6 +29,7 @@ public interface PostService {
     public int getDisabledPostCountPerUser(int userId);
 
     public boolean isPostContainBadWords(String postText);
+    public List<PostDetail> searchPost(String txt);
 
 
 }

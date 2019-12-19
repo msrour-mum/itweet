@@ -69,6 +69,16 @@ public class DataGenerate {
         em.persist(user6);
         em.persist(user7);
 
+
+        UnhealthyKey unhealthyKey1=new UnhealthyKey(1,"Bad");
+        UnhealthyKey unhealthyKey2=new UnhealthyKey(2,"shut");
+        UnhealthyKey unhealthyKey3=new UnhealthyKey(3,"bitch");
+        em.persist(unhealthyKey1);
+        em.persist(unhealthyKey2);
+        em.persist(unhealthyKey3);
+
+
+
         for (int i = 8; i < 15; i++) {
             User userTemp = new User("Name : " + i, "user" + i + "@mum.com", false, roleUser, pass, true, new Date(), 1, "1232", "Bio " + i);
             em.persist(userTemp);
@@ -82,8 +92,10 @@ public class DataGenerate {
         for (User userM : users) {
             for (User userS : users) {
                 if (doRandom(4,1)) {
-                    Following following = new Following(userS, userM, new Date());
-                    em.persist(following);
+                    if(userM.getId()!=userS.getId()) {
+                        Following following = new Following(userS, userM, new Date());
+                        em.persist(following);
+                    }
                 }
             }
         }
@@ -91,6 +103,8 @@ public class DataGenerate {
         for (User user : users) {
             for (int i = 0; i < 7; i++) {
 
+                if (user.isAdmin())
+                    continue;
                 PostStatus p = PostStatus.Active;
                 boolean isNotActivePost =doRandom(10,i);
                 if(isNotActivePost)
@@ -160,8 +174,8 @@ public class DataGenerate {
             try {
                 Path temp = Files.copy
                         (Paths.get("C:\\uploads\\ProfilesPic\\" + user.getId() + ".jpg"),
-                                Paths.get("C:\\uploads\\" + user.getId() + "\\" + user.getId() + ".jpg"));
-                user.setPhotoUrl("/uploads/" + user.getId() + "/" + user.getId() + ".jpg");
+                                Paths.get("C:\\uploads\\" + user.getId() + "\\" + "profiel"+user.getId() + ".jpg"));
+                user.setPhotoUrl("/uploads/" + user.getId() + "/" + "profiel"+user.getId() + ".jpg");
                 em.persist(user);
             } catch (Exception EX) {            }
         }
