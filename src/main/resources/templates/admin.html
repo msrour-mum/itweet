@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    <title>itweet Social Network - Home</title>
+    <base href="/">
+    <link rel="icon" href="images/fav.png" type="image/png" sizes="16x16">
+    <link rel="stylesheet" href="css/main.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/color.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/styles2.css">
+
+</head>
+
+<body th:with="userPhoto=(${user.PhotoUrl} == null)? 'images/profile-photo.png' : ${user.PhotoUrl}">
+<div class="theme-layout">
+    <div th:fragment="header">
+        <div class="responsive-header">
+            <div class="mh-head first Sticky">
+					<span class="mh-text"> <a href="/" title=""><img
+                            src="images/logo2.png" alt=""></a>
+					</span>
+            </div>
+            <div class="mh-head second">
+                <form class="mh-form">
+                    <input th:placeholder="#{search.plh}"/> <a href="#/" class="fa fa-search"></a>
+                </form>
+            </div>
+        </div>
+        <!-- responsive header -->
+
+        <div class="topbar stick">
+            <div class="logo">
+                <a href="/"><img src="images/logo.png" alt=""></a>
+            </div>
+
+            <div class="top-area">
+                <ul class="setting-area">
+                    <li><a href="#" th:title="#{searchPosts}"><i class="ti-search"></i></a>
+                        <div class="searched">
+                            <form method="post" class="form-search">
+                                <input type="text" th:placeholder="#{searchPosts}">
+                                <button data-ripple>
+                                    <i class="ti-search"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </li>
+                    <li><a href="#" th:title="#{notification.tip}"> <i class="ti-bell"></i><span>1</span>
+                    </a>
+                        <div class="dropdowns">
+                            <span>1 New Notifications</span>
+                            <ul class="drops-menu">
+                                <li><a href="/notifications" title=""> <img
+                                        src="images/profile-photo.png">
+                                    <div class="mesg-meta">
+                                        <h6>John Doe</h6>
+                                        <span>Posted: Life is full of surprises</span> <i>2
+                                        min ago</i>
+                                    </div>
+                                </a> <span class="tag green">New</span></li>
+                            </ul>
+                            <a href="/notifications" title="" class="more-mesg">view all</a>
+                        </div>
+                    </li>
+                    <li><a href="#" th:title="#{languages}"><i class="fa fa-globe"></i></a>
+                        <div class="dropdowns languages">
+                            <a href="/?lang=en"></i>English</a> <a
+                                href="/?lang=zh_CN">中文</a>
+                        </div>
+                    </li>
+                </ul>
+                <div class="user-img">
+                    <img th:src="${userPhoto}">
+                    <div class="user-setting">
+                        <a href="/profile" th:text="#{main.menu.viewProfile}"><i class="ti-user"></i> view profile</a>
+                        <a href="/edit-profile" th:text="#{main.menu.editProfile}"><i class="ti-pencil-alt"></i>edit
+                            profile</a>
+                        <a href="#" th:text="#{main.menu.accountSetting}"><i class="ti-settings"></i>account setting</a>
+                        <a href="/logout" th:text="#{main.menu.logout}"><i class="ti-power-off"></i>log out</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- topbar -->
+    </div>
+    <section>
+        <div class="gap gray-bg">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="row" id="page-contents">
+                            <div class="accordion" >
+                                <div class="col-md-12" th:if="${#authorization.expression('hasAuthority(''Admin'')') ||
+                                #authorization.expression('hasAuthority(''USER'')')}">
+                                    <div class="col-md-3"></div>
+                                    <div class="card col-md-6">
+                                        <div class="card-header" id="headingOne">
+                                            <h5 class="mb-0">
+                                                <a class="btn btn-link" href="/admin/users" th:text="#{user.managment}"></a>
+                                            </h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3"></div>
+                                </div>
+                                    <div class="col-md-12" th:if="${#authorization.expression('hasAuthority(''Admin'')') ||
+                                #authorization.expression('hasAuthority(''MarketManager'')')}">
+                                        <div class="col-md-3"></div>
+                                        <div class="card col-md-6">
+                                            <div class="card-header" id="headingOne2">
+                                                <h5 class="mb-0">
+													<a class="btn btn-link" href="/admin/ads" th:text="#{advertisements}"></a>
+                                                </h5>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3"></div>
+                                    </div>
+                                <div class="col-md-12" th:if="${#authorization.expression('hasAuthority(''Admin'')') ||
+                                #authorization.expression('hasAuthority(''ContentManager'')')}">
+                                    <div class="col-md-3"></div>
+                                    <div class="card col-md-6">
+                                        <div class="card-header" id="headingOne3">
+                                            <h5 class="mb-0">
+												<a class="btn btn-link" href="/admin/pendingPosts" th:text="#{pendingPosts}"></a>
+                                            </h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<script src="js/main.min.js"></script>
+<script src="js/script.js"></script>
+<script src="js/map-init.js"></script>
+</body>
+
+</html>

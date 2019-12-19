@@ -147,8 +147,8 @@ public class PostServiceImpl implements PostService {
 			int commetsCount=post.getComments().size();
 			CommentDetail lastComment = null;
 			if (commetsCount>0) {
-				//Comment comment=post.getComments().get(commetsCount - 1);
-				Comment comment=post.getComments().get(0);
+				Comment comment=post.getComments().get(commetsCount - 1);
+				//Comment comment=post.getComments().get(0);
 				lastComment = new CommentDetail(comment.getId(),comment.getCommentText(),comment.getCreationDate(), comment.getUser(),post.getId());
 			}
 			PostDetail postView =new PostDetail(post.getId(), post.getUser(),post.getPostText(),post.getStatus().ordinal(),post.getImageUrl(),post.getVideoUrl(),post.getCreationDate(),post.getPublishDate(),post.getPostLikes().size(),commetsCount,lastComment);

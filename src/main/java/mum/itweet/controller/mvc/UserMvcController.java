@@ -4,11 +4,14 @@ import java.io.IOException;
 
 import javax.validation.Valid;
 
+import mum.itweet.model.Following;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import mum.itweet.components.storage.IStorageService;
@@ -77,5 +80,20 @@ public class UserMvcController {
 			userService.update(user);
 		}
 		return "redirect:/edit-profile";
+	}
+
+	@GetMapping(value = "/follow/{followingId}")
+	public String follow(@PathVariable("followingId") int followingId) {
+		int userId = Context.getUserId();
+		followingService.addFollow(userId,followingId);
+		return "redirect:/following";
+	}
+
+	@GetMapping(value = "/unfollow/{followingId}")
+	public String delete(@PathVariable("followingId") int followingId) {
+			int userId = Context.getUserId();
+			followingService.unfollow(userId,followingId);
+			return "redirect:/following";
+
 	}
 }

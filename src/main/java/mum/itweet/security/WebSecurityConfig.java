@@ -18,7 +18,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
@@ -71,9 +71,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // make sure we use stateless session; session won't be used to
                 // store user's state.
                 //.exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
+				//.exceptionHandling().accessDeniedPage("/403")
                 ;
                 // Add a filter to validate the tokens with every request
                 httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+
+//        httpSecurity.csrf().disable()
+//                .authorizeRequests().antMatchers("/*").permitAll();
     }
 
 	@Override

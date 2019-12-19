@@ -77,7 +77,8 @@
 						<div class="user-setting">
 						<a href="/profile" th:text="#{main.menu.viewProfile}"><i class="ti-user"></i> view profile</a>
 						<a href="/edit-profile" th:text="#{main.menu.editProfile}"><i class="ti-pencil-alt"></i>edit profile</a>
-						<a href="/edit-profile" th:text="#{main.menu.accountSetting}"><i class="ti-settings"></i>account setting</a>
+						<a th:unless="${#authorization.expression('hasAuthority(''RegularUser'')')}"
+						   href="/admin" th:text="#{main.menu.accountSetting}"><i class="ti-settings"></i>Admin</a>
 						<a href="/logout" th:text="#{main.menu.logout}"><i class="ti-power-off"></i>log out</a>
 						</div>
 					</div>
@@ -202,7 +203,7 @@
 															</div>
 														</li>
 														<li th:if="${post.commentCount} > 1">
-															<a href="#" title="" class="showmore underline" th:text="#{show.more.comments}"></a></li>
+<!--															<a href="#" title="" class="showmore underline" th:text="#{show.more.comments}"></a></li>-->
 														<li class="post-comment">
 															<div class="comet-avatar">
 																<img src="images/profile-photo.png">
@@ -242,7 +243,7 @@
 														<h4>
 															<a th:href="@{'/profile/'+${user.id}}">[[${user.name}]]</a>
 														</h4>
-														<a th:href="@{'/profile/'+${user.id}}" th:attr="data-userid=${user.id}" class="underline follow">Follow</a>
+														<a th:href="@{'/follow/'+${user.id}}" th:attr="data-userid=${user.id}" class="underline follow">Follow</a>
 													</div>
 												</li>
 											</ul>

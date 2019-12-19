@@ -10,7 +10,9 @@ import mum.itweet.model.lookups.PostStatus;
 import mum.itweet.model.view.UserDetail;
 import mum.itweet.service.PostService;
 import mum.itweet.service.UserService;
+import mum.itweet.utitlity.Context;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -31,6 +33,13 @@ public class AdminController {
     @Autowired
     UserService userService;
 
+    @GetMapping()
+    public String admin(Model model){
+        model.addAttribute("user", userService.get(Context.getUserId()));
+        return "admin";
+    }
+
+   /// @Secured({"ROLE_Admin","ROLE_ContentManager"})
     @GetMapping("/pendingPosts")
     public String getPendingPosts(Model model)
     {
@@ -38,6 +47,7 @@ public class AdminController {
         return "admin-pending-post";
     }
 
+    //@Secured({"ROLE_Admin","ROLE_ContentManager"})
     @GetMapping("/pendingPosts/view/{postId}")
     public String approve(@PathVariable long postId,@ModelAttribute Post post,  Model  model) {
 
@@ -45,6 +55,7 @@ public class AdminController {
         return "admin-pending-post-view";
     }
 
+   // @Secured({"ROLE_Admin","ROLE_ContentManager"})
     @PostMapping("/pendingPosts/approve/{postId}")
     public String approve(@PathVariable long postId, @ModelAttribute Post model) {
 
@@ -52,6 +63,7 @@ public class AdminController {
         return "redirect:/admin/pendingPosts";
     }
 
+    //@Secured({"ROLE_Admin","ROLE_ContentManager"})
     @PostMapping("/pendingPosts/reject/{postId}")
     public String reject(@PathVariable long postId, @ModelAttribute Post model) {
         postService.updateStatus(postId, PostStatus.Suspended);

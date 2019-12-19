@@ -107,7 +107,7 @@
 																<div class="pepl-info">
 																	<a th:href="@{'/profile/'+${user.id}}">[[${user.name}]]</a>
 																	</h4>
-																	<a th:href="@{'/profile/'+${user.id}}" th:attr="data-userid=${user.id}" class="add-butn more-action">Unfollow</a>
+																	<a th:href="@{'/unfollow/'+${user.id}}" th:attr="data-userid=${user.id}" class="add-butn more-action">Unfollow</a>
 																</div>
 															</div>
 														</li>
@@ -126,7 +126,7 @@
 																<div class="pepl-info">
 																	<a th:href="@{'/profile/'+${user.id}}">[[${user.name}]]</a>
 																	</h4>
-																	<a th:href="@{'/profile/'+${user.id}}" th:attr="data-userid=${user.id}" class="add-butn">Follow</a>
+																	<a th:href="@{'/follow/'+${user.id}}" th:attr="data-userid=${user.id}" class="add-butn">Follow</a>
 																</div>
 															</div>
 														</li>
