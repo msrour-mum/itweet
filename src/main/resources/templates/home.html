@@ -2,149 +2,143 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="" />
-	<meta name="keywords" content="" />
-	<title>itweet Social Network - Home</title>
-	<link rel="icon" href="images/fav.png" type="image/png" sizes="16x16">
-
-	<link rel="stylesheet" href="css/main.min.css">
-	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/color.css">
-	<link rel="stylesheet" href="css/responsive.css">
-	<link rel="stylesheet" href="css/styles2.css">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<title>itweet Social Network - Home</title>
+<base href="/">
+<link rel="icon" href="images/fav.png" type="image/png" sizes="16x16">
+<link rel="stylesheet" href="css/main.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/color.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/styles2.css">
 
 </head>
 
-<body>
+<body th:with="userPhoto=(${user.PhotoUrl} == null)? 'images/profile-photo.png' : ${user.PhotoUrl}">
 	<div class="theme-layout">
-		<div class="responsive-header">
-			<div class="mh-head first Sticky">
-				<span class="mh-text">
-					<a href="home.html" title=""><img src="images/logo2.png" alt=""></a>
-				</span>
+		<div th:fragment="header">
+			<div class="responsive-header">
+				<div class="mh-head first Sticky">
+					<span class="mh-text"> <a href="/" title=""><img
+							src="images/logo2.png" alt=""></a>
+					</span>
+				</div>
+				<div class="mh-head second">
+					<form class="mh-form">
+						<input placeholder="search" /> <a href="#/" class="fa fa-search"></a>
+					</form>
+				</div>
 			</div>
-			<div class="mh-head second">
-				<form class="mh-form">
-					<input placeholder="search" />
-					<a href="#/" class="fa fa-search"></a>
-				</form>
-			</div>
-		</div><!-- responsive header -->
+			<!-- responsive header -->
 
-		<div class="topbar stick">
-			<div class="logo">
-				<a href="home.html"><img src="images/logo.png" alt=""></a>
-			</div>
+			<div class="topbar stick">
+				<div class="logo">
+					<a href="/"><img src="images/logo.png" alt=""></a>
+				</div>
 
-			<div class="top-area">
-				<ul class="setting-area">
-					<li>
-						<a href="#" title="Search Posts"><i class="ti-search"></i></a>
-						<div class="searched">
-							<form method="post" class="form-search">
-								<input type="text" placeholder="Search Posts">
-								<button data-ripple><i class="ti-search"></i></button>
-							</form>
-						</div>
-					</li>
-					<li>
-						<a href="#" title="Notification">
-							<i class="ti-bell"></i><span>1</span>
+				<div class="top-area">
+					<ul class="setting-area">
+						<li><a href="#" title="Search Posts"><i class="ti-search"></i></a>
+							<div class="searched">
+								<form method="post" class="form-search">
+									<input type="text" placeholder="Search Posts">
+									<button data-ripple>
+										<i class="ti-search"></i>
+									</button>
+								</form>
+							</div></li>
+						<li><a href="#" title="Notification"> <i class="ti-bell"></i><span>1</span>
 						</a>
-						<div class="dropdowns">
-							<span>1 New Notifications</span>
-							<ul class="drops-menu">
-								<li>
-									<a href="notifications.html" title="">
-										<img src="images/profile-photo.png">
-										<div class="mesg-meta">
-											<h6>sarah Loren</h6>
-											<span>Hi, how r u dear ...?</span>
-											<i>2 min ago</i>
-										</div>
-									</a>
-									<span class="tag green">New</span>
-								</li>
-							</ul>
-							<a href="notifications.html" title="" class="more-mesg">view all</a>
-						</div>
-					</li>
-					<li><a href="#" title="Languages"><i class="fa fa-globe"></i></a>
-						<div class="dropdowns languages">
-							<a href="/?lang=en"><i class="ti-check"></i>English</a>
-							<a href="/?lang=zh_CN">中文</a>
-						</div>
-					</li>
-				</ul>
-				<div class="user-img">
-					<img src="images/profile-photo.png">
-					<div class="user-setting">
+							<div class="dropdowns">
+								<span>1 New Notifications</span>
+								<ul class="drops-menu">
+									<li><a href="/notifications" title=""> <img
+											src="images/profile-photo.png">
+											<div class="mesg-meta">
+												<h6>John Doe</h6>
+												<span>Posted: Life is full of surprises</span> <i>2
+													min ago</i>
+											</div>
+									</a> <span class="tag green">New</span></li>
+								</ul>
+								<a href="/notifications" title="" class="more-mesg">view
+									all</a>
+							</div></li>
+						<li><a href="#" title="Languages"><i class="fa fa-globe"></i></a>
+							<div class="dropdowns languages">
+								<a href="/?lang=en"></i>English</a> <a
+									href="/?lang=zh_CN">中文</a>
+							</div></li>
+					</ul>
+					<div class="user-img">
+						<img th:src="${userPhoto}">
+						<div class="user-setting">
 						<a href="/profile" th:text="#{main.menu.viewProfile}"><i class="ti-user"></i> view profile</a>
 						<a href="/edit-profile" th:text="#{main.menu.editProfile}"><i class="ti-pencil-alt"></i>edit profile</a>
 						<a href="#" th:text="#{main.menu.accountSetting}"><i class="ti-settings"></i>account setting</a>
 						<a href="/logout" th:text="#{main.menu.logout}"><i class="ti-power-off"></i>log out</a>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div><!-- topbar -->
-
+			<!-- topbar -->
+		</div>
 		<section>
 			<div class="gap gray-bg">
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="row" id="page-contents">
-								<div class="col-lg-3">
+								<div class="col-lg-3" th:fragment="sidebar-left">
 									<aside class="sidebar static">
 										<div class="widget profile">
-											<h4 class="widget-title"><a href="/profile">Ibrahim Samir</a></h4>
+											<h4 class="widget-title">
+												<a href="/profile">[[${user.name}]]</a>
+											</h4>
 											<div class="your-page">
 												<figure>
-													<a href="/profile" title=""><img
-															src="images/profile-photo.png"></a>
+													<a href="/profile" title=""><img th:src="${userPhoto}"></a>
 												</figure>
 												<div class="page-likes">
 													<ul class="nav nav-tabs likes-btn">
 														<li class="nav-item"><a class="active"
-																href="/following">Following</a>
-															<p>34</p>
-														</li>
+															href="/following">Following</a>
+															<p>[[${CountFollowing}]]</p></li>
 														<li class="nav-item"><a href="/following">Followers</a>
-															<p>884</p>
-														</li>
+															<p>[[${CountFollower}]]</p></li>
 													</ul>
-													<h6><a href="/profile" class="underline">View my profile</a>
+													<h6>
+														<a href="/profile" class="underline">View my profile</a>
 													</h6>
 												</div>
 											</div>
-										</div><!-- page like widget -->
+										</div>
+										<!-- page like widget -->
 									</aside>
-								</div><!-- sidebar -->
-								<div class="col-lg-6">
+								</div>
+								<!-- sidebar -->
+								<div class="col-lg-6" th:fragment="posts">
 									<div class="central-meta">
 										<div class="new-postbox">
 											<figure>
-												<img src="images/profile-photo.png">
+												<img th:src="${userPhoto}">
 											</figure>
-											<div class="newpst-input">
-												<form method="post">
-													<textarea rows="2" placeholder="What's on your mind?"></textarea>
+											<div class="newpst-input create-post">
+												<form action="/post" th:object="${post}" method="post" enctype="multipart/form-data">
+													<textarea th:field="*{postText}" rows="2" placeholder="What's on your mind?" minlength="3" maxlength="200" required title="min 3, max 200 characters"></textarea>
 													<div class="attachments">
 														<ul>
-															<li>
-																<i class="fa fa-image"></i>
-																<label class="fileContainer">
-																	<input type="file">
-																</label>
-															</li>
-															<li>
-																<i class="fa fa-video-camera"></i>
-																<label class="fileContainer">
-																	<input type="file">
-																</label>
-															</li>
+															<li><i class="fa fa-image"></i> <label
+																class="fileContainer"> <input type="file" accept="image/x-png,image/jpeg,image/jpg"
+                  th:field="*{image}">
+															</label></li>
+															<li><i class="fa fa-video-camera"></i> <label
+																class="fileContainer"> <input type="file" accept="video/mp4,video/x-m4v,video/*"
+                  th:field="*{video}">
+															</label></li>
 															<li>
 																<button type="submit">Post</button>
 															</li>
@@ -153,85 +147,71 @@
 												</form>
 											</div>
 										</div>
-									</div><!-- add post new box -->
+									</div>
+									<!-- add post new box -->
 									<div class="loadMore">
-										<div class="central-meta item">
+										<div th:each="post : ${posts}" class="central-meta item">
 											<div class="user-post">
 												<div class="friend-info">
 													<figure>
-														<img src="images/profile-photo.png">
+														<a th:href="@{'/profile/'+${post.user.id}}"><img th:src="(${post.user.PhotoUrl} == null)? 'images/profile-photo.png' : ${post.user.PhotoUrl}"></a>
 													</figure>
 													<div class="friend-name">
-														<ins><a href="/profile" title="">Ibrahim Samir</a></ins>
-														<span>published: june,2 2018 19:PM</span>
+														<ins>
+															<a th:href="@{'/profile/'+${post.user.id}}" th:attr="data-pid=${post.id}">[[${post.user.name}]]</a>
+														</ins>
+														<span>published: [[${post.publishDate}]]</span>
 													</div>
 													<div class="post-meta">
 														<div class="description">
-															<p>
-																World's most beautiful car in Curabitur
-																beatuiful car available in america and the saudia
-																arabia, you can book your test drive by our official
-																website
-															</p>
+															<p th:text="${post.postText}"></p>
 														</div>
-														<img src="images/pholder1.jpg">
+														
+														<img th:src="${post.imageUrl}">
+														
+														<div th:if="${post.videoUrl}" class="post-video">
+															<video controls>
+															  <source th:src="${post.videoUrl}" type="video/mp4">
+															</video>
+														</div>
 														<div class="we-video-info">
 															<ul>
-																<!-- <li>
-															<span class="views" data-toggle="tooltip" title="views">
-																<i class="fa fa-eye"></i>
-																<ins>1.2k</ins>
-															</span>
-														</li> -->
-																<li>
-																	<span class="comment" data-toggle="tooltip"
-																		title="Comments">
-																		<i class="fa fa-comments-o"></i>
-																		<ins>52</ins>
-																	</span>
-																</li>
-																<li>
-																	<span class="like" data-toggle="tooltip"
-																		title="like">
-																		<i class="ti-heart"></i>
-																		<ins>215</ins>
-																	</span>
-																</li>
+																<li><span class="comment" data-toggle="tooltip"
+																	title="Comments"> <i class="fa fa-comments-o"></i>
+																		<ins>[[${post.commentCount}]]</ins>
+																</span></li>
+																<li><span class="like" data-toggle="tooltip"
+																	title="like"> <i class="ti-heart"></i> <ins>[[${post.likeCount}]]</ins>
+																</span></li>
 															</ul>
 														</div>
 													</div>
 												</div>
 												<div class="coment-area">
 													<ul class="we-comet">
-														<li>
+														<li th:if="${post.lastComment}">
 															<div class="comet-avatar">
 																<img src="images/profile-photo.png">
 															</div>
 															<div class="we-comment">
 																<div class="coment-head">
-																	<h5><a href="time-line.html" title="">Jason
-																			borne</a></h5>
-																	<span>1 year ago</span>
-																	<a class="we-reply" href="#" title="Reply"><i
-																			class="fa fa-reply"></i></a>
+																	<h5>
+																		<a th:href="@{'/profile/'+${post.lastComment.user.id}}" th:attr="data-pid=${post.id}">[[${post.lastComment.user.name}]]</a>
+																	</h5>
+																	<span>[[${post.lastComment.creationDate}]]</span>
 																</div>
-																<p>we are working for the dance and sing songs. this car
-																	is very awesome for the youngster. please vote this
-																	car and like our post</p>
+																<p>[[${post.lastComment.commentText}]]</p>
 															</div>
 														</li>
-														<li>
-															<a href="#" title="" class="showmore underline">more
-																comments</a>
-														</li>
+														<li th:if="${post.commentCount} > 1"><a href="#" title="" class="showmore underline">more
+																comments</a></li>
 														<li class="post-comment">
 															<div class="comet-avatar">
 																<img src="images/profile-photo.png">
 															</div>
 															<div class="post-comt-box">
 																<form method="post">
-																	<textarea
-																		placeholder="Post your comment"></textarea>
+																	<textarea placeholder="Post your comment"></textarea>
 																	<button type="submit"></button>
 																</form>
 															</div>
@@ -241,46 +221,37 @@
 											</div>
 										</div>
 									</div>
-								</div><!-- centerl meta -->
-								<div class="col-lg-3">
+								</div>
+								<!-- centerl meta -->
+								<div class="col-lg-3" th:fragment="sidebar-right">
 									<aside class="sidebar static">
 										<div class="widget">
 											<h4 class="widget-title">Advertisement</h4>
 											<div class="adpholder">
-												<a href="#" target="_blank"><img src="images/pholder.jpg" alt=""></a>
+												<a href="#" target="_blank"><img
+													src="images/pholder.jpg" alt=""></a>
 											</div>
 										</div>
 										<div class="widget">
 											<h4 class="widget-title">People to follow</h4>
 											<ul class="followers">
-												<li>
-													<figure><img src="images/profile-photo.png">
+												<li th:each="user : ${PeopleYouMayKnow}">
+													<figure>
+														<img th:src="(${user.PhotoUrl} == null)? 'images/profile-photo.png' : ${user.PhotoUrl}">
 													</figure>
 													<div class="friend-meta">
-														<h4><a href="time-line.html" title="">Kelly Bill</a></h4>
-														<a href="#" title="" class="underline follow">Follow</a>
-													</div>
-												</li>
-												<li>
-													<figure><img src="images/profile-photo.png">
-													</figure>
-													<div class="friend-meta">
-														<h4><a href="time-line.html" title="">Sophia</a></h4>
-														<a href="#" title="" class="underline follow">Follow</a>
-													</div>
-												</li>
-												<li>
-													<figure><img src="images/profile-photo.png">
-													</figure>
-													<div class="friend-meta">
-														<h4><a href="time-line.html" title="">Allen</a></h4>
-														<a href="#" title="" class="underline follow">Follow</a>
+														<h4>
+															<a th:href="@{'/profile/'+${user.id}}">[[${user.name}]]</a>
+														</h4>
+														<a th:href="@{'/profile/'+${user.id}}" th:attr="data-userid=${user.id}" class="underline follow">Follow</a>
 													</div>
 												</li>
 											</ul>
-										</div><!-- who's following -->
+										</div>
+										<!-- who's following -->
 									</aside>
-								</div><!-- sidebar -->
+								</div>
+								<!-- sidebar -->
 							</div>
 						</div>
 					</div>

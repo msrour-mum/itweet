@@ -158,8 +158,8 @@ jQuery(document).ready(function ($) {
 
 	if ($.isFunction($.fn.loadMoreResults)) {
 		$('.loadMore').loadMoreResults({
-			displayedItems: 3,
-			showItems: 1,
+			displayedItems: 8,
+			showItems: 8,
 			button: {
 				'class': 'btn-load-more',
 				'text': 'Load More'

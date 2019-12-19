@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+<meta charset="windows-1256">
+<title>Insert title here</title>
+</head>
+<body>
+	this is debug:
+	<div th:text="${posts[0].lastComment}">this is div thymleaf</div>
+	
+	<div th:each="var : ${posts[0].lastComment}">
+		<div>-->[[${var.id}]]</div>
+	</div>
+	
+	<div th:text="${posts[0].imageUrl}">this is div thymleaf</div>
+	
+	<img th:src="${posts[0].imageUrl}">
+	
+	<div th:each="var : ${#vars.getVariableNames()}">
+		<div style="background:#ccc">[[${var}]]</div>
+		<div>[[${#vars.getVariable(var)}]]</div>
+	</div>
+</body>
+</html>

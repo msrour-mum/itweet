@@ -189,6 +189,19 @@
     padding: 1px 3px;
 }
 
+.post-video{
+	text-align: center;
+}
+
+.post-video video{
+	max-width: 100%;
+    max-height: 400px;
+}
+
+.fileContainer{
+	cursor: pointer;
+}
+
 #frends a.add-butn.more-action {
     right: 0;
 }
