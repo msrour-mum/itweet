@@ -1,8 +1,13 @@
 package mum.itweet.service.impl;
 
+import mum.itweet.model.Comment;
+import mum.itweet.model.Post;
 import mum.itweet.model.Role;
 import mum.itweet.model.User;
 import mum.itweet.model.lookups.UserRoleType;
+import mum.itweet.model.view.CommentDetail;
+import mum.itweet.model.view.PostDetail;
+import mum.itweet.model.view.UserDetail;
 import mum.itweet.repository.RoleRepository;
 import mum.itweet.repository.UserRepository;
 import mum.itweet.service.UserService;
@@ -95,6 +100,35 @@ public class UserServiceImpl implements UserService {
     {
         Role role= roleRepository.getOne(userRoleType.ordinal());
         return userRepository.getAllByRole(role);
+    }
+
+    @Override
+    public List<UserDetail> quickSearch(String name, String email, boolean enable)
+    {
+       // return userRepository.quickSearch(name,email,enable);
+      //  return convertToDetails( userRepository.findAll());
+        return convertToDetails(userRepository.getAllByNameContainsAndEmailContainingAndIsActiveEquals(name,email,enable));
+    }
+
+
+    @Override
+    public List<UserDetail> getAllUser() {
+        return
+                convertToDetails( userRepository.findAll());
+    }
+
+    public  List<UserDetail> convertToDetails(List<User> lst)
+    {
+        if (lst==null) return null;
+        List<UserDetail> resultUser=new ArrayList<>();
+        for (User user : lst)
+        {
+
+            UserDetail userDetail=new UserDetail(user.getId(), user.getName(),user.getEmail(),user.getBirthDate(),user.getGender(),user.getMobile(),user.getBio(),user.getPhotoUrl(),user.getCoverUrl(),user.isActive(),user.isAdmin());
+
+            resultUser.add(userDetail);
+        }
+        return resultUser;
     }
 
 }

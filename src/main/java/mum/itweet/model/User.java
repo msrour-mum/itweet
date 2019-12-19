@@ -68,4 +68,56 @@ public class User implements Serializable {
         this.mobile = mobile;
         this.bio = bio;
     }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public String getPass() {
+        return pass;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public Integer getGender() {
+        return gender;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public String getPhotoUrl() {
+        return PhotoUrl;
+    }
+
+    public String getCoverUrl() {
+        return CoverUrl;
+    }
 }

@@ -3,6 +3,7 @@ package mum.itweet.config;
 import mum.itweet.model.*;
 import mum.itweet.model.lookups.Gender;
 import mum.itweet.model.lookups.PostStatus;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -19,28 +20,30 @@ public class DataGenerate {
     public static void Generate() {
         //SpringApplication.run(ItweetApplication.class, args);
 
-
+        BCryptPasswordEncoder passwordUtil=new BCryptPasswordEncoder();
+        String pass=passwordUtil.encode("sa");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
 
-        Role roleAdmin = new Role(1, "Admin Roll");
-        Role roleContentManager = new Role(2, "Content Manager Roll");
-        Role roleMarketManager = new Role(3, "Market Manager Roll");
-        Role roleUser = new Role(4, "Regular User Roll");
+        Role roleAdmin = new Role(1, "Admin");
+        Role roleContentManager = new Role(2, "ContentManager");
+        Role roleMarketManager = new Role(3, "MarketManager");
+        Role roleUser = new Role(4, "RegularUser");
 
-        User userAdmin1 = new User("Admin", "admin@mum.com", true, roleAdmin, "123", true, new Date(), 1, "1232", "Admin User");
-        User userAdmin2 = new User("Admin Zein", "adminzein@mum.com", true, roleContentManager, "123", true, new Date(), 1, "1232", "Admin User");
-        User userAdmin3 = new User("Admin Mah", "adminmah@mum.com", true, roleMarketManager, "123", true, new Date(), 1, "1232", "Admin User");
-        User userAdmin4 = new User("Admin Ibrahim", "adminIbrahim@mum.com", true, roleAdmin, "123", true, new Date(), 1, "1232", "Admin User");
+        User userAdmin1 = new User("Admin", "admin@mum.com", true, roleAdmin, pass, true, new Date(), 1, "1232", "Admin User");
+        User userAdmin2 = new User("Mahmoud Srour", "msrour@mum.edu", true, roleAdmin, pass, true, new Date(), 1, "1232", "Admin User");
+        User userAdmin3 = new User("Moustafa Zein", "mzein@mum.com", true, roleContentManager, pass, true, new Date(), 1, "1232", "Admin User");
+        User userAdmin4 = new User("Mo Salah", "mosalah@mum.com", true, roleMarketManager, pass, true, new Date(), 1, "1232", "Admin User");
+        User userAdmin5 = new User("Ibrahim Samier", "adminIbrahim@mum.com", true, roleAdmin, pass, true, new Date(), 1, "1232", "Admin User");
 
 
-        User user1 = new User("Moustafa Zein", "user1@mum.com", false, roleUser, "123", true, new Date(), 1, "1232", "User 1");
-        User user2 = new User("Mahmoud Srour", "user2@mum.com", false, roleUser, "123", true, new Date(), 1, "1232", "User 2");
-        User user3 = new User("Mo Salah", "user3@mum.com", false, roleUser, "123", true, new Date(), 1, "1232", "User 3");
-        User user4 = new User("Ibrahim Samer", "user4@mum.com", false, roleUser, "123", true, new Date(), 1, "1232", "User 4");
-        User user5 = new User("Mobark Salem", "user5@mum.com", false, roleUser, "123", true, new Date(), 1, "1232", "User 5");
-        User user6 = new User("Yasser Kmal", "user6@mum.com", false, roleUser, "123", true, new Date(), 1, "1232", "User 6");
-        User user7 = new User("Said Said", "user7@mum.com", false, roleUser, "123", true, new Date(), 1, "1232", "User 7");
+        User user1 = new User("Moustafa Zein", "user1@mum.com", false, roleUser, pass, true, new Date(), 1, "1232", "User 1");
+        User user2 = new User("Mahmoud Srour", "user2@mum.com", false, roleUser, pass, true, new Date(), 1, "1232", "User 2");
+        User user3 = new User("Mo Salah", "user3@mum.com", false, roleUser, pass, true, new Date(), 1, "1232", "User 3");
+        User user4 = new User("Ibrahim Samer", "user4@mum.com", false, roleUser, pass, true, new Date(), 1, "1232", "User 4");
+        User user5 = new User("Mobark Salem", "user5@mum.com", false, roleUser, pass, true, new Date(), 1, "1232", "User 5");
+        User user6 = new User("Yasser Kmal", "user6@mum.com", false, roleUser, pass, true, new Date(), 1, "1232", "User 6");
+        User user7 = new User("Said Said", "user7@mum.com", false, roleUser, pass, true, new Date(), 1, "1232", "User 7");
 
         em.persist(roleAdmin);
         em.persist(roleContentManager);
@@ -51,6 +54,7 @@ public class DataGenerate {
         em.persist(userAdmin2);
         em.persist(userAdmin3);
         em.persist(userAdmin4);
+        em.persist(userAdmin5);
 
 
         em.persist(user1);
@@ -62,7 +66,7 @@ public class DataGenerate {
         em.persist(user7);
 
         for (int i = 8; i < 15; i++) {
-            User userTemp = new User("Name : " + i, "user" + i + "@mum.com", false, roleUser, "123", true, new Date(), 1, "1232", "Bio " + i);
+            User userTemp = new User("Name : " + i, "user" + i + "@mum.com", false, roleUser, pass, true, new Date(), 1, "1232", "Bio " + i);
             em.persist(userTemp);
         }
 
@@ -101,8 +105,9 @@ public class DataGenerate {
                         }
 
                         if (doRandom(4, i)) {
-                            //PostLikes postLikes = new PostLikes(userAction, post, true, new Date());
-                            //em.persist(postLikes);
+                            PostLikes postLikes = new PostLikes(userAction,true,new Date());
+                            post.addLike(postLikes);
+                            em.persist(post);
                         }
                     }
                 }

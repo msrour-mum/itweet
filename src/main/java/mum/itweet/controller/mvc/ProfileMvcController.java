@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class ProfileMvcController {
@@ -19,9 +20,9 @@ public class ProfileMvcController {
     @Autowired
     FollowingService followingService;
 
-    @GetMapping("/profile")
-    public String home(Model model) {
-        int userId = Context.getUserId();
+    @GetMapping("/profile/{userId}")
+    public String home(@PathVariable int userId, Model model) {
+
         model.addAttribute("user", userService.get(userId));
         model.addAttribute("posts", postService.findByUserId(userId)); // list of post owend by this user
         model.addAttribute("CountFollower", followingService.getCountFollower(userId));
