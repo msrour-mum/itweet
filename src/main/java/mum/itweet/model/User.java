@@ -4,6 +4,7 @@ import io.swagger.models.auth.In;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import mum.itweet.model.lookups.Gender;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -49,6 +50,11 @@ public class User implements Serializable {
 
     private String PhotoUrl;
     private String CoverUrl;
+
+    @Transient
+    MultipartFile image;
+    @Transient
+    MultipartFile cover;
 
     public User(String name,String email, boolean isAdmin, Role role, String pass, boolean isActive, Date birthDate, int gender, String mobile, String bio) {
         this.name = name;

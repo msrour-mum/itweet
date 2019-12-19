@@ -95,16 +95,19 @@
 		<section>
 			<div class="feature-photo">
 				<figure>
-					<div class="cover-photo"></div>
+					<div class="cover-photo" th:style="${'background-image: url(' + user.getCoverUrl()+');'}"></div>
 				</figure>
-				<div class="add-btn">
-					<a href="./edit-profile.html">Edit Profile</a>
-				</div>
-				<form class="edit-phto">
-					<i class="fa fa-camera-retro"></i>
+<!--				<div class="add-btn">-->
+<!--					<a href="./edit-profile.html">Edit Profile</a>-->
+<!--				</div>-->
+				<form id="editCoverImageFrom" class="edit-phto" action="/edit-cover-image" th:object="${user}" method="post" enctype="multipart/form-data">
+				<i class="fa fa-camera-retro"></i>
 					<label class="fileContainer">
 						Edit Cover Photo
-						<input type="file" />
+						<input type="file"
+							   accept="image/x-png,image/jpeg,image/jpg"
+							   th:field="*{cover}" id="userCoverImageFile"/></p>
+						<button type="submit" >Submit</button>
 					</label>
 				</form>
 				<div class="container-fluid">
@@ -112,14 +115,18 @@
 						<div class="col-lg-2 col-sm-3">
 							<div class="user-avatar">
 								<figure>
-									<div class="profile-photo" style="background-image: url(images/profile-photo.png);">
+									<div class="profile-photo" th:style="${'background-image: url(' + user.getPhotoUrl()+');'}">
 									</div>
-									<form class="edit-phto">
+									<form id="editUserImageFrom" class="edit-phto" action="/edit-user-image" th:object="${user}" method="post" enctype="multipart/form-data">
+
 										<i class="fa fa-camera-retro"></i>
 										<label class="fileContainer">
-											Edit Profile Photo
-											<input type="file" />
+											[[#{edit.profile.photo}]]
+											<input type="file"
+												   accept="image/x-png,image/jpeg,image/jpg"
+												   th:field="*{image}" id="userProfileImageFile"/></p>
 										</label>
+										<button type="submit" >Submit</button>
 									</form>
 								</figure>
 							</div>
