@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @Controller
 public class UserMvcController {
     @Autowired
@@ -23,7 +25,7 @@ public class UserMvcController {
     }
 
     @PostMapping("/edit-profile")
-    public String update(User user, BindingResult bindingResult) {
+    public String update(@Valid User user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "edit-profile";
         }

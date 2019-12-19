@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import mum.itweet.model.lookups.Gender;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -19,6 +20,7 @@ public class User implements Serializable {
     private Integer id;
 
     @Column(nullable = false)
+    @NotEmpty
     private String name;
 
     @Column(unique = true, nullable = false)

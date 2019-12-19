@@ -75,18 +75,18 @@
 					</li>
 					<li><a href="#" title="Languages"><i class="fa fa-globe"></i></a>
 						<div class="dropdowns languages">
-							<a href="/home?lang=en" title=""><i class="ti-check"></i>English</a>
-							<a href="/home?lang=zh_CN" title="">中文</a>
+							<a href="./?lang=en" title=""><i class="ti-check"></i>English</a>
+							<a href="./?lang=zh_CN" title="">中文</a>
 						</div>
 					</li>
 				</ul>
 				<div class="user-img">
 					<img src="images/profile-photo.png" alt="">
 					<div class="user-setting">
-						<a href="#" title=""><i class="ti-user"></i> view profile</a>
-						<a href="#" title=""><i class="ti-pencil-alt"></i>edit profile</a>
-						<a href="#" title=""><i class="ti-settings"></i>account setting</a>
-						<a href="#" title=""><i class="ti-power-off"></i>log out</a>
+						<a href="/profile" th:text="#{main.menu.viewProfile}"><i class="ti-user"></i> view profile</a>
+						<a href="/edit-profile" th:text="#{main.menu.editProfile}"><i class="ti-pencil-alt"></i>edit profile</a>
+						<a href="#" th:text="#{main.menu.accountSetting}"><i class="ti-settings"></i>account setting</a>
+						<a href="/logout" th:text="#{main.menu.logout}"><i class="ti-power-off"></i>log out</a>
 					</div>
 				</div>
 			</div>
@@ -199,6 +199,11 @@
 													<label class="control-label" for="mobile" th:text="#{mobile.lbl}">Mobile</label>
 													<i class="mtrl-select"></i>
 												</div>
+<!--												<div class="form-group">-->
+<!--													<input type="date" th:field="*{birthDate}"/>-->
+<!--													<label class="control-label" for="birthdate" th:text="#{birthDate.lbl}">Birth Date</label>-->
+<!--													<i class="mtrl-select"></i>-->
+<!--												</div>-->
 												<div class="dob">
 <!--													<div class="form-group">-->
 <!--														<select>-->
