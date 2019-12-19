@@ -2,6 +2,7 @@ package mum.itweet.service;
 
 
 import mum.itweet.model.User;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,4 +16,7 @@ public interface UserService {
     public List<User> findAllByEmail(String name);
     public Optional<User> findByEmail(String email);
     public List<User> getAll();
+
+
+    public List<User> PeopleYouMayKnow(int userId , int fetchRecordCount);
 }

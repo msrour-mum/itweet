@@ -5,7 +5,7 @@ import mum.itweet.model.User;
 import mum.itweet.model.dto.PostDto;
 import mum.itweet.model.dto.PostItem;
 import mum.itweet.model.lookups.PostStatus;
-import mum.itweet.model.view.PostView;
+import mum.itweet.model.view.PostDetail;
 
 import java.util.List;
 
@@ -20,14 +20,17 @@ public interface PostService {
     public List<Post> getAll();
 
     //Custom
-    public  List<Post> findByUserId(int userId) ;
-    public  List<Post> listPendingPosts() ;
-    public  List<Post> listPostForUser(int userId) ;
-    public  List<PostView> listPostForUser2(int userId) ;
+    public  List<PostDetail> findByUserId(int userId) ;
+    public  List<PostDetail> listPendingPosts() ;
+    public  List<PostDetail> listPostForUser(int userId) ;
 
     public Post updateStatus(long postId, PostStatus postStatus);
 
     public int getLikesCount(long postId) ;
     public int getCommentsCount(long postId) ;
+    public int getDisabledPostCountPerUser(int userId);
+
+    public boolean isPostContainBadWords(String postText);
+
 
 }

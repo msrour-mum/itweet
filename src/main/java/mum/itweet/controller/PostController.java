@@ -5,6 +5,7 @@ import mum.itweet.model.Post;
 import mum.itweet.model.PostLikes;
 import mum.itweet.model.User;
 import mum.itweet.model.dto.PostDto;
+import mum.itweet.model.view.PostDetail;
 import mum.itweet.service.CommentService;
 import mum.itweet.service.LikeService;
 import mum.itweet.service.PostService;
@@ -55,7 +56,7 @@ public class PostController {
 
 
     @GetMapping("/pendingPosts")
-    public List<Post> getPendingPosts(Model model)
+    public List<PostDetail> getPendingPosts(Model model)
     {
         return postService.listPendingPosts();
     }

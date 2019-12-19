@@ -27,4 +27,10 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	@Query(value = "Select count(1)  from following f inner join user u on u.id=f.following_id where f.follower_id=:userId", nativeQuery = true)
 	public int getCountFollowing(@Param("userId") int userId);
 
+
+	@Query(value = "select distinct u.* from user u\n" +
+			"where u.isActive=1 and u.isAdmin=0 \n" +
+			"and u.id not in (select f.follower_id from following f  where f.following_id = :userId )", nativeQuery = true)
+	public List<User> PeopleYouMayKnow(@Param("userId") int userId);
+
 }

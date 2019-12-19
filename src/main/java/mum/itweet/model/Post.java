@@ -144,4 +144,12 @@ public class Post  {
     public void setPublishDate(Date publishDate) {
         this.publishDate = publishDate;
     }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public List<PostLikes> getPostLikes() {
+        return postLikes;
+    }
 }

@@ -38,4 +38,20 @@ public class Comment  {
         this.commentText = commentText;
         this.creationDate=new Date();
     }
+
+    public long getId() {
+        return id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public String getCommentText() {
+        return commentText;
+    }
+
+    public Date getCreationDate() {
+        return creationDate;
+    }
 }
