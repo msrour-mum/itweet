@@ -24,6 +24,7 @@ public class FollowingMvcController {
         int userId = Context.getUserId();
         model.addAttribute("user", userService.get(userId));
         model.addAttribute("followings", followingService.listFollowing(userId));
+        model.addAttribute("followers", followingService.listFollower(userId));
         model.addAttribute("CountFollower", followingService.getCountFollower(userId));
         model.addAttribute("CountFollowing", followingService.getCountFollowing(userId));
         model.addAttribute("PeopleYouMayKnow", userService.PeopleYouMayKnow(userId,5));

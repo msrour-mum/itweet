@@ -1,49 +1,56 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
-
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>User Search Result</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 </head>
 <body>
+<div class="container">
+    <h2>User Search Result</h2>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Is Active</th>
 
 
-<table>
-    <thead>
-    <tr>
-        <td>Name</td>
-        <td>Email</td>
-        <td>Is Active</td>
-        <td>View</td>
-        <td></td>
-        <td></td>
-    </tr>
-    </thead>
-    <tr th:each="item : ${users}">
-        <td th:text="${item.name}"></td>
-        <td th:text="${item.email}"></td>
-        <td th:text="${item.nameIsActive}"></td>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.nameIsActive}"></td>
+            <td>
+                <div th:if="${user.active}">
+                    <form th:action="@{'/admin/users/disable/'+ ${user.id}}" method="post">
+                        <div style="display: inline-block"><input type="submit" value="disable"
+                                                                  name="action"></div>
+                    </form>
+                </div>
+                <div th:unless="${user.active}">
+                    <form th:action="@{'/admin/users/enable/'+ ${user.id}}" method="post">
+                        <div style="display: inline-block"><input type="submit" value="enable"
+                                                                  name="action"></div>
+                    </form>
+                </div>
+            </td>
+            <td>
 
-        <td>
-        <input type="checkbox"  name="mycheckbox" th:checked="${item.active} ? 'checked'">
+            </td>
+        </tr>
 
-        </td>
-
-        <td><a  th:href="@{'/admin/users/'+ ${item.id}}" > View users </a></td>
-        <td>
-            <form th:action="@{'/admin/users/enable/'+ ${item.id}}" method="post">
-                <div style="display: inline-block"><input type="submit" value="enable" name="action"></div>
-            </form>
-        </td>
-        <td>
-            <form th:action="@{'/admin/users/disable/'+ ${item.id}}" method="post">
-                <div style="display: inline-block"><input type="submit" value="disable" name="action"></div>
-            </form>
-        </td>
-    </tr>
-</table>
+        </tbody>
+    </table>
 
 
+</div>
 
 </body>
 </html>
